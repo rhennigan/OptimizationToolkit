@@ -7,7 +7,7 @@
 (* :Date: 4/18/2015               *)
 
 (* :Package Version: 0.1          *)
-(* :Mathematica Version:          *)
+(* :Mathematica Version: 10       *)
 (* :Copyright: (c) 2015 rhennigan *)
 (* :Keywords:                     *)
 (* :Discussion:                   *)
@@ -16,6 +16,7 @@ BeginPackage["FactorExpression`"]
 (* Exported symbols added here with SymbolName::usage *)
 
 FactorExpression::usage = ""
+FactorExpressionFunction::usage = ""
 
 Begin["`Private`"] (* Begin Private Context *)
 
@@ -101,7 +102,6 @@ FactorExpression[exp_, opts : OptionsPattern[]] := Module[
   {lang, comments, simple, assignments},
   lang = OptionValue["Language"];
   comments = OptionValue["Comments"];
-  Print[comments];
   If[Not[BooleanQ[comments]],
     Message[FactorExpression::comm, OptionValue["Comments"]],
     {simple, assignments} = { #[[1]] , #[[2, 1]] } & @ Reap[factorExpression[exp, 0, opts]];
@@ -125,6 +125,53 @@ Options[FactorExpression] = {
 SyntaxInformation[FactorExpression] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
 Attributes[FactorExpression] = {Protected};
 
+FactorExpressionFunction[exp_, opts : OptionsPattern[]] := Module[
+  {lang, comments, simple, assignments, allSymbols, newSymbols, listHold, assignment},
+  lang = OptionValue["Language"];
+  comments = OptionValue["Comments"];
+  If[Not[BooleanQ[comments]],
+    Message[FactorExpression::comm, OptionValue["Comments"]],
+    {simple, assignments} = FactorExpression[exp, opts];
+    allSymbols = Union[Cases[{simple, assignments}, _Symbol, Infinity]];
+    newSymbols = assignments[[All, 1]];
+    With[
+      {
+        args = Complement[allSymbols, newSymbols],
+        locals = newSymbols,
+        compoundExpression = listHold @@ Append[Table[assignment[assignments[[i, 1]], assignments[[i, 2]]], {i, Length[assignments]}], simple]
+      },
+      Function[Evaluate[args],
+        Module[locals, compoundExpression]
+      ] /. {
+        listHold -> CompoundExpression,
+        assignment -> Set
+      }
+    ]
+  ]
+]
+
+Options[FactorExpressionFunction] = {
+  "Language" -> None,
+  "Prefix" -> None,
+  "Comments" -> True
+};
+
 End[] (* End Private Context *)
 
 EndPackage[]
+
+(*args=Complement[Union[Cases[{simple,assignments},_Symbol,Infinity]],\
+assignments\[LeftDoubleBracket]All,1\[RightDoubleBracket]];
+NotebookPut[Notebook[{Cell[BoxData[RowBox[{RowBox[{"factoredFunction",\
+"[",RowBox[Riffle[ToString[#]<>"_"&/@args,","]],"]"}],":=",RowBox[{\
+"Module","[","
+",RowBox[{
+RowBox[{"{",RowBox[Riffle[ToString/@assignments\[LeftDoubleBracket]\
+All,1\[RightDoubleBracket],","]],"}"}],",","
+",
+RowBox[Append[Flatten[{RowBox[{ToString[#\[LeftDoubleBracket]1\
+\[RightDoubleBracket]],"=",ToBoxes[#\[LeftDoubleBracket]2\
+\[RightDoubleBracket]]}],";","
+"}&/@assignments],ToBoxes[simple]]]
+}],"
+","]"}]}]],"Input"]}]]*)

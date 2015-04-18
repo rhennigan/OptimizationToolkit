@@ -126,7 +126,10 @@ SyntaxInformation[FactorExpression] = {"ArgumentsPattern" -> {_, OptionsPattern[
 Attributes[FactorExpression] = {Protected};
 
 FactorExpressionFunction[exp_, opts : OptionsPattern[]] := Module[
-  {lang, comments, simple, assignments, allSymbols, newSymbols, listHold, assignment},
+  {
+    lang, comments, simple, assignments,
+    allSymbols, newSymbols, listHold, assignmentHolder, assignment
+  },
   lang = OptionValue["Language"];
   comments = OptionValue["Comments"];
   If[Not[BooleanQ[comments]],
@@ -134,11 +137,12 @@ FactorExpressionFunction[exp_, opts : OptionsPattern[]] := Module[
     {simple, assignments} = FactorExpression[exp, opts];
     allSymbols = Union[Cases[{simple, assignments}, _Symbol, Infinity]];
     newSymbols = assignments[[All, 1]];
+    assignmentHolder = assignment @@ assignments[[#]] &;
     With[
       {
         args = Complement[allSymbols, newSymbols],
         locals = newSymbols,
-        compoundExpression = listHold @@ Append[Table[assignment[assignments[[i, 1]], assignments[[i, 2]]], {i, Length[assignments]}], simple]
+        compoundExpression = listHold @@ Append[Table[assignmentHolder[i], {i, Length[assignments]}], simple]
       },
       Function[Evaluate[args],
         Module[locals, compoundExpression]

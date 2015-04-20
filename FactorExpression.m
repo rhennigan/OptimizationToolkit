@@ -23,6 +23,9 @@ Begin["`Private`"] (* Begin Private Context *)
 FactorExpression::lang = "The language specification `1` is not recognized.";
 FactorExpression::comm = "The comments specification `1` is not recognized.";
 
+areQ = isQ = #2[#1] === True &;
+are = is = #1 === #2 &;
+
 inReals[exp_] := Module[
   {allSymbols, symbols, membership},
   allSymbols = Cases[exp, _Symbol, Infinity];
@@ -69,7 +72,7 @@ factorExpression[exp_, varCount_Integer, opts : OptionsPattern[]] := Module[
   If[count > 1,
     Module[{prefix, newVar, newExp},
       prefix = OptionValue["Prefix"];
-      newVar = If[prefix === None,
+      newVar = If[prefix ~ is ~ None,
         Module[{Global`v}, Global`v],
         Symbol[ToString[prefix] <> ToString[varCount + 1]]
       ];
@@ -102,7 +105,7 @@ FactorExpression[exp_, opts : OptionsPattern[]] := Module[
   {lang, comments, simple, assignments},
   lang = OptionValue["Language"];
   comments = OptionValue["Comments"];
-  If[Not[BooleanQ[comments]],
+  If[comments ~ areQ ~ Not @* BooleanQ,
     Message[FactorExpression::comm, OptionValue["Comments"]],
     {simple, assignments} = { #[[1]] , #[[2, 1]] } & @ Reap[factorExpression[exp, 0, opts]];
     Switch[lang,
@@ -135,7 +138,7 @@ FactorExpressionFunction[exp_, opts : OptionsPattern[]] := Module[
   lang = OptionValue["Language"];
   comments = OptionValue["Comments"];
 
-  If[Not[BooleanQ[comments]],
+  If[ comments ~ areQ ~ Not @* BooleanQ,
 
     Message[FactorExpression::comm, OptionValue["Comments"]],
 

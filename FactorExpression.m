@@ -128,28 +128,35 @@ Attributes[FactorExpression] = {Protected};
 FactorExpressionFunction[exp_, opts : OptionsPattern[]] := Module[
   {
     lang, comments, simple, assignments,
-    allSymbols, newSymbols, listHold, assignmentHolder, assignment
+    allSymbols, newSymbols, listHold,
+    assignmentHolder, holders, assignment
   },
+
   lang = OptionValue["Language"];
   comments = OptionValue["Comments"];
+
   If[Not[BooleanQ[comments]],
+
     Message[FactorExpression::comm, OptionValue["Comments"]],
+
     {simple, assignments} = FactorExpression[exp, opts];
     allSymbols = Union[Cases[{simple, assignments}, _Symbol, Infinity]];
     newSymbols = assignments[[All, 1]];
     assignmentHolder = assignment @@ assignments[[#]] &;
+    holders = Table[assignmentHolder[i], {i, Length[assignments]}];
     With[
       {
         args = Complement[allSymbols, newSymbols],
         locals = newSymbols,
-        compoundExpression = listHold @@ Append[Table[assignmentHolder[i], {i, Length[assignments]}], simple]
+        compoundExpression = listHold @@ Append[holders, simple]
       },
       Function[Evaluate[args],
         Module[locals, compoundExpression]
-      ] /. {
-        listHold -> CompoundExpression,
-        assignment -> Set
-      }
+      ] /.
+          {
+            listHold -> CompoundExpression,
+            assignment -> Set
+          }
     ]
   ]
 ]

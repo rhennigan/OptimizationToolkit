@@ -23,31 +23,34 @@ Begin["`Private`"] (* Begin Private Context *)
 FactorExpression::lang = "The language specification `1` is not recognized.";
 FactorExpression::comm = "The comments specification `1` is not recognized.";
 
+(* Aliases *)
 areQ = isQ = #2[#1] === True &;
 are = is = #1 === #2 &;
+and = #1 && #2&;
+of = #1[#2]&;
 
+(* Local methods *)
 inReals[exp_] := Module[
   {allSymbols, symbols, membership},
   allSymbols = Cases[exp, _Symbol, Infinity];
-  symbols = Union[allSymbols];
-  membership = Element[symbols, Reals];
-  Return[membership];
+  symbols = Union @ allSymbols;
+  membership = symbols ~ Element ~ Reals;
+  Return @ membership;
 ]
 
 simplify[exp_] := Module[
   {assumption, simplified},
-  assumption = inReals[exp];
-  simplified = Simplify[exp, assumption];
-  Return[simplified];
+  assumption = inReals @ exp;
+  simplified = exp ~ Simplify ~ assumption;
+  Return @ simplified;
 ]
 
 commutativeSubsets[exp_] := Module[
-  {productQ},
-  productQ = Head[exp] === Times && Length[exp] > 2;
-  If[productQ,
+  {expIsALongProduct = Head ~ of ~ exp ~ is ~ Times ~ and ~ (Length ~ of ~ exp > 2)},
+  If[expIsALongProduct,
     Module[{subproductSets, subproducts},
       subproductSets = Subsets[List @@ exp, {2, Infinity}];
-      subproducts = Times @@@ subproducts;
+      subproducts = Times @@@ subproductSets;
       Sow /@ subproducts
     ],
     Sow[exp]
@@ -88,7 +91,9 @@ formatAssignment[{v_, e_, c_}, {"C", type_String, comments : (True | False)}] :=
   {end},
   end = If[comments, StringJoin[";  /* ", ToString[c], " */\n"], ";\n"];
   StringJoin[
-    type, " ", ToString[CForm[v]], " = ", ToString[CForm[e]], end
+    type, " ", ToString[
+    CForm[v] /. Power[x_, 2] :> HoldForm[Times[x, x]]
+  ], " = ", ToString[CForm[e]], end
   ]
 ]
 

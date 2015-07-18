@@ -15,7 +15,7 @@
 BeginPackage["FactorExpression2`"];
 (* Exported symbols added here with SymbolName::usage *)
 
-FactorExpression :: usage = "Use this to make magic happen (maybe).";
+FactorExpression::usage = "Use this to make magic happen (maybe).";
 
 Begin["`Private`"]; (* Begin Private Context *)
 
@@ -34,16 +34,32 @@ findRedundantExpressions[exp_, varCount_Integer] := Module[
   ]
 ];
 
-FactorExpression[exp_] := Block[{$RecursionLimit = Infinity, $IterationLimit = Infinity},
+FactorExpression[exp_, opts : OptionsPattern[]] := Block[
+  {$RecursionLimit = Infinity, $IterationLimit = Infinity},
   Module[
-    {varCount, assignments, localVariables, cexp, mexp},
+    {output, varCount, assignments, localVariables, cexp, mexp, fexp},
+    output = OptionValue["Output"];
     {varCount, assignments} = Reap[findRedundantExpressions[exp, 1]];
     localVariables = Symbol["V" <> ToString[#]]& /@ Range[varCount];
     cexp = First[HeldCompoundExpression @@@ assignments /. V[x_Integer] :> Symbol["V" <> ToString[x]]];
-    mexp = With[{localVariablesT = localVariables, cexpT = cexp}, HoldForm@Module[localVariablesT, cexpT]];
-    With[{HeldSet = Set, HeldCompoundExpression = CompoundExpression}, Evaluate[mexp]]
+    mexp = With[{localVariablesT = localVariables, cexpT = cexp}, Hold@Module[localVariablesT, cexpT]];
+    fexp = Evaluate[mexp] /. {HeldSet -> Set, HeldCompoundExpression -> CompoundExpression};
+    Switch[output,
+      CompiledFunction, Module[
+      {parameters = Union[Cases[exp, _Symbol, Infinity]]},
+      HeldCompile[{#, _Real}& /@ parameters, fexp] /. {
+        Hold[Module[vars_, modexp_]] :> Module[vars, modexp],
+        HeldCompile -> Compile
+      }
+    ],
+      _, fexp
+    ]
   ]
 ];
+
+Options[FactorExpression] = {
+  "Output" -> CompiledFunction
+};
 
 End[]; (* End Private Context *)
 

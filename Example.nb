@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    196513,       3957]
-NotebookOptionsPosition[    193519,       3853]
-NotebookOutlinePosition[    194107,       3876]
-CellTagsIndexPosition[    194020,       3871]
+NotebookDataLength[    194244,       3908]
+NotebookOptionsPosition[    191389,       3810]
+NotebookOutlinePosition[    191737,       3825]
+CellTagsIndexPosition[    191694,       3822]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -30,61 +30,8 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell[BoxData[
- RowBox[{"Names", "[", "\"\<FactorExpression`Private`*\>\"", "]"}]], "Input",
- CellChangeTimes->{{3.6462547175926533`*^9, 3.646254760785636*^9}}],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"FactorExpression`Private`assignments\"\>", 
-   ",", "\<\"FactorExpression`Private`assignments$\"\>", 
-   ",", "\<\"FactorExpression`Private`cexp\"\>", 
-   ",", "\<\"FactorExpression`Private`cexpT\"\>", 
-   ",", "\<\"FactorExpression`Private`cexpT$\"\>", 
-   ",", "\<\"FactorExpression`Private`cexp$\"\>", 
-   ",", "\<\"FactorExpression`Private`excludedForms\"\>", 
-   ",", "\<\"FactorExpression`Private`excludedForms$\"\>", 
-   ",", "\<\"FactorExpression`Private`exp\"\>", 
-   ",", "\<\"FactorExpression`Private`expressionCounts\"\>", 
-   ",", "\<\"FactorExpression`Private`expressionCounts$\"\>", 
-   ",", "\<\"FactorExpression`Private`fexp\"\>", 
-   ",", "\<\"FactorExpression`Private`fexp$\"\>", 
-   ",", "\<\"FactorExpression`Private`findRedundantExpressions\"\>", 
-   ",", "\<\"FactorExpression`Private`HeldCompile\"\>", 
-   ",", "\<\"FactorExpression`Private`HeldCompoundExpression\"\>", 
-   ",", "\<\"FactorExpression`Private`HeldSet\"\>", 
-   ",", "\<\"FactorExpression`Private`localVariables\"\>", 
-   ",", "\<\"FactorExpression`Private`localVariablesT\"\>", 
-   ",", "\<\"FactorExpression`Private`localVariablesT$\"\>", 
-   ",", "\<\"FactorExpression`Private`localVariables$\"\>", 
-   ",", "\<\"FactorExpression`Private`mexp\"\>", 
-   ",", "\<\"FactorExpression`Private`mexp$\"\>", 
-   ",", "\<\"FactorExpression`Private`minDepth\"\>", 
-   ",", "\<\"FactorExpression`Private`minDepth$\"\>", 
-   ",", "\<\"FactorExpression`Private`modexp\"\>", 
-   ",", "\<\"FactorExpression`Private`modexp$\"\>", 
-   ",", "\<\"FactorExpression`Private`mostRedundantExpressions\"\>", 
-   ",", "\<\"FactorExpression`Private`mostRedundantExpressions$\"\>", 
-   ",", "\<\"FactorExpression`Private`newVal\"\>", 
-   ",", "\<\"FactorExpression`Private`newVal$\"\>", 
-   ",", "\<\"FactorExpression`Private`newVar\"\>", 
-   ",", "\<\"FactorExpression`Private`newVar$\"\>", 
-   ",", "\<\"FactorExpression`Private`opts\"\>", 
-   ",", "\<\"FactorExpression`Private`output\"\>", 
-   ",", "\<\"FactorExpression`Private`output$\"\>", 
-   ",", "\<\"FactorExpression`Private`parameters\"\>", 
-   ",", "\<\"FactorExpression`Private`parameters$\"\>", 
-   ",", "\<\"FactorExpression`Private`subExp\"\>", 
-   ",", "\<\"FactorExpression`Private`subExp$\"\>", 
-   ",", "\<\"FactorExpression`Private`V\"\>", 
-   ",", "\<\"FactorExpression`Private`varCount\"\>", 
-   ",", "\<\"FactorExpression`Private`varCount$\"\>", 
-   ",", "\<\"FactorExpression`Private`vars\"\>", 
-   ",", "\<\"FactorExpression`Private`vars$\"\>", 
-   ",", "\<\"FactorExpression`Private`x\"\>", 
-   ",", "\<\"FactorExpression`Private`x$\"\>"}], "}"}]], "Output",
- CellChangeTimes->{{3.646254728165786*^9, 3.646254761430761*^9}}]
-}, Open  ]],
+  Cell["Simple usage examples", "Section",
+    CellChangeTimes -> {{3.6462567694874115`*^9, 3.6462567730800657`*^9}}],
 
 Cell[CellGroupData[{
 
@@ -115,6 +62,13 @@ Cell[BoxData[
  CellChangeTimes->{3.646255100883515*^9, 3.646255306449341*^9, 
   3.646256244583987*^9}]
 }, Open  ]],
+
+  Cell[TextData[{
+    "The default output is in ",
+    StyleBox["HoldForm", "Program"],
+    " to prevent evaluating and returning the original expression."
+  }], "Text",
+    CellChangeTimes -> {{3.646256800248153*^9, 3.646256847704852*^9}}],
 
 Cell[CellGroupData[{
 
@@ -204,54 +158,96 @@ Cell[BoxData[
   3.646255307442731*^9, {3.6462562326458397`*^9, 3.6462562561434646`*^9}}]
 }, Open  ]],
 
-Cell[BoxData[
+  Cell["\<\
+For large expressions, the factored form generally ends up being much smaller.\
+\>", "Text",
+    CellChangeTimes -> {{3.646256909696166*^9, 3.6462569310561695`*^9}}],
+
+  Cell[CellGroupData[{
+
+    Cell[BoxData[{
  RowBox[{
-  RowBox[{"(*", " ", 
-   RowBox[{
-   "Find", " ", "a", " ", "unit", " ", "vector", " ", "normal", " ", "to", 
-    " ", "a", " ", "tetrahedron", " ", "in", " ", "4", "D", " ", "space"}], 
-   " ", "*)"}], "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"nexp", "=", 
-    RowBox[{"Normalize", "[", 
+   RowBox[{"exp3", "=",
      RowBox[{
-      RowBox[{"Det", "[", 
-       RowBox[{"(", GridBox[{
-          {"e1", "e2", "e3", "e4"},
-          {
-           RowBox[{"x2", "-", "x1"}], 
-           RowBox[{"y2", "-", "y1"}], 
-           RowBox[{"z2", "-", "z1"}], 
-           RowBox[{"w2", "-", "w1"}]},
-          {
-           RowBox[{"x3", "-", "x1"}], 
-           RowBox[{"y3", "-", "y1"}], 
-           RowBox[{"z3", "-", "z1"}], 
-           RowBox[{"w3", "-", "w1"}]},
-          {
-           RowBox[{"x4", "-", "x1"}], 
-           RowBox[{"y4", "-", "y1"}], 
-           RowBox[{"z4", "-", "z1"}], 
-           RowBox[{"w4", "-", "w1"}]}
-         }], ")"}], "]"}], "/.", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"e1", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}]}], ",", 
-        RowBox[{"e2", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "1", ",", "0", ",", "0"}], "}"}]}], ",", 
-        RowBox[{"e3", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "0", ",", "1", ",", "0"}], "}"}]}], ",", 
-        RowBox[{"e4", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "}"}]}]}], "}"}]}], 
-     "]"}]}], ";"}]}]], "Input",
+       RowBox[{"RotationTransform", "[",
+         RowBox[{"\[Theta]", ",",
+           RowBox[{"{",
+             RowBox[{"xr", ",", "yr", ",", "zr"}], "}"}]}], "]"}], "[",
+       RowBox[{"{",
+         RowBox[{"x", ",", "y", ",", "z"}], "}"}], "]"}]}],
+   ";"}], "\[IndentingNewLine]",
+      RowBox[{"LeafCount", "[", "exp3", "]"}]}], "Input",
+      CellChangeTimes -> {{3.646256589664254*^9, 3.6462566454830804`*^9}}],
+
+    Cell[BoxData["5563"], "Output",
+      CellChangeTimes -> {{3.6462566235444684`*^9, 3.6462566502706337`*^9}}]
+  }, Open  ]],
+
+  Cell[CellGroupData[{
+
+    Cell[BoxData[{
+      RowBox[{
+        RowBox[{"fexp3", "=",
+          RowBox[{"FactorExpression", "[", "exp3", "]"}]}],
+        ";"}], "\[IndentingNewLine]",
+      RowBox[{"LeafCount", "[", "fexp3", "]"}]}], "Input",
+      CellChangeTimes -> {{3.6462566530607214`*^9, 3.646256689825861*^9}}],
+
+    Cell[BoxData["920"], "Output",
+      CellChangeTimes -> {3.646256690675748*^9}]
+  }, Open  ]]
+}, Open  ]],
+
+  Cell[CellGroupData[{
+
+    Cell["Example of performance gains", "Section",
+      CellChangeTimes -> {{3.646256956816005*^9, 3.6462569672802286`*^9}}],
+
+    Cell["Find a unit vector normal to a tetrahedron in 4D space.", "Text",
+      CellChangeTimes -> {{3.646256983449487*^9, 3.646256986024203*^9}}],
+
+    Cell[BoxData[
+      RowBox[{
+        RowBox[{"nexp", "=",
+          RowBox[{"Normalize", "[",
+            RowBox[{
+              RowBox[{"Det", "[",
+                RowBox[{"(", GridBox[{
+                  {"e1", "e2", "e3", "e4"},
+                  {
+                    RowBox[{"x2", "-", "x1"}],
+                    RowBox[{"y2", "-", "y1"}],
+                    RowBox[{"z2", "-", "z1"}],
+                    RowBox[{"w2", "-", "w1"}]},
+                  {
+                    RowBox[{"x3", "-", "x1"}],
+                    RowBox[{"y3", "-", "y1"}],
+                    RowBox[{"z3", "-", "z1"}],
+                    RowBox[{"w3", "-", "w1"}]},
+                  {
+                    RowBox[{"x4", "-", "x1"}],
+                    RowBox[{"y4", "-", "y1"}],
+                    RowBox[{"z4", "-", "z1"}],
+                    RowBox[{"w4", "-", "w1"}]}
+                }], ")"}], "]"}], "/.",
+              RowBox[{"{",
+                RowBox[{
+                  RowBox[{"e1", "\[Rule]",
+                    RowBox[{"{",
+                      RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}]}], ",",
+                  RowBox[{"e2", "\[Rule]",
+                    RowBox[{"{",
+                      RowBox[{"0", ",", "1", ",", "0", ",", "0"}], "}"}]}], ",",
+                  RowBox[{"e3", "\[Rule]",
+                    RowBox[{"{",
+                      RowBox[{"0", ",", "0", ",", "1", ",", "0"}], "}"}]}], ",",
+                  RowBox[{"e4", "\[Rule]",
+                    RowBox[{"{",
+                      RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "}"}]}]}], "}"}]}],
+            "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.6383709713224945`*^9, 3.6383709729485044`*^9}, {
-   3.63837102292544*^9, 3.6383710428945117`*^9}, 3.646248795516757*^9, 
-   3.646251901156065*^9}],
+   3.63837102292544*^9, 3.6383710428945117`*^9}, 3.646248795516757*^9,
+   3.646251901156065*^9, {3.6462569775864487`*^9, 3.6462569797882776`*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -280,6 +276,9 @@ Cell[BoxData[
   RowBox[{"Evaluate", "[", "sexp", "]"}]}]], "Input",
  CellChangeTimes->{{3.646248784222813*^9, 3.6462488011913643`*^9}, {
    3.646248945111493*^9, 3.646249023775357*^9}, 3.6462509157517834`*^9}],
+
+    Cell["Find the normals to each face of a pentachoron.", "Text",
+      CellChangeTimes -> {{3.646256983449487*^9, 3.6462570084482*^9}}],
 
 Cell[CellGroupData[{
 
@@ -318,38 +317,9 @@ Cell[BoxData["10586"], "Output",
    3.6462522746889486`*^9, 3.6462549660453453`*^9, 3.6462552996754313`*^9}]
 }, Open  ]],
 
-Cell[BoxData[
- RowBox[{"ClearAll", "[", 
-  RowBox[{"params", ",", "test1", ",", "test2", ",", "test3"}], 
-  "]"}]], "Input",
- CellChangeTimes->{{3.6462472739535117`*^9, 3.6462472938309813`*^9}, {
-  3.6462499359199333`*^9, 3.6462499367989855`*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"params", "=", 
-  RowBox[{"Union", "[", 
-   RowBox[{"Cases", "[", 
-    RowBox[{"pentachoronFaceNormals", ",", "_Symbol", ",", "Infinity"}], 
-    "]"}], "]"}]}]], "Input",
- CellChangeTimes->{{3.6462472956650567`*^9, 3.646247306606868*^9}, 
-   3.6462491577921286`*^9}],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-  "w1", ",", "w2", ",", "w3", ",", "w4", ",", "w5", ",", "x1", ",", "x2", ",",
-    "x3", ",", "x4", ",", "x5", ",", "y1", ",", "y2", ",", "y3", ",", "y4", 
-   ",", "y5", ",", "z1", ",", "z2", ",", "z3", ",", "z4", ",", "z5"}], 
-  "}"}]], "Output",
- CellChangeTimes->{
-  3.646247307478445*^9, {3.646247728313506*^9, 3.64624775126307*^9}, 
-   3.6462484289783792`*^9, 3.6462485613265476`*^9, 3.6462491595831957`*^9, 
-   3.6462496016633234`*^9, 3.646249938655088*^9, 3.6462504362628794`*^9, 
-   3.6462504851499786`*^9, 3.6462510691040435`*^9, 3.646251915573352*^9, 
-   3.6462522767608995`*^9, 3.646254966203284*^9, 3.646255301971359*^9}]
-}, Open  ]],
+    Cell["Set up a function that evaluates the original expression.", "Text",
+      CellChangeTimes -> {{3.646256983449487*^9, 3.6462570084482*^9}, {
+        3.646257045168174*^9, 3.6462570536955185`*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -372,12 +342,19 @@ Cell[BoxData[
   3.646244423822687*^9, 3.6462444315411997`*^9}, {3.646249173632902*^9, 
   3.6462492007367086`*^9}}],
 
+    Cell["Paste the output of FactorExpression into another function.", "Text",
+      CellChangeTimes -> {{3.646256983449487*^9, 3.6462570084482*^9}, {
+        3.646257045168174*^9, 3.646257088599716*^9}}],
+
 Cell[BoxData[
  RowBox[{"FactorExpression", "[", "pentachoronFaceNormals", "]"}]], "Input",
  CellChangeTimes->{{3.6462553395246415`*^9, 3.6462553454414206`*^9}}],
 
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.6462553527047815`*^9, 3.646255352763856*^9}}],
+    Cell[BoxData[
+      RowBox[{"(*", " ",
+        RowBox[{"output", " ", "removed"}], " ", "*)"}]], "Input",
+      CellChangeTimes -> {{3.6462553527047815`*^9, 3.646255352763856*^9}, {
+        3.6462570925466704`*^9, 3.646257101113335*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -1388,6 +1365,13 @@ Cell[BoxData[
  CellChangeTimes->{{3.6462496522473946`*^9, 3.6462496635074863`*^9}, 
    3.646249956133913*^9, {3.646250496732049*^9, 3.6462505040256767`*^9}, 
    3.6462511170375147`*^9, {3.6462553546077986`*^9, 3.646255378949937*^9}}],
+
+    Cell["\<\
+The \[OpenCurlyDoubleQuote]Output\[CloseCurlyDoubleQuote] option allows a \
+compiled function to be returned instead of a Block in HoldForm. This is \
+currently experimental and assumes all symbols are Real.\
+\>", "Text",
+      CellChangeTimes -> {{3.6462571390794783`*^9, 3.64625717804803*^9}}],
 
 Cell[CellGroupData[{
 
@@ -3634,6 +3618,9 @@ Cell[BoxData[
   3.6462498697466574`*^9, 3.646249875865471*^9}, {3.6462501097375693`*^9, 
   3.6462501182005916`*^9}}],
 
+    Cell["Run some timing tests.", "Text",
+      CellChangeTimes -> {{3.6462571390794783`*^9, 3.6462572002234735`*^9}}],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"testParams", "=", 
@@ -3673,8 +3660,8 @@ Cell[BoxData[{
   3.6462505855614643`*^9, 3.6462505877996187`*^9}, {3.6462555972344117`*^9, 
   3.646255610785508*^9}}],
 
-Cell[BoxData["0.00204332543450794776665468965859417949`15.954589770191003"], \
-"Output",
+  Cell[BoxData["0.00214739031764273708910439886210497207`15.954589770191003"],
+    "Output",
  CellChangeTimes->{
   3.646244370417465*^9, {3.646244463796999*^9, 3.6462444734918337`*^9}, 
    3.646245613975784*^9, 3.6462456550643654`*^9, 3.6462457158659945`*^9, 
@@ -3682,8 +3669,8 @@ Cell[BoxData["0.00204332543450794776665468965859417949`15.954589770191003"], \
    3.646248467218333*^9, 3.646248589891569*^9, 3.6462493855735354`*^9, 
    3.646249732980056*^9, 3.646250019382208*^9, 3.6462500568873186`*^9, 
    3.64625052372062*^9, 3.646250594684387*^9, 3.64625064365939*^9, 
-   3.6462511469061017`*^9, 3.646255426579297*^9, {3.646255590443994*^9, 
-   3.6462556143342843`*^9}}]
+   3.6462511469061017`*^9, 3.646255426579297*^9, {3.646255590443994*^9,
+     3.6462556143342843`*^9}, 3.646257208447361*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3708,16 +3695,17 @@ Cell[BoxData[{
   3.646250600369404*^9, 3.646250603639761*^9}, {3.6462556161616573`*^9, 
   3.646255617496852*^9}}],
 
-Cell[BoxData["0.00069638040588957533794101095736550633`15.954589770191003"], \
-"Output",
+  Cell[BoxData["0.00072188271940487310027873002482579068`15.954589770191003"],
+    "Output",
  CellChangeTimes->{
   3.6462443896273737`*^9, 3.6462444798614635`*^9, {3.646245625710727*^9, 
    3.6462456565570974`*^9}, 3.646245716005012*^9, 3.646245832196682*^9, 
    3.64624748075956*^9, 3.646247664546648*^9, 3.6462477682984076`*^9, 
    3.6462484698097587`*^9, 3.646248590936633*^9, 3.646249390834493*^9, 
    3.646249734674962*^9, {3.6462500196981583`*^9, 3.6462500618149757`*^9}, 
-   3.6462505259816923`*^9, 3.646250606925495*^9, 3.6462506500062523`*^9, 
-   3.6462511542010403`*^9, 3.6462554320880613`*^9, 3.6462556212461405`*^9}]
+   3.6462505259816923`*^9, 3.646250606925495*^9, 3.6462506500062523`*^9,
+   3.6462511542010403`*^9, 3.6462554320880613`*^9, 3.6462556212461405`*^9,
+   3.6462572114953413`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3738,13 +3726,20 @@ Cell[BoxData[{
   3.6462506093851414`*^9, 3.6462506115842915`*^9}, {3.6462556218247347`*^9, 
   3.646255625594164*^9}}],
 
-Cell[BoxData["0.0000192232985199115104279002363973916089889826253056526184`15.\
+  Cell[BoxData["0.0000196526138626974979485909078569250141299562528729438782`15.\
 954589770191003"], "Output",
  CellChangeTimes->{3.646249745997361*^9, 3.646249887079981*^9, 
   3.6462500635429363`*^9, 3.6462505275318055`*^9, 3.646250615179826*^9, 
-  3.646250652083102*^9, 3.646251156278865*^9, 3.6462554419163914`*^9, 
-  3.6462554758793693`*^9, 3.6462556313667173`*^9}]
+  3.646250652083102*^9, 3.646251156278865*^9, 3.6462554419163914`*^9,
+   3.6462554758793693`*^9, 3.6462556313667173`*^9, 3.646257214547139*^9}]
 }, Open  ]],
+
+    Cell["\<\
+Using FactorExpression can yield modest performance gains (about 3x faster in \
+this example). For much larger expressions, the performance increase can get \
+rather ridiculous (several orders of magnitude).\
+\>", "Text",
+      CellChangeTimes -> {{3.6462572480403175`*^9, 3.646257298824191*^9}}],
 
 Cell[CellGroupData[{
 
@@ -3752,14 +3747,15 @@ Cell[BoxData[
  RowBox[{"t1", "/", "t2"}]], "Input",
  CellChangeTimes->{{3.6462456621275225`*^9, 3.6462456628696327`*^9}}],
 
-Cell[BoxData["2.93420868425749010667076966230122482741`15.653559774527022"], \
-"Output",
- CellChangeTimes->{3.646245663463665*^9, 3.6462457160590076`*^9, 
-  3.6462458383535376`*^9, 3.6462477699824257`*^9, 3.6462484712133093`*^9, 
-  3.6462485921018353`*^9, 3.646249393183222*^9, 3.6462500403042793`*^9, 
-  3.6462505293279133`*^9, 3.646250617815776*^9, 3.646250652116806*^9, 
-  3.6462511563128614`*^9, 3.646255441986394*^9, 3.6462554821543627`*^9, 
-  3.6462556334418325`*^9}]
+  Cell[BoxData["2.97470802378129490739624123017024860276`15.653559774527022"],
+    "Output",
+    CellChangeTimes -> {
+      3.646245663463665*^9, 3.6462457160590076`*^9, 3.6462458383535376`*^9,
+      3.6462477699824257`*^9, 3.6462484712133093`*^9, 3.6462485921018353`*^9,
+      3.646249393183222*^9, 3.6462500403042793`*^9, 3.6462505293279133`*^9,
+      3.646250617815776*^9, 3.646250652116806*^9, 3.6462511563128614`*^9,
+      3.646255441986394*^9, 3.6462554821543627`*^9, 3.6462556334418325`*^9, {
+        3.6462572145981436`*^9, 3.646257225010624*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3768,12 +3764,15 @@ Cell[BoxData[
  RowBox[{"t1", "/", "t3"}]], "Input",
  CellChangeTimes->{{3.6462505396840334`*^9, 3.646250541591736*^9}}],
 
-Cell[BoxData["106.29421544858544371688897158028946117544`15.653559774527022"],\
+  Cell[BoxData["109.26741514616969434007772325136734923234`15.653559774527022"],\
  "Output",
  CellChangeTimes->{3.6462505422650995`*^9, 3.6462506188228607`*^9, 
-  3.6462506521498146`*^9, 3.6462511563458624`*^9, 3.6462554420414658`*^9, 
-  3.6462554833543425`*^9, 3.646255634537425*^9}]
+  3.6462506521498146`*^9, 3.6462511563458624`*^9, 3.6462554420414658`*^9,
+   3.6462554833543425`*^9, 3.646255634537425*^9, 3.6462572231481705`*^9}]
 }, Open  ]],
+
+    Cell["The results are also correct in case you were wondering.", "Text",
+      CellChangeTimes -> {{3.646257315583741*^9, 3.64625733305558*^9}}],
 
 Cell[CellGroupData[{
 
@@ -3785,13 +3784,13 @@ Cell[BoxData[
  CellChangeTimes->{{3.6462457233103085`*^9, 3.6462457255652723`*^9}, {
   3.646245758174271*^9, 3.6462457803666153`*^9}}],
 
-Cell[BoxData["0``14.68626508526331"], "Output",
+  Cell[BoxData["0``14.712833332520457"], "Output",
  CellChangeTimes->{
   3.6462457261893396`*^9, {3.64624576346431*^9, 3.6462457808566427`*^9}, 
    3.6462458385025487`*^9, 3.6462477710969734`*^9, 3.6462484730124083`*^9, 
    3.646249394613278*^9, 3.646250620535924*^9, 3.6462506522228217`*^9, 
-   3.646251156423936*^9, 3.646255442133413*^9, 3.646255485207002*^9, 
-   3.6462556356592603`*^9}]
+   3.646251156423936*^9, 3.646255442133413*^9, 3.646255485207002*^9,
+   3.6462556356592603`*^9, 3.6462572266448956`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3803,52 +3802,10 @@ Cell[BoxData[
     RowBox[{"res1", "-", "res3"}], "]"}], "]"}], "]"}]], "Input",
  CellChangeTimes->{3.6462554925211678`*^9}],
 
-Cell[BoxData["0``14.68626508526331"], "Output",
- CellChangeTimes->{3.6462554934362235`*^9, 3.6462556365269938`*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"?", "ToHeldExpression"}]], "Input",
- CellChangeTimes->{{3.646255767148308*^9, 3.646255783752779*^9}}],
-
-Cell[CellGroupData[{
-
-Cell["System`ToHeldExpression", "Print", "PrintUsage",
- CellChangeTimes->{3.646255784231058*^9},
- CellTags->"Info3646241384-4752516"],
-
-Cell[BoxData[
- InterpretationBox[GridBox[{
-    {
-     RowBox[{
-      RowBox[{"Attributes", "[", "ToHeldExpression", "]"}], "=", 
-      RowBox[{"{", 
-       RowBox[{"Listable", ",", "Protected"}], "}"}]}]}
-   },
-   BaselinePosition->{Baseline, {1, 1}},
-   GridBoxAlignment->{
-    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-     "RowsIndexed" -> {}}],
-  Definition[ToHeldExpression],
-  Editable->False]], "Print",
- CellChangeTimes->{3.64625578425113*^9},
- CellTags->"Info3646241384-4752516"]
+  Cell[BoxData["0``14.712833332520457"], "Output",
+    CellChangeTimes -> {3.6462554934362235`*^9, 3.6462556365269938`*^9,
+      3.6462572275638485`*^9}]
 }, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"ReleaseHold", "[", 
-  RowBox[{
-  "ToHeldExpression", "[", "\"\<Total[Abs[Flatten[res1-res2]]]\>\"", "]"}], 
-  "]"}]], "Input",
- CellChangeTimes->{{3.646255912050988*^9, 3.646255937482122*^9}}],
-
-Cell[BoxData["0``14.68626508526331"], "Output",
- CellChangeTimes->{{3.6462559241541195`*^9, 3.6462559378881993`*^9}}]
 }, Open  ]]
 },
 WindowSize->{1080, 1877},
@@ -3860,104 +3817,98 @@ StyleDefinitions->"Default.nb"
 
 (* Internal cache information *)
 (*CellTagsOutline
-CellTagsIndex->{
- "Info3646241384-4752516"->{
-  Cell[192464, 3817, 133, 2, 42, "Print",
-   CellTags->"Info3646241384-4752516"],
-  Cell[192600, 3821, 518, 15, 23, "Print",
-   CellTags->"Info3646241384-4752516"]}
- }
+CellTagsIndex->{}
 *)
 (*CellTagsIndex
-CellTagsIndex->{
- {"Info3646241384-4752516", 193831, 3863}
- }
+CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 364, 8, 31, "Input"],
 Cell[CellGroupData[{
-Cell[947, 32, 159, 2, 31, "Input"],
-Cell[1109, 36, 2711, 49, 332, "Output"]
+Cell[947, 32, 110, 1, 63, "Section"],
+Cell[CellGroupData[{
+Cell[1082, 37, 252, 6, 31, "Input"],
+Cell[1337, 45, 519, 17, 45, "Output"]
+}, Open  ]],
+Cell[1871, 65, 222, 5, 31, "Text"],
+Cell[CellGroupData[{
+Cell[2118, 74, 142, 2, 31, "Input"],
+Cell[2263, 78, 684, 23, 45, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3857, 90, 252, 6, 31, "Input"],
-Cell[4112, 98, 519, 17, 45, "Output"]
+Cell[2984, 106, 242, 5, 31, "Input"],
+Cell[3229, 113, 434, 11, 31, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4668, 120, 142, 2, 31, "Input"],
-Cell[4813, 124, 684, 23, 45, "Output"]
+Cell[3700, 129, 580, 8, 31, "Input"],
+Cell[4283, 139, 614, 18, 31, "Output"]
+}, Open  ]],
+Cell[4912, 160, 170, 3, 30, "Text"],
+Cell[CellGroupData[{
+Cell[5107, 167, 446, 12, 52, "Input"],
+Cell[5556, 181, 101, 1, 31, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5534, 152, 242, 5, 31, "Input"],
-Cell[5779, 159, 434, 11, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[6250, 175, 580, 8, 31, "Input"],
-Cell[6833, 185, 614, 18, 31, "Output"]
-}, Open  ]],
-Cell[7462, 206, 1713, 47, 116, "Input"],
-Cell[9178, 255, 378, 10, 31, "Input"],
-Cell[9559, 267, 628, 14, 52, "Input"],
-Cell[CellGroupData[{
-Cell[10212, 285, 1008, 26, 92, "Input"],
-Cell[11223, 313, 317, 4, 31, "Output"]
-}, Open  ]],
-Cell[11555, 320, 247, 5, 31, "Input"],
-Cell[CellGroupData[{
-Cell[11827, 329, 289, 7, 31, "Input"],
-Cell[12119, 338, 673, 12, 31, "Output"]
-}, Open  ]],
-Cell[12807, 353, 798, 19, 52, "Input"],
-Cell[13608, 374, 160, 2, 31, "Input"],
-Cell[13771, 378, 94, 1, 31, InheritFromParent],
-Cell[13868, 381, 40997, 1008, 6727, "Input"],
-Cell[CellGroupData[{
-Cell[54890, 1393, 271, 6, 31, "Input"],
-Cell[55164, 1401, 129193, 2204, 75, "Output"]
-}, Open  ]],
-Cell[184372, 3608, 1166, 26, 52, "Input"],
-Cell[185541, 3636, 687, 15, 31, "Input"],
-Cell[CellGroupData[{
-Cell[186253, 3655, 829, 18, 52, "Input"],
-Cell[187085, 3675, 638, 10, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[187760, 3690, 824, 18, 52, "Input"],
-Cell[188587, 3710, 624, 9, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[189248, 3724, 529, 14, 52, "Input"],
-Cell[189780, 3740, 367, 5, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[190184, 3750, 121, 2, 31, "Input"],
-Cell[190308, 3754, 473, 7, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[190818, 3766, 119, 2, 31, "Input"],
-Cell[190940, 3770, 282, 4, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[191259, 3779, 275, 6, 31, "Input"],
-Cell[191537, 3787, 387, 6, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[191961, 3798, 198, 5, 31, "Input"],
-Cell[192162, 3805, 115, 1, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[192314, 3811, 125, 2, 31, "Input"],
-Cell[CellGroupData[{
-Cell[192464, 3817, 133, 2, 42, "Print",
- CellTags->"Info3646241384-4752516"],
-Cell[192600, 3821, 518, 15, 23, "Print",
- CellTags->"Info3646241384-4752516"]
+Cell[5694, 187, 258, 6, 52, "Input"],
+Cell[5955, 195, 72, 1, 31, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[193167, 3842, 216, 5, 31, "Input"],
-Cell[193386, 3849, 117, 1, 31, "Output"]
+Cell[6076, 202, 115, 1, 63, "Section"],
+Cell[6194, 205, 137, 1, 30, "Text"],
+Cell[6334, 208, 1486, 41, 96, "Input"],
+Cell[7823, 251, 378, 10, 31, "Input"],
+Cell[8204, 263, 628, 14, 52, "Input"],
+Cell[8835, 279, 127, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[8987, 284, 1008, 26, 92, "Input"],
+Cell[9998, 312, 317, 4, 31, "Output"]
+}, Open  ]],
+Cell[10330, 319, 188, 2, 30, "Text"],
+Cell[10521, 323, 798, 19, 52, "Input"],
+Cell[11322, 344, 188, 2, 30, "Text"],
+Cell[11513, 348, 160, 2, 31, "Input"],
+Cell[11676, 352, 214, 4, 31, InheritFromParent],
+Cell[11893, 358, 40997, 1008, 6727, "Input"],
+Cell[52893, 1368, 298, 5, 49, "Text"],
+Cell[CellGroupData[{
+Cell[53216, 1377, 271, 6, 31, "Input"],
+Cell[53490, 1385, 129193, 2204, 75, "Output"]
+}, Open  ]],
+Cell[182698, 3592, 1166, 26, 52, "Input"],
+Cell[183867, 3620, 108, 1, 30, "Text"],
+Cell[183978, 3623, 687, 15, 31, "Input"],
+Cell[CellGroupData[{
+Cell[184690, 3642, 829, 18, 52, "Input"],
+Cell[185522, 3662, 660, 10, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[186219, 3677, 824, 18, 52, "Input"],
+Cell[187046, 3697, 652, 10, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[187735, 3712, 529, 14, 52, "Input"],
+Cell[188267, 3728, 389, 5, 31, "Output"]
+}, Open  ]],
+Cell[188671, 3736, 299, 5, 49, "Text"],
+Cell[CellGroupData[{
+Cell[188995, 3745, 121, 2, 31, "Input"],
+Cell[189119, 3749, 529, 8, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[189685, 3762, 119, 2, 31, "Input"],
+Cell[189807, 3766, 306, 4, 31, "Output"]
+}, Open  ]],
+Cell[190128, 3773, 137, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[190290, 3778, 275, 6, 31, "Input"],
+Cell[190568, 3786, 412, 6, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[191017, 3797, 198, 5, 31, "Input"],
+Cell[191218, 3804, 143, 2, 31, "Output"]
+}, Open  ]]
 }, Open  ]]
 }
 ]

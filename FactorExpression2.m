@@ -25,30 +25,44 @@ $DefaultExcludedForms =
 
 FactorExpression::usage = "Use this to make magic happen (maybe).";
 
+
+
 Begin["`Private`"]; (* Begin Private Context *)
+
+
 
 FactorExpression::depth = "The depth specification `1` is not a positive integer.";
 
-findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms_List] := Module[
-  {expressionCounts, mostRedundantExpressions},
-  expressionCounts =
-      Tally[Cases[exp,
-        Except[Alternatives @@ Prepend[excludedForms, V[_Integer]], _[___]],
-        Infinity]];
-  mostRedundantExpressions =
-      MaximalBy[Cases[expressionCounts,
-        {subExp_ /; Depth[subExp] >= minDepth, x_Integer /; x > 1}
-      ], Last];
-  If[mostRedundantExpressions =!= {},
-    Module[{newVar, newVal},
-      {newVar, newVal} = {V[varCount], mostRedundantExpressions[[1, 1]]};
-      Sow[HeldSet[newVar, newVal]];
-      findRedundantExpressions[exp /. newVal -> newVar, varCount + 1, minDepth, excludedForms]
-    ],
-    Sow[exp];
-    varCount - 1
-  ]
-];
+
+
+findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms_List] :=
+    Module[
+      {expressionCounts, mostRedundantExpressions},
+
+      expressionCounts =
+          Tally[Cases[exp,
+            Except[Alternatives @@ Prepend[excludedForms, V[_Integer]], _[___]],
+            Infinity]];
+
+      mostRedundantExpressions =
+          MaximalBy[Cases[expressionCounts,
+            {subExp_ /; Depth[subExp] >= minDepth, x_Integer /; x > 1}
+          ], Last];
+
+      If[mostRedundantExpressions =!= {},
+
+        Module[{newVar, newVal},
+          {newVar, newVal} = {V[varCount], mostRedundantExpressions[[1, 1]]};
+          Sow[HeldSet[newVar, newVal]];
+          findRedundantExpressions[exp /. newVal -> newVar, varCount + 1, minDepth, excludedForms]
+        ],
+
+        Sow[exp];
+        varCount - 1
+      ]
+    ];
+
+
 
 FactorExpression[exp_, opts : OptionsPattern[]] := Block[
   {$RecursionLimit = Infinity, $IterationLimit = Infinity},
@@ -74,7 +88,7 @@ FactorExpression[exp_, opts : OptionsPattern[]] := Block[
     Switch[output,
       CompiledFunction, Module[
       {parameters = Union[Cases[exp, _Symbol, Infinity]]},
-      HeldCompile[{#, _Real}& /@ parameters, fexp (*),
+      HeldCompile[ {#, _Real}& /@ parameters, fexp (*),
         Parallelization -> True,
         RuntimeAttributes -> {Listable} *)
       ] /. {
@@ -87,11 +101,19 @@ FactorExpression[exp_, opts : OptionsPattern[]] := Block[
   ]
 ];
 
+
+
 Options[FactorExpression] = {
   "Output" -> Automatic,
   "MinDepth" -> 1,
   "ExcludedForms" -> $DefaultExcludedForms
 };
+
+
+
+SyntaxInformation[FactorExpression] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
+
+
 
 End[]; (* End Private Context *)
 

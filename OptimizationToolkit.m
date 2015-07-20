@@ -82,16 +82,16 @@ findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms
 memoize[dv : RuleDelayed[_, _Set]] :=
     dv;
 
-memoize[dv : RuleDelayed[_, _]] :=
+memoize[dv : (_ :> _)] :=
     With[
       {
         insert = dv[[1]] /. Verbatim[Pattern][sym_, _] :> sym
       },
       dv /. {
-        RuleDelayed[hp_, def_] :> RuleDelayed[hp, Set[insert, def]]
+        (hp_ :> def_) :> hp :> (insert = def)
       }
     ] /. {
-      HoldPattern[Set[Verbatim[HoldPattern][h_], def_]] :> Set[h, def]
+      HoldPattern[Verbatim[HoldPattern][h_] = def_] :> (h = def)
     };
 
 memoize[f_Symbol] :=
@@ -118,42 +118,40 @@ FactorExpression[exp_, opts : OptionsPattern[]] :=
       minDepth = OptionValue["MinDepth"];
       excludedForms = OptionValue["ExcludedForms"];
 
-      If[Not[IntegerQ[minDepth] && minDepth >= 1], Message[FactorExpression::depth, minDepth]];
+      If[ !(IntegerQ[minDepth] && minDepth >= 1), Message[FactorExpression::depth, minDepth]];
 
       {varCount, assignments} = Reap[findRedundantExpressions[exp, 1, minDepth, excludedForms]];
       localVariables = Cases[assignments, HeldSet[v_, _] :> v, 2];
-      cexp = First[HeldCompoundExpression @@@ assignments];
 
-      mexp =
-          With[
-            {
-              localVariablesT = localVariables,
-              cexpT = cexp
-            },
-            Hold @ Block[localVariablesT, cexpT]
-          ];
+      cexp = First[Apply[HeldCompoundExpression, assignments, {1}]];
 
-      fexp =
-          Evaluate[mexp] /. {
-            HeldSet -> Set,
-            HeldCompoundExpression -> CompoundExpression,
-            Hold -> HoldForm
-          };
+      mexp = With[
+        {
+          localVariablesT = localVariables,
+          cexpT = cexp
+        },
+        Hold[Block[localVariablesT, cexpT]]
+      ];
 
-      out =
-          Switch[output,
-            CompiledFunction,
-            Module[
-              {
-                parameters = Union[Cases[exp, _Symbol, Infinity]]
-              },
-              HeldCompile[ {#, _Real}& /@ parameters, fexp] /. {
-                HoldForm[Block[vars_, modexp_]] :> Block[vars, modexp],
-                HeldCompile -> Compile
-              }
-            ],
-            _, fexp
-          ];
+      fexp = Evaluate[mexp] /. {
+        HeldSet -> Set,
+        HeldCompoundExpression -> CompoundExpression,
+        Hold -> HoldForm
+      };
+
+      out = Switch[output,
+        CompiledFunction,
+        Module[
+          {
+            parameters = Union[Cases[exp, _Symbol, Infinity]]
+          },
+          HeldCompile[({#1, _Real} & ) /@ parameters, fexp] /. {
+            HoldForm[Block[vars_, modexp_]] :> Block[vars, modexp],
+            HeldCompile -> Compile
+          }
+        ],
+        _, fexp
+      ];
 
       out
     ];
@@ -178,13 +176,13 @@ OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] :=
         dv = DownValues[f],
         filt, fopts, newDV
       },
+
       filt = Alternatives @@ Options[FactorExpression][[All, 1]];
-      fopts = Sequence @@ Cases[List@opts, Rule[o : filt, s_] :> Rule[o, s]];
+      fopts = Sequence @@ Cases[{opts}, (o : filt -> s_) :> o -> s];
       newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. HoldForm[b_Block] :> b;
 
       If[OptionValue["Rewrite"], DownValues[Evaluate[f]] = newDV];
       If[OptionValue["Memoize"], memoize[f], newDV]
-
     ];
 
 Options[OptimizeDownValues] =

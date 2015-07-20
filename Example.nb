@@ -10,23 +10,38 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    236918,       5006]
-NotebookOptionsPosition[    232122,       4834]
-NotebookOutlinePosition[    232472,       4849]
-CellTagsIndexPosition[    232429,       4846]
+NotebookDataLength[    248812,       5357]
+NotebookOptionsPosition[    243275,       5160]
+NotebookOutlinePosition[    243625,       5175]
+CellTagsIndexPosition[    243582,       5172]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell[BoxData[
- RowBox[{"Get", "[", 
-  RowBox[{"FileNameJoin", "[", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"NotebookDirectory", "[", "]"}], ",", 
-     "\"\<FactorExpression2.m\>\""}], "}"}], "]"}], "]"}]], "Input",
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Get", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+      "\"\<OptimizationToolkit.m\>\""}], "}"}], "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Names", "[", "\"\<OptimizationToolkit`*\>\"", "]"}]}], "Input",
  CellChangeTimes->{{3.6383691075417147`*^9, 3.638369127771837*^9}, 
-   3.6462426468613253`*^9, {3.6462522677841654`*^9, 3.6462522690722895`*^9}}],
+   3.6462426468613253`*^9, {3.6462522677841654`*^9, 3.6462522690722895`*^9}, {
+   3.646364314354318*^9, 3.646364319319215*^9}, {3.646365145685684*^9, 
+   3.646365149720341*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"FactorExpression\"\>", ",", "\<\"Memoize\"\>", 
+   ",", "\<\"OptimizeDownValues\"\>", ",", "\<\"$DefaultExcludedForms\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.646365151483308*^9, 3.646365171189229*^9}}]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -60,7 +75,8 @@ Cell[BoxData[
    RowBox[{"ArcTan", "[", 
     RowBox[{"x", ",", "y"}], "]"}]}], "}"}]], "Output",
  CellChangeTimes->{3.646357072981809*^9, 3.646358192647421*^9, 
-  3.6463582735682735`*^9, 3.6463583259462023`*^9}]
+  3.6463582735682735`*^9, 3.6463583259462023`*^9, 3.6463644444409776`*^9, 
+  3.646365171392354*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -102,7 +118,8 @@ Cell[BoxData[
         RowBox[{"x", ",", "y"}], "]"}]}], "}"}]}]}], "]"}],
   HoldForm]], "Output",
  CellChangeTimes->{3.6463570730131273`*^9, 3.6463581926587467`*^9, 
-  3.646358273583956*^9, 3.6463583259462023`*^9}]
+  3.646358273583956*^9, 3.6463583259462023`*^9, 3.646364447207552*^9, 
+  3.646365171439229*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -126,7 +143,8 @@ Cell[BoxData[
    RowBox[{"r", " ", 
     RowBox[{"Cos", "[", "\[Theta]", "]"}]}]}], "}"}]], "Output",
  CellChangeTimes->{3.646357073044307*^9, 3.6463581926761527`*^9, 
-  3.64635827361516*^9, 3.6463583259773827`*^9}]
+  3.64635827361516*^9, 3.6463583259773827`*^9, 3.6463644491313133`*^9, 
+  3.646365171486173*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -159,7 +177,8 @@ Cell[BoxData[
         RowBox[{"Cos", "[", "\[Theta]", "]"}]}]}], "}"}]}]}], "]"}],
   HoldForm]], "Output",
  CellChangeTimes->{3.646357073059932*^9, 3.646358192700141*^9, 
-  3.64635827361516*^9, 3.6463583259773827`*^9}]
+  3.64635827361516*^9, 3.6463583259773827`*^9, 3.64636445039926*^9, 
+  3.6463651715017967`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -188,7 +207,8 @@ Cell[BoxData[{
 
 Cell[BoxData["5563"], "Output",
  CellChangeTimes->{3.6463570730755577`*^9, 3.6463581927239685`*^9, 
-  3.6463582736463823`*^9, 3.6463583259997945`*^9}]
+  3.6463582736463823`*^9, 3.6463583259997945`*^9, 3.6463644530963526`*^9, 
+  3.646365171533047*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -203,7 +223,8 @@ Cell[BoxData[{
 
 Cell[BoxData["919"], "Output",
  CellChangeTimes->{3.646357073472178*^9, 3.6463581931518326`*^9, 
-  3.6463582740283356`*^9, 3.6463583263910413`*^9}]
+  3.6463582740283356`*^9, 3.6463583263910413`*^9, 3.646364455705406*^9, 
+  3.6463651719669924`*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -336,7 +357,8 @@ Cell[BoxData[
   Definition[$CellContext`f],
   Editable->False]], "Output",
  CellChangeTimes->{3.6463570734878035`*^9, 3.6463581931674557`*^9, 
-  3.646358274059654*^9, 3.646358326406661*^9}]
+  3.646358274059654*^9, 3.646358326406661*^9, 3.646364459753581*^9, 
+  3.6463651720049095`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -420,7 +442,8 @@ Cell[BoxData[
        0.7071067811865475}, {-0.7071067811865475, 0, 
         0.7071067811865475}}]]}}]], "Output",
  CellChangeTimes->{3.6463570735346785`*^9, 3.6463581937161865`*^9, 
-  3.6463582740908356`*^9, 3.646358326469163*^9}]
+  3.6463582740908356`*^9, 3.646358326469163*^9, 3.6463644623615284`*^9, 
+  3.646365172058429*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -532,7 +555,8 @@ Cell[BoxData[
            FractionBox["\[Pi]", "n"]}], "}"}]}], "]"}]}]}], "]"}]}]}], 
   "}"}]], "Output",
  CellChangeTimes->{3.646357073616132*^9, 3.646358193975006*^9, 
-  3.6463582741065383`*^9, 3.6463583264847865`*^9}]
+  3.6463582741065383`*^9, 3.6463583264847865`*^9, 3.6463644673993163`*^9, 
+  3.646365172087077*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -615,7 +639,8 @@ Cell[BoxData[
   Definition[$CellContext`f],
   Editable->False]], "Output",
  CellChangeTimes->{3.6463570736550984`*^9, 3.6463581939902816`*^9, 
-  3.646358274122154*^9, 3.6463583265004845`*^9}]
+  3.646358274122154*^9, 3.6463583265004845`*^9, 3.646364475633209*^9, 
+  3.6463651721113787`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -722,7 +747,8 @@ Cell[BoxData[
            FractionBox["\[Pi]", "n"]}], "}"}]}], "]"}]}]}], "]"}]}]}], 
   "}"}]], "Output",
  CellChangeTimes->{3.6463570736725492`*^9, 3.646358194023218*^9, 
-  3.646358274153336*^9, 3.646358326531732*^9}]
+  3.646358274153336*^9, 3.646358326531732*^9, 3.646364478730671*^9, 
+  3.6463651721346946`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -837,7 +863,8 @@ Cell[BoxData[
   Definition[$CellContext`f],
   Editable->False]], "Output",
  CellChangeTimes->{3.6463570736900415`*^9, 3.646358194038756*^9, 
-  3.646358274153336*^9, 3.6463583265473557`*^9}]
+  3.646358274153336*^9, 3.6463583265473557`*^9, 3.646364492893464*^9, 
+  3.6463651721588707`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -913,7 +940,143 @@ Cell[BoxData[
        0.7071067811865475}, {-0.7071067811865475, 0, 
         0.7071067811865475}}]]}}]], "Output",
  CellChangeTimes->{3.6463570737220855`*^9, 3.6463581940643888`*^9, 
-  3.6463582741845875`*^9, 3.6463583265629826`*^9}]
+  3.6463582741845875`*^9, 3.6463583265629826`*^9, 3.6463644956933627`*^9, 
+  3.646365172200324*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Other options: Memoization", "Subsubsection",
+ CellChangeTimes->{{3.646256983449487*^9, 3.646256986024203*^9}, {
+  3.6463557972972507`*^9, 3.646355825254095*^9}, {3.64635589847863*^9, 
+  3.646355901520229*^9}, {3.646356031386485*^9, 3.646356112498471*^9}, {
+  3.6463561591469564`*^9, 3.64635617524012*^9}, {3.646356209437314*^9, 
+  3.6463562548588543`*^9}, {3.6463568599856515`*^9, 3.6463568711450586`*^9}, {
+  3.6463646741123767`*^9, 3.6463646804881268`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"fibonacci", "[", "0", "]"}], "=", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fibonacci", "[", "1", "]"}], "=", "1"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fibonacci", "[", "n_Integer", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"fibonacci", "[", 
+     RowBox[{"n", "-", "1"}], "]"}], "+", 
+    RowBox[{"fibonacci", "[", 
+     RowBox[{"n", "-", "2"}], "]"}]}]}], ";"}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "[", 
+  RowBox[{"fibonacci", "[", "30", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.646364908747095*^9, 3.6463649218368254`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"2.8009856001251556`", ",", "832040"}], "}"}]], "Output",
+ CellChangeTimes->{{3.646364917922638*^9, 3.64636492573119*^9}, 
+   3.6463651751407537`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"OptimizeDownValues", "[", 
+   RowBox[{"fibonacci", ",", 
+    RowBox[{"\"\<Memoize\>\"", "\[Rule]", "True"}], ",", 
+    RowBox[{"\"\<Rewrite\>\"", "\[Rule]", "True"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{3.646364930762207*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"AbsoluteTiming", "[", 
+  RowBox[{"fibonacci", "[", "30", "]"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.00024395558653404273`", ",", "832040"}], "}"}]], "Output",
+ CellChangeTimes->{3.646364937855901*^9, 3.646365175209472*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Memoization as a separate function", "Subsubsection",
+ CellChangeTimes->{{3.646256983449487*^9, 3.646256986024203*^9}, {
+  3.6463557972972507`*^9, 3.646355825254095*^9}, {3.64635589847863*^9, 
+  3.646355901520229*^9}, {3.646356031386485*^9, 3.646356112498471*^9}, {
+  3.6463561591469564`*^9, 3.64635617524012*^9}, {3.646356209437314*^9, 
+  3.6463562548588543`*^9}, {3.6463568599856515`*^9, 3.6463568711450586`*^9}, {
+  3.6463646741123767`*^9, 3.6463646804881268`*^9}, {3.6463650507689557`*^9, 
+  3.6463650549343815`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"factorial", "[", "0", "]"}], "=", "1"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"factorial", "[", 
+    RowBox[{"n", ":", "_Integer"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"factorial", "[", 
+     RowBox[{"n", "-", "1"}], "]"}], "*", "n"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6463650991806736`*^9, 3.646365103472286*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Memoize", "[", "factorial", "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.6463650668824863`*^9, 3.6463650732198505`*^9}, 
+   3.6463651043080487`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Definition", "[", "factorial", "]"}]], "Input",
+ CellChangeTimes->{{3.6463650772759647`*^9, 3.646365105064514*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[GridBox[{
+    {GridBox[{
+       {
+        RowBox[{
+         RowBox[{"factorial", "[", "0", "]"}], ":=", 
+         RowBox[{
+          RowBox[{"factorial", "[", "0", "]"}], "=", "1"}]}]},
+       {" "},
+       {
+        RowBox[{
+         RowBox[{"factorial", "[", "n_Integer", "]"}], ":=", 
+         RowBox[{
+          RowBox[{"factorial", "[", "n", "]"}], "=", 
+          RowBox[{
+           RowBox[{"factorial", "[", 
+            RowBox[{"n", "-", "1"}], "]"}], " ", "n"}]}]}]}
+      },
+      BaselinePosition->{Baseline, {1, 1}},
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{"Columns" -> {{
+           Scaled[0.999]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}}]}
+   },
+   BaselinePosition->{Baseline, {1, 1}},
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}}],
+  Definition[$CellContext`factorial],
+  Editable->False]], "Output",
+ CellChangeTimes->{{3.6463650799911227`*^9, 3.646365108450636*^9}, 
+   3.646365175240652*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
@@ -1038,7 +1201,8 @@ Cell[BoxData[{
 
 Cell[BoxData["10586"], "Output",
  CellChangeTimes->{3.646357083193511*^9, 3.6463582033384066`*^9, 
-  3.646358283673535*^9, 3.646358335893941*^9}]
+  3.646358283673535*^9, 3.646358335893941*^9, 3.646364509419938*^9, 
+  3.646365184421445*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -3903,720 +4067,874 @@ $CellContext`z5},
       Compile`$1205, Compile`$1284, Compile`$1280, Compile`$1240, 
       Compile`$1293, Compile`$1220, Compile`$1302, Compile`$1298}, 
      Block[{
-      FactorExpression`$415, FactorExpression`$416, FactorExpression`$417, 
-       FactorExpression`$418, FactorExpression`$419, FactorExpression`$420, 
-       FactorExpression`$421, FactorExpression`$422, FactorExpression`$423, 
-       FactorExpression`$424, FactorExpression`$425, FactorExpression`$426, 
-       FactorExpression`$427, FactorExpression`$428, FactorExpression`$429, 
-       FactorExpression`$430, FactorExpression`$431, FactorExpression`$432, 
-       FactorExpression`$433, FactorExpression`$434, FactorExpression`$435, 
-       FactorExpression`$436, FactorExpression`$437, FactorExpression`$438, 
-       FactorExpression`$439, FactorExpression`$440, FactorExpression`$441, 
-       FactorExpression`$442, FactorExpression`$443, FactorExpression`$444, 
-       FactorExpression`$445, FactorExpression`$446, FactorExpression`$447, 
-       FactorExpression`$448, FactorExpression`$449, FactorExpression`$450, 
-       FactorExpression`$451, FactorExpression`$452, FactorExpression`$453, 
-       FactorExpression`$454, FactorExpression`$455, FactorExpression`$456, 
-       FactorExpression`$457, FactorExpression`$458, FactorExpression`$459, 
-       FactorExpression`$460, FactorExpression`$461, FactorExpression`$462, 
-       FactorExpression`$463, FactorExpression`$464, FactorExpression`$465, 
-       FactorExpression`$466, FactorExpression`$467, FactorExpression`$468, 
-       FactorExpression`$469, FactorExpression`$470, FactorExpression`$471, 
-       FactorExpression`$472, FactorExpression`$473, FactorExpression`$474, 
-       FactorExpression`$475, FactorExpression`$476, FactorExpression`$477, 
-       FactorExpression`$478, FactorExpression`$479, FactorExpression`$480, 
-       FactorExpression`$481, FactorExpression`$482, FactorExpression`$483, 
-       FactorExpression`$484, FactorExpression`$485, FactorExpression`$486, 
-       FactorExpression`$487, FactorExpression`$488, FactorExpression`$489, 
-       FactorExpression`$490, FactorExpression`$491, FactorExpression`$492, 
-       FactorExpression`$493, FactorExpression`$494, FactorExpression`$495, 
-       FactorExpression`$496, FactorExpression`$497, FactorExpression`$498, 
-       FactorExpression`$499, FactorExpression`$500, FactorExpression`$501, 
-       FactorExpression`$502, FactorExpression`$503, FactorExpression`$504, 
-       FactorExpression`$505, FactorExpression`$506, FactorExpression`$507, 
-       FactorExpression`$508, FactorExpression`$509, FactorExpression`$510, 
-       FactorExpression`$511, FactorExpression`$512, FactorExpression`$513, 
-       FactorExpression`$514, FactorExpression`$515, FactorExpression`$516, 
-       FactorExpression`$517, FactorExpression`$518, FactorExpression`$519, 
-       FactorExpression`$520, FactorExpression`$521, FactorExpression`$522, 
-       FactorExpression`$523, FactorExpression`$524, FactorExpression`$525, 
-       FactorExpression`$526, FactorExpression`$527, FactorExpression`$528, 
-       FactorExpression`$529, FactorExpression`$530, FactorExpression`$531, 
-       FactorExpression`$532, FactorExpression`$533, FactorExpression`$534, 
-       FactorExpression`$535, FactorExpression`$536, FactorExpression`$537, 
-       FactorExpression`$538, FactorExpression`$539, FactorExpression`$540, 
-       FactorExpression`$541, FactorExpression`$542, FactorExpression`$543, 
-       FactorExpression`$544, FactorExpression`$545, FactorExpression`$546, 
-       FactorExpression`$547, FactorExpression`$548, FactorExpression`$549, 
-       FactorExpression`$550, FactorExpression`$551, FactorExpression`$552, 
-       FactorExpression`$553, FactorExpression`$554, FactorExpression`$555, 
-       FactorExpression`$556, FactorExpression`$557, FactorExpression`$558, 
-       FactorExpression`$559, FactorExpression`$560, FactorExpression`$561, 
-       FactorExpression`$562, FactorExpression`$563, FactorExpression`$564, 
-       FactorExpression`$565, FactorExpression`$566, FactorExpression`$567, 
-       FactorExpression`$568, FactorExpression`$569, FactorExpression`$570, 
-       FactorExpression`$571, FactorExpression`$572, FactorExpression`$573, 
-       FactorExpression`$574, FactorExpression`$575, FactorExpression`$576, 
-       FactorExpression`$577, FactorExpression`$578, FactorExpression`$579, 
-       FactorExpression`$580, FactorExpression`$581, FactorExpression`$582, 
-       FactorExpression`$583, FactorExpression`$584, FactorExpression`$585, 
-       FactorExpression`$586, FactorExpression`$587, FactorExpression`$588, 
-       FactorExpression`$589, FactorExpression`$590, FactorExpression`$591, 
-       FactorExpression`$592, FactorExpression`$593, FactorExpression`$594, 
-       FactorExpression`$595, FactorExpression`$596, FactorExpression`$597, 
-       FactorExpression`$598, FactorExpression`$599, FactorExpression`$600, 
-       FactorExpression`$601, FactorExpression`$602, FactorExpression`$603, 
-       FactorExpression`$604, FactorExpression`$605, FactorExpression`$606, 
-       FactorExpression`$607, FactorExpression`$608, FactorExpression`$609, 
-       FactorExpression`$610, FactorExpression`$611, FactorExpression`$612, 
-       FactorExpression`$613, FactorExpression`$614, FactorExpression`$615, 
-       FactorExpression`$616, FactorExpression`$617, FactorExpression`$618, 
-       FactorExpression`$619, FactorExpression`$620, FactorExpression`$621, 
-       FactorExpression`$622, FactorExpression`$623, FactorExpression`$624, 
-       FactorExpression`$625, FactorExpression`$626, FactorExpression`$627, 
-       FactorExpression`$628, FactorExpression`$629, FactorExpression`$630, 
-       FactorExpression`$631, FactorExpression`$632, FactorExpression`$633, 
-       FactorExpression`$634, FactorExpression`$635, FactorExpression`$636, 
-       FactorExpression`$637, FactorExpression`$638, FactorExpression`$639, 
-       FactorExpression`$640, FactorExpression`$641, FactorExpression`$642, 
-       FactorExpression`$643, FactorExpression`$644, FactorExpression`$645, 
-       FactorExpression`$646, FactorExpression`$647, FactorExpression`$648, 
-       FactorExpression`$649, FactorExpression`$650, FactorExpression`$651, 
-       FactorExpression`$652, FactorExpression`$653, FactorExpression`$654, 
-       FactorExpression`$655, FactorExpression`$656, FactorExpression`$657, 
-       FactorExpression`$658, FactorExpression`$659, FactorExpression`$660, 
-       FactorExpression`$661, FactorExpression`$662, FactorExpression`$663, 
-       FactorExpression`$664, FactorExpression`$665, FactorExpression`$666, 
-       FactorExpression`$667, FactorExpression`$668, FactorExpression`$669, 
-       FactorExpression`$670, FactorExpression`$671, FactorExpression`$672, 
-       FactorExpression`$673, FactorExpression`$674, FactorExpression`$675, 
-       FactorExpression`$676, FactorExpression`$677, FactorExpression`$678, 
-       FactorExpression`$679, FactorExpression`$680, FactorExpression`$681, 
-       FactorExpression`$682, FactorExpression`$683, FactorExpression`$684, 
-       FactorExpression`$685, FactorExpression`$686, FactorExpression`$687, 
-       FactorExpression`$688, FactorExpression`$689, FactorExpression`$690, 
-       FactorExpression`$691, FactorExpression`$692, FactorExpression`$693, 
-       FactorExpression`$694, FactorExpression`$695, FactorExpression`$696, 
-       FactorExpression`$697, FactorExpression`$698, FactorExpression`$699, 
-       FactorExpression`$700, FactorExpression`$701, FactorExpression`$702, 
-       FactorExpression`$703, FactorExpression`$704, FactorExpression`$705, 
-       FactorExpression`$706}, 
-      FactorExpression`$415 = $CellContext`z1 - $CellContext`z5; 
-      FactorExpression`$416 = $CellContext`y1 $CellContext`z2; 
-      FactorExpression`$417 = $CellContext`y2 $CellContext`z3; 
-      FactorExpression`$418 = $CellContext`y1 $CellContext`z5; 
-      FactorExpression`$419 = $CellContext`y4 $CellContext`z2; 
-      FactorExpression`$420 = $CellContext`y3 $CellContext`z1; 
-      FactorExpression`$421 = $CellContext`y4 $CellContext`z1; 
-      FactorExpression`$422 = $CellContext`y5 $CellContext`z2; 
-      FactorExpression`$423 = -$CellContext`y2 $CellContext`z1 - \
+      OptimizationToolkit`$415, OptimizationToolkit`$416, 
+       OptimizationToolkit`$417, OptimizationToolkit`$418, 
+       OptimizationToolkit`$419, OptimizationToolkit`$420, 
+       OptimizationToolkit`$421, OptimizationToolkit`$422, 
+       OptimizationToolkit`$423, OptimizationToolkit`$424, 
+       OptimizationToolkit`$425, OptimizationToolkit`$426, 
+       OptimizationToolkit`$427, OptimizationToolkit`$428, 
+       OptimizationToolkit`$429, OptimizationToolkit`$430, 
+       OptimizationToolkit`$431, OptimizationToolkit`$432, 
+       OptimizationToolkit`$433, OptimizationToolkit`$434, 
+       OptimizationToolkit`$435, OptimizationToolkit`$436, 
+       OptimizationToolkit`$437, OptimizationToolkit`$438, 
+       OptimizationToolkit`$439, OptimizationToolkit`$440, 
+       OptimizationToolkit`$441, OptimizationToolkit`$442, 
+       OptimizationToolkit`$443, OptimizationToolkit`$444, 
+       OptimizationToolkit`$445, OptimizationToolkit`$446, 
+       OptimizationToolkit`$447, OptimizationToolkit`$448, 
+       OptimizationToolkit`$449, OptimizationToolkit`$450, 
+       OptimizationToolkit`$451, OptimizationToolkit`$452, 
+       OptimizationToolkit`$453, OptimizationToolkit`$454, 
+       OptimizationToolkit`$455, OptimizationToolkit`$456, 
+       OptimizationToolkit`$457, OptimizationToolkit`$458, 
+       OptimizationToolkit`$459, OptimizationToolkit`$460, 
+       OptimizationToolkit`$461, OptimizationToolkit`$462, 
+       OptimizationToolkit`$463, OptimizationToolkit`$464, 
+       OptimizationToolkit`$465, OptimizationToolkit`$466, 
+       OptimizationToolkit`$467, OptimizationToolkit`$468, 
+       OptimizationToolkit`$469, OptimizationToolkit`$470, 
+       OptimizationToolkit`$471, OptimizationToolkit`$472, 
+       OptimizationToolkit`$473, OptimizationToolkit`$474, 
+       OptimizationToolkit`$475, OptimizationToolkit`$476, 
+       OptimizationToolkit`$477, OptimizationToolkit`$478, 
+       OptimizationToolkit`$479, OptimizationToolkit`$480, 
+       OptimizationToolkit`$481, OptimizationToolkit`$482, 
+       OptimizationToolkit`$483, OptimizationToolkit`$484, 
+       OptimizationToolkit`$485, OptimizationToolkit`$486, 
+       OptimizationToolkit`$487, OptimizationToolkit`$488, 
+       OptimizationToolkit`$489, OptimizationToolkit`$490, 
+       OptimizationToolkit`$491, OptimizationToolkit`$492, 
+       OptimizationToolkit`$493, OptimizationToolkit`$494, 
+       OptimizationToolkit`$495, OptimizationToolkit`$496, 
+       OptimizationToolkit`$497, OptimizationToolkit`$498, 
+       OptimizationToolkit`$499, OptimizationToolkit`$500, 
+       OptimizationToolkit`$501, OptimizationToolkit`$502, 
+       OptimizationToolkit`$503, OptimizationToolkit`$504, 
+       OptimizationToolkit`$505, OptimizationToolkit`$506, 
+       OptimizationToolkit`$507, OptimizationToolkit`$508, 
+       OptimizationToolkit`$509, OptimizationToolkit`$510, 
+       OptimizationToolkit`$511, OptimizationToolkit`$512, 
+       OptimizationToolkit`$513, OptimizationToolkit`$514, 
+       OptimizationToolkit`$515, OptimizationToolkit`$516, 
+       OptimizationToolkit`$517, OptimizationToolkit`$518, 
+       OptimizationToolkit`$519, OptimizationToolkit`$520, 
+       OptimizationToolkit`$521, OptimizationToolkit`$522, 
+       OptimizationToolkit`$523, OptimizationToolkit`$524, 
+       OptimizationToolkit`$525, OptimizationToolkit`$526, 
+       OptimizationToolkit`$527, OptimizationToolkit`$528, 
+       OptimizationToolkit`$529, OptimizationToolkit`$530, 
+       OptimizationToolkit`$531, OptimizationToolkit`$532, 
+       OptimizationToolkit`$533, OptimizationToolkit`$534, 
+       OptimizationToolkit`$535, OptimizationToolkit`$536, 
+       OptimizationToolkit`$537, OptimizationToolkit`$538, 
+       OptimizationToolkit`$539, OptimizationToolkit`$540, 
+       OptimizationToolkit`$541, OptimizationToolkit`$542, 
+       OptimizationToolkit`$543, OptimizationToolkit`$544, 
+       OptimizationToolkit`$545, OptimizationToolkit`$546, 
+       OptimizationToolkit`$547, OptimizationToolkit`$548, 
+       OptimizationToolkit`$549, OptimizationToolkit`$550, 
+       OptimizationToolkit`$551, OptimizationToolkit`$552, 
+       OptimizationToolkit`$553, OptimizationToolkit`$554, 
+       OptimizationToolkit`$555, OptimizationToolkit`$556, 
+       OptimizationToolkit`$557, OptimizationToolkit`$558, 
+       OptimizationToolkit`$559, OptimizationToolkit`$560, 
+       OptimizationToolkit`$561, OptimizationToolkit`$562, 
+       OptimizationToolkit`$563, OptimizationToolkit`$564, 
+       OptimizationToolkit`$565, OptimizationToolkit`$566, 
+       OptimizationToolkit`$567, OptimizationToolkit`$568, 
+       OptimizationToolkit`$569, OptimizationToolkit`$570, 
+       OptimizationToolkit`$571, OptimizationToolkit`$572, 
+       OptimizationToolkit`$573, OptimizationToolkit`$574, 
+       OptimizationToolkit`$575, OptimizationToolkit`$576, 
+       OptimizationToolkit`$577, OptimizationToolkit`$578, 
+       OptimizationToolkit`$579, OptimizationToolkit`$580, 
+       OptimizationToolkit`$581, OptimizationToolkit`$582, 
+       OptimizationToolkit`$583, OptimizationToolkit`$584, 
+       OptimizationToolkit`$585, OptimizationToolkit`$586, 
+       OptimizationToolkit`$587, OptimizationToolkit`$588, 
+       OptimizationToolkit`$589, OptimizationToolkit`$590, 
+       OptimizationToolkit`$591, OptimizationToolkit`$592, 
+       OptimizationToolkit`$593, OptimizationToolkit`$594, 
+       OptimizationToolkit`$595, OptimizationToolkit`$596, 
+       OptimizationToolkit`$597, OptimizationToolkit`$598, 
+       OptimizationToolkit`$599, OptimizationToolkit`$600, 
+       OptimizationToolkit`$601, OptimizationToolkit`$602, 
+       OptimizationToolkit`$603, OptimizationToolkit`$604, 
+       OptimizationToolkit`$605, OptimizationToolkit`$606, 
+       OptimizationToolkit`$607, OptimizationToolkit`$608, 
+       OptimizationToolkit`$609, OptimizationToolkit`$610, 
+       OptimizationToolkit`$611, OptimizationToolkit`$612, 
+       OptimizationToolkit`$613, OptimizationToolkit`$614, 
+       OptimizationToolkit`$615, OptimizationToolkit`$616, 
+       OptimizationToolkit`$617, OptimizationToolkit`$618, 
+       OptimizationToolkit`$619, OptimizationToolkit`$620, 
+       OptimizationToolkit`$621, OptimizationToolkit`$622, 
+       OptimizationToolkit`$623, OptimizationToolkit`$624, 
+       OptimizationToolkit`$625, OptimizationToolkit`$626, 
+       OptimizationToolkit`$627, OptimizationToolkit`$628, 
+       OptimizationToolkit`$629, OptimizationToolkit`$630, 
+       OptimizationToolkit`$631, OptimizationToolkit`$632, 
+       OptimizationToolkit`$633, OptimizationToolkit`$634, 
+       OptimizationToolkit`$635, OptimizationToolkit`$636, 
+       OptimizationToolkit`$637, OptimizationToolkit`$638, 
+       OptimizationToolkit`$639, OptimizationToolkit`$640, 
+       OptimizationToolkit`$641, OptimizationToolkit`$642, 
+       OptimizationToolkit`$643, OptimizationToolkit`$644, 
+       OptimizationToolkit`$645, OptimizationToolkit`$646, 
+       OptimizationToolkit`$647, OptimizationToolkit`$648, 
+       OptimizationToolkit`$649, OptimizationToolkit`$650, 
+       OptimizationToolkit`$651, OptimizationToolkit`$652, 
+       OptimizationToolkit`$653, OptimizationToolkit`$654, 
+       OptimizationToolkit`$655, OptimizationToolkit`$656, 
+       OptimizationToolkit`$657, OptimizationToolkit`$658, 
+       OptimizationToolkit`$659, OptimizationToolkit`$660, 
+       OptimizationToolkit`$661, OptimizationToolkit`$662, 
+       OptimizationToolkit`$663, OptimizationToolkit`$664, 
+       OptimizationToolkit`$665, OptimizationToolkit`$666, 
+       OptimizationToolkit`$667, OptimizationToolkit`$668, 
+       OptimizationToolkit`$669, OptimizationToolkit`$670, 
+       OptimizationToolkit`$671, OptimizationToolkit`$672, 
+       OptimizationToolkit`$673, OptimizationToolkit`$674, 
+       OptimizationToolkit`$675, OptimizationToolkit`$676, 
+       OptimizationToolkit`$677, OptimizationToolkit`$678, 
+       OptimizationToolkit`$679, OptimizationToolkit`$680, 
+       OptimizationToolkit`$681, OptimizationToolkit`$682, 
+       OptimizationToolkit`$683, OptimizationToolkit`$684, 
+       OptimizationToolkit`$685, OptimizationToolkit`$686, 
+       OptimizationToolkit`$687, OptimizationToolkit`$688, 
+       OptimizationToolkit`$689, OptimizationToolkit`$690, 
+       OptimizationToolkit`$691, OptimizationToolkit`$692, 
+       OptimizationToolkit`$693, OptimizationToolkit`$694, 
+       OptimizationToolkit`$695, OptimizationToolkit`$696, 
+       OptimizationToolkit`$697, OptimizationToolkit`$698, 
+       OptimizationToolkit`$699, OptimizationToolkit`$700, 
+       OptimizationToolkit`$701, OptimizationToolkit`$702, 
+       OptimizationToolkit`$703, OptimizationToolkit`$704, 
+       OptimizationToolkit`$705, OptimizationToolkit`$706}, 
+      OptimizationToolkit`$415 = $CellContext`z1 - $CellContext`z5; 
+      OptimizationToolkit`$416 = $CellContext`y1 $CellContext`z2; 
+      OptimizationToolkit`$417 = $CellContext`y2 $CellContext`z3; 
+      OptimizationToolkit`$418 = $CellContext`y1 $CellContext`z5; 
+      OptimizationToolkit`$419 = $CellContext`y4 $CellContext`z2; 
+      OptimizationToolkit`$420 = $CellContext`y3 $CellContext`z1; 
+      OptimizationToolkit`$421 = $CellContext`y4 $CellContext`z1; 
+      OptimizationToolkit`$422 = $CellContext`y5 $CellContext`z2; 
+      OptimizationToolkit`$423 = -$CellContext`y2 $CellContext`z1 - \
 $CellContext`y3 $CellContext`z2 - $CellContext`y1 $CellContext`z3 + 
-        FactorExpression`$416 + FactorExpression`$417 + FactorExpression`$420; 
-      FactorExpression`$424 = $CellContext`y2 FactorExpression`$415; 
-      FactorExpression`$425 = -$CellContext`y5 $CellContext`z1 - 
-        FactorExpression`$416 + FactorExpression`$418 + FactorExpression`$422 + 
-        FactorExpression`$424; 
-      FactorExpression`$426 = $CellContext`y5 $CellContext`z3; 
-      FactorExpression`$427 = $CellContext`y3 $CellContext`z4; 
-      FactorExpression`$428 = $CellContext`x1 $CellContext`y2; 
-      FactorExpression`$429 = $CellContext`x1 $CellContext`z2; 
-      FactorExpression`$430 = $CellContext`x2 $CellContext`y3; 
-      FactorExpression`$431 = $CellContext`y1 - $CellContext`y5; 
-      FactorExpression`$432 = $CellContext`x1 $CellContext`y5; 
-      FactorExpression`$433 = $CellContext`z1 - $CellContext`z4; 
-      FactorExpression`$434 = $CellContext`x2 $CellContext`z3; 
-      FactorExpression`$435 = $CellContext`z2 - $CellContext`z5; 
-      FactorExpression`$436 = $CellContext`y1 $CellContext`z3; 
-      FactorExpression`$437 = $CellContext`x1 $CellContext`z5; 
-      FactorExpression`$438 = $CellContext`y1 $CellContext`z4; 
-      FactorExpression`$439 = $CellContext`w1 $CellContext`y3 $CellContext`z2; 
-      FactorExpression`$440 = $CellContext`w1 $CellContext`y4 $CellContext`z3; 
-      FactorExpression`$441 = $CellContext`w2 FactorExpression`$436; 
-      FactorExpression`$442 = $CellContext`w1 $CellContext`x3 $CellContext`y2; 
-      FactorExpression`$443 = $CellContext`w2 $CellContext`x1 $CellContext`y3; 
-      FactorExpression`$444 = $CellContext`w1 $CellContext`x4 $CellContext`y3; 
-      FactorExpression`$445 = $CellContext`x4 $CellContext`y2; 
-      FactorExpression`$446 = $CellContext`x3 $CellContext`y1; 
-      FactorExpression`$447 = -$CellContext`x2 $CellContext`y1 - \
+        OptimizationToolkit`$416 + OptimizationToolkit`$417 + 
+        OptimizationToolkit`$420; 
+      OptimizationToolkit`$424 = $CellContext`y2 OptimizationToolkit`$415; 
+      OptimizationToolkit`$425 = -$CellContext`y5 $CellContext`z1 - 
+        OptimizationToolkit`$416 + OptimizationToolkit`$418 + 
+        OptimizationToolkit`$422 + OptimizationToolkit`$424; 
+      OptimizationToolkit`$426 = $CellContext`y5 $CellContext`z3; 
+      OptimizationToolkit`$427 = $CellContext`y3 $CellContext`z4; 
+      OptimizationToolkit`$428 = $CellContext`x1 $CellContext`y2; 
+      OptimizationToolkit`$429 = $CellContext`x1 $CellContext`z2; 
+      OptimizationToolkit`$430 = $CellContext`x2 $CellContext`y3; 
+      OptimizationToolkit`$431 = $CellContext`y1 - $CellContext`y5; 
+      OptimizationToolkit`$432 = $CellContext`x1 $CellContext`y5; 
+      OptimizationToolkit`$433 = $CellContext`z1 - $CellContext`z4; 
+      OptimizationToolkit`$434 = $CellContext`x2 $CellContext`z3; 
+      OptimizationToolkit`$435 = $CellContext`z2 - $CellContext`z5; 
+      OptimizationToolkit`$436 = $CellContext`y1 $CellContext`z3; 
+      OptimizationToolkit`$437 = $CellContext`x1 $CellContext`z5; 
+      OptimizationToolkit`$438 = $CellContext`y1 $CellContext`z4; 
+      OptimizationToolkit`$439 = $CellContext`w1 $CellContext`y3 \
+$CellContext`z2; 
+      OptimizationToolkit`$440 = $CellContext`w1 $CellContext`y4 \
+$CellContext`z3; 
+      OptimizationToolkit`$441 = $CellContext`w2 OptimizationToolkit`$436; 
+      OptimizationToolkit`$442 = $CellContext`w1 $CellContext`x3 \
+$CellContext`y2; 
+      OptimizationToolkit`$443 = $CellContext`w2 $CellContext`x1 \
+$CellContext`y3; 
+      OptimizationToolkit`$444 = $CellContext`w1 $CellContext`x4 \
+$CellContext`y3; OptimizationToolkit`$445 = $CellContext`x4 $CellContext`y2; 
+      OptimizationToolkit`$446 = $CellContext`x3 $CellContext`y1; 
+      OptimizationToolkit`$447 = -$CellContext`x2 $CellContext`y1 - \
 $CellContext`x3 $CellContext`y2 - $CellContext`x1 $CellContext`y3 + 
-        FactorExpression`$428 + FactorExpression`$430 + FactorExpression`$446; 
-      FactorExpression`$448 = $CellContext`w2 $CellContext`y5 $CellContext`z1; 
-      FactorExpression`$449 = $CellContext`w1 $CellContext`y2 $CellContext`z5; 
-      FactorExpression`$450 = $CellContext`w2 $CellContext`y3 $CellContext`z5; 
-      FactorExpression`$451 = $CellContext`w2 $CellContext`x5 $CellContext`y1; 
-      FactorExpression`$452 = $CellContext`w1 $CellContext`x2 $CellContext`y5; 
-      FactorExpression`$453 = $CellContext`w2 $CellContext`x3 $CellContext`y5; 
-      FactorExpression`$454 = $CellContext`x5 $CellContext`y2; 
-      FactorExpression`$455 = $CellContext`x2 FactorExpression`$431; 
-      FactorExpression`$456 = -$CellContext`x5 $CellContext`y1 - 
-        FactorExpression`$428 + FactorExpression`$432 + FactorExpression`$454 + 
-        FactorExpression`$455; 
-      FactorExpression`$457 = $CellContext`w1 $CellContext`y5 $CellContext`z4; 
-      FactorExpression`$458 = $CellContext`y2 $CellContext`z4; 
-      FactorExpression`$459 = $CellContext`w1 $CellContext`x5 $CellContext`y4; 
-      FactorExpression`$460 = $CellContext`x4 $CellContext`y1; 
-      FactorExpression`$461 = $CellContext`w3 $CellContext`y4 $CellContext`z5; 
-      FactorExpression`$462 = $CellContext`w3 $CellContext`x4 $CellContext`y5; 
-      FactorExpression`$463 = $CellContext`x5 $CellContext`y3; 
-      FactorExpression`$464 = $CellContext`x3 $CellContext`y4; 
-      FactorExpression`$465 = $CellContext`y2 FactorExpression`$433; 
-      FactorExpression`$466 = -FactorExpression`$416 + FactorExpression`$419 - 
-        FactorExpression`$421 + FactorExpression`$438 + FactorExpression`$465; 
-      FactorExpression`$467 = $CellContext`x4 $CellContext`z2; 
-      FactorExpression`$468 = $CellContext`x3 $CellContext`z1; 
-      FactorExpression`$469 = $CellContext`x4 $CellContext`z1; 
-      FactorExpression`$470 = $CellContext`x5 $CellContext`z2; 
-      FactorExpression`$471 = -$CellContext`y2 $CellContext`z1 + 
-        FactorExpression`$416 - FactorExpression`$419 + FactorExpression`$421 - 
-        FactorExpression`$438 + FactorExpression`$458; 
-      FactorExpression`$472 = $CellContext`y3 FactorExpression`$415; 
-      FactorExpression`$473 = -$CellContext`y4 $CellContext`z3 - 
-        FactorExpression`$420 + FactorExpression`$421 + FactorExpression`$427 + 
-        FactorExpression`$436 - FactorExpression`$438; 
-      FactorExpression`$474 = -$CellContext`y5 $CellContext`z1 + 
-        FactorExpression`$418 + FactorExpression`$426 - FactorExpression`$436 + 
-        FactorExpression`$472; 
-      FactorExpression`$475 = $CellContext`y2 $CellContext`z5; 
-      FactorExpression`$476 = -$CellContext`y3 $CellContext`z2 - \
-$CellContext`y4 $CellContext`z3 + FactorExpression`$417 + 
-        FactorExpression`$419 + FactorExpression`$427 - FactorExpression`$458; 
-      FactorExpression`$477 = $CellContext`y3 FactorExpression`$435; 
-      FactorExpression`$478 = -FactorExpression`$417 - FactorExpression`$422 + 
-        FactorExpression`$426 + FactorExpression`$475 + FactorExpression`$477; 
-      FactorExpression`$479 = $CellContext`x1 $CellContext`y4 $CellContext`z3; 
-      FactorExpression`$480 = $CellContext`w1 $CellContext`x3 $CellContext`z2; 
-      FactorExpression`$481 = $CellContext`y3 FactorExpression`$429; 
-      FactorExpression`$482 = $CellContext`w2 $CellContext`x1 $CellContext`z3; 
-      FactorExpression`$483 = $CellContext`y1 FactorExpression`$434; 
-      FactorExpression`$484 = $CellContext`w1 $CellContext`x4 $CellContext`z3; 
-      FactorExpression`$485 = -$CellContext`x2 $CellContext`z1 - \
+        OptimizationToolkit`$428 + OptimizationToolkit`$430 + 
+        OptimizationToolkit`$446; 
+      OptimizationToolkit`$448 = $CellContext`w2 $CellContext`y5 \
+$CellContext`z1; 
+      OptimizationToolkit`$449 = $CellContext`w1 $CellContext`y2 \
+$CellContext`z5; 
+      OptimizationToolkit`$450 = $CellContext`w2 $CellContext`y3 \
+$CellContext`z5; 
+      OptimizationToolkit`$451 = $CellContext`w2 $CellContext`x5 \
+$CellContext`y1; 
+      OptimizationToolkit`$452 = $CellContext`w1 $CellContext`x2 \
+$CellContext`y5; 
+      OptimizationToolkit`$453 = $CellContext`w2 $CellContext`x3 \
+$CellContext`y5; OptimizationToolkit`$454 = $CellContext`x5 $CellContext`y2; 
+      OptimizationToolkit`$455 = $CellContext`x2 OptimizationToolkit`$431; 
+      OptimizationToolkit`$456 = -$CellContext`x5 $CellContext`y1 - 
+        OptimizationToolkit`$428 + OptimizationToolkit`$432 + 
+        OptimizationToolkit`$454 + OptimizationToolkit`$455; 
+      OptimizationToolkit`$457 = $CellContext`w1 $CellContext`y5 \
+$CellContext`z4; OptimizationToolkit`$458 = $CellContext`y2 $CellContext`z4; 
+      OptimizationToolkit`$459 = $CellContext`w1 $CellContext`x5 \
+$CellContext`y4; OptimizationToolkit`$460 = $CellContext`x4 $CellContext`y1; 
+      OptimizationToolkit`$461 = $CellContext`w3 $CellContext`y4 \
+$CellContext`z5; 
+      OptimizationToolkit`$462 = $CellContext`w3 $CellContext`x4 \
+$CellContext`y5; OptimizationToolkit`$463 = $CellContext`x5 $CellContext`y3; 
+      OptimizationToolkit`$464 = $CellContext`x3 $CellContext`y4; 
+      OptimizationToolkit`$465 = $CellContext`y2 OptimizationToolkit`$433; 
+      OptimizationToolkit`$466 = -OptimizationToolkit`$416 + 
+        OptimizationToolkit`$419 - OptimizationToolkit`$421 + 
+        OptimizationToolkit`$438 + OptimizationToolkit`$465; 
+      OptimizationToolkit`$467 = $CellContext`x4 $CellContext`z2; 
+      OptimizationToolkit`$468 = $CellContext`x3 $CellContext`z1; 
+      OptimizationToolkit`$469 = $CellContext`x4 $CellContext`z1; 
+      OptimizationToolkit`$470 = $CellContext`x5 $CellContext`z2; 
+      OptimizationToolkit`$471 = -$CellContext`y2 $CellContext`z1 + 
+        OptimizationToolkit`$416 - OptimizationToolkit`$419 + 
+        OptimizationToolkit`$421 - OptimizationToolkit`$438 + 
+        OptimizationToolkit`$458; 
+      OptimizationToolkit`$472 = $CellContext`y3 OptimizationToolkit`$415; 
+      OptimizationToolkit`$473 = -$CellContext`y4 $CellContext`z3 - 
+        OptimizationToolkit`$420 + OptimizationToolkit`$421 + 
+        OptimizationToolkit`$427 + OptimizationToolkit`$436 - 
+        OptimizationToolkit`$438; 
+      OptimizationToolkit`$474 = -$CellContext`y5 $CellContext`z1 + 
+        OptimizationToolkit`$418 + OptimizationToolkit`$426 - 
+        OptimizationToolkit`$436 + OptimizationToolkit`$472; 
+      OptimizationToolkit`$475 = $CellContext`y2 $CellContext`z5; 
+      OptimizationToolkit`$476 = -$CellContext`y3 $CellContext`z2 - \
+$CellContext`y4 $CellContext`z3 + OptimizationToolkit`$417 + 
+        OptimizationToolkit`$419 + OptimizationToolkit`$427 - 
+        OptimizationToolkit`$458; 
+      OptimizationToolkit`$477 = $CellContext`y3 OptimizationToolkit`$435; 
+      OptimizationToolkit`$478 = -OptimizationToolkit`$417 - 
+        OptimizationToolkit`$422 + OptimizationToolkit`$426 + 
+        OptimizationToolkit`$475 + OptimizationToolkit`$477; 
+      OptimizationToolkit`$479 = $CellContext`x1 $CellContext`y4 \
+$CellContext`z3; 
+      OptimizationToolkit`$480 = $CellContext`w1 $CellContext`x3 \
+$CellContext`z2; 
+      OptimizationToolkit`$481 = $CellContext`y3 OptimizationToolkit`$429; 
+      OptimizationToolkit`$482 = $CellContext`w2 $CellContext`x1 \
+$CellContext`z3; 
+      OptimizationToolkit`$483 = $CellContext`y1 OptimizationToolkit`$434; 
+      OptimizationToolkit`$484 = $CellContext`w1 $CellContext`x4 \
+$CellContext`z3; 
+      OptimizationToolkit`$485 = -$CellContext`x2 $CellContext`z1 - \
 $CellContext`x3 $CellContext`z2 - $CellContext`x1 $CellContext`z3 + 
-        FactorExpression`$429 + FactorExpression`$434 + FactorExpression`$468; 
-      FactorExpression`$486 = $CellContext`x2 $CellContext`y5 $CellContext`z1; 
-      FactorExpression`$487 = $CellContext`w2 $CellContext`x5 $CellContext`z1; 
-      FactorExpression`$488 = $CellContext`z5 FactorExpression`$428; 
-      FactorExpression`$489 = $CellContext`w1 $CellContext`x2 $CellContext`z5; 
-      FactorExpression`$490 = $CellContext`z5 FactorExpression`$430; 
-      FactorExpression`$491 = $CellContext`w2 $CellContext`x3 $CellContext`z5; 
-      FactorExpression`$492 = $CellContext`x2 FactorExpression`$415; 
-      FactorExpression`$493 = -$CellContext`x5 $CellContext`z1 - 
-        FactorExpression`$429 + FactorExpression`$437 + FactorExpression`$470 + 
-        FactorExpression`$492; 
-      FactorExpression`$494 = $CellContext`z4 FactorExpression`$432; 
-      FactorExpression`$495 = $CellContext`w1 $CellContext`x5 $CellContext`z4; 
-      FactorExpression`$496 = $CellContext`z5 FactorExpression`$464; 
-      FactorExpression`$497 = $CellContext`w3 $CellContext`x4 $CellContext`z5; 
-      FactorExpression`$498 = $CellContext`x5 $CellContext`z3; 
-      FactorExpression`$499 = $CellContext`x3 $CellContext`z4; 
-      FactorExpression`$500 = $CellContext`x1 $CellContext`z3; 
-      FactorExpression`$501 = $CellContext`x1 $CellContext`z4; 
-      FactorExpression`$502 = -$CellContext`z1 + $CellContext`z5; 
-      FactorExpression`$503 = $CellContext`w2 FactorExpression`$421; 
-      FactorExpression`$504 = $CellContext`w4 FactorExpression`$423; 
-      FactorExpression`$505 = $CellContext`w2 FactorExpression`$427; 
-      FactorExpression`$506 = $CellContext`w1 FactorExpression`$458; 
-      FactorExpression`$507 = $CellContext`w3 FactorExpression`$466; 
-      FactorExpression`$508 = -$CellContext`w2 $CellContext`y4 \
-$CellContext`z3 - $CellContext`w1 FactorExpression`$417 - $CellContext`w1 
-        FactorExpression`$419 - $CellContext`w2 
-        FactorExpression`$420 - $CellContext`w1 
-        FactorExpression`$427 - $CellContext`w2 FactorExpression`$438 + 
-        FactorExpression`$439 + FactorExpression`$440 + FactorExpression`$441 + 
-        FactorExpression`$503 + FactorExpression`$504 + FactorExpression`$505 + 
-        FactorExpression`$506 + FactorExpression`$507; 
-      FactorExpression`$509 = $CellContext`w1 $CellContext`x2 $CellContext`y4; 
-      FactorExpression`$510 = $CellContext`x2 FactorExpression`$421; 
-      FactorExpression`$511 = $CellContext`w1 $CellContext`x2 $CellContext`z4; 
-      FactorExpression`$512 = $CellContext`w4 FactorExpression`$447; 
-      FactorExpression`$513 = $CellContext`x2 FactorExpression`$427; 
-      FactorExpression`$514 = $CellContext`w2 FactorExpression`$469; 
-      FactorExpression`$515 = $CellContext`y1 - $CellContext`y4; 
-      FactorExpression`$516 = $CellContext`z4 FactorExpression`$428; 
-      FactorExpression`$517 = $CellContext`w2 FactorExpression`$499; 
-      FactorExpression`$518 = $CellContext`w2 FactorExpression`$460; 
-      FactorExpression`$519 = $CellContext`w2 FactorExpression`$464; 
-      FactorExpression`$520 = $CellContext`x1 $CellContext`y4; 
-      FactorExpression`$521 = $CellContext`x2 FactorExpression`$515; 
-      FactorExpression`$522 = -FactorExpression`$428 + FactorExpression`$445 - 
-        FactorExpression`$460 + FactorExpression`$520 + FactorExpression`$521; 
-      FactorExpression`$523 = $CellContext`w3 FactorExpression`$522; 
-      FactorExpression`$524 = -$CellContext`w2 $CellContext`x4 \
-$CellContext`y3 - $CellContext`w1 FactorExpression`$430 + 
-        FactorExpression`$442 + FactorExpression`$443 + 
-        FactorExpression`$444 - $CellContext`w1 
-        FactorExpression`$445 - $CellContext`w2 
-        FactorExpression`$446 - $CellContext`w1 FactorExpression`$464 + 
-        FactorExpression`$509 + FactorExpression`$512 + FactorExpression`$518 + 
-        FactorExpression`$519 - $CellContext`w2 FactorExpression`$520 + 
-        FactorExpression`$523; 
-      FactorExpression`$525 = $CellContext`w2 $CellContext`x4 $CellContext`z3; 
-      FactorExpression`$526 = $CellContext`w1 FactorExpression`$467; 
-      FactorExpression`$527 = $CellContext`w2 FactorExpression`$501; 
-      FactorExpression`$528 = $CellContext`x1 FactorExpression`$419; 
-      FactorExpression`$529 = $CellContext`y4 FactorExpression`$434; 
-      FactorExpression`$530 = $CellContext`x2 FactorExpression`$438; 
-      FactorExpression`$531 = $CellContext`w5 FactorExpression`$423; 
-      FactorExpression`$532 = $CellContext`w3 FactorExpression`$425; 
-      FactorExpression`$533 = $CellContext`w1 FactorExpression`$426; 
-      FactorExpression`$534 = -$CellContext`w1 $CellContext`y3 \
-$CellContext`z5 - $CellContext`w1 FactorExpression`$417 - $CellContext`w2 
-        FactorExpression`$418 - $CellContext`w2 
-        FactorExpression`$420 - $CellContext`w1 
-        FactorExpression`$422 - $CellContext`w2 FactorExpression`$426 + 
-        FactorExpression`$439 + FactorExpression`$441 + FactorExpression`$448 + 
-        FactorExpression`$449 + FactorExpression`$450 + FactorExpression`$531 + 
-        FactorExpression`$532 + FactorExpression`$533; 
-      FactorExpression`$535 = $CellContext`w5 FactorExpression`$447; 
-      FactorExpression`$536 = $CellContext`x1 FactorExpression`$426; 
-      FactorExpression`$537 = $CellContext`w1 FactorExpression`$498; 
-      FactorExpression`$538 = $CellContext`w3 FactorExpression`$456; 
-      FactorExpression`$539 = $CellContext`w1 FactorExpression`$463; 
-      FactorExpression`$540 = -$CellContext`w1 $CellContext`x3 \
-$CellContext`y5 - $CellContext`w1 FactorExpression`$430 - $CellContext`w2 
-        FactorExpression`$432 + FactorExpression`$442 + 
-        FactorExpression`$443 - $CellContext`w2 FactorExpression`$446 + 
-        FactorExpression`$451 + FactorExpression`$452 + 
-        FactorExpression`$453 - $CellContext`w1 
-        FactorExpression`$454 - $CellContext`w2 FactorExpression`$463 + 
-        FactorExpression`$535 + FactorExpression`$538 + FactorExpression`$539; 
-      FactorExpression`$541 = $CellContext`w1 $CellContext`x3 $CellContext`z5; 
-      FactorExpression`$542 = $CellContext`y3 FactorExpression`$437; 
-      FactorExpression`$543 = $CellContext`w2 $CellContext`y4 $CellContext`z5; 
-      FactorExpression`$544 = $CellContext`w1 FactorExpression`$419; 
-      FactorExpression`$545 = $CellContext`w4 FactorExpression`$425; 
-      FactorExpression`$546 = $CellContext`w2 FactorExpression`$438; 
-      FactorExpression`$547 = $CellContext`w5 FactorExpression`$471; 
-      FactorExpression`$548 = -$CellContext`w2 $CellContext`y5 \
+        OptimizationToolkit`$429 + OptimizationToolkit`$434 + 
+        OptimizationToolkit`$468; 
+      OptimizationToolkit`$486 = $CellContext`x2 $CellContext`y5 \
+$CellContext`z1; 
+      OptimizationToolkit`$487 = $CellContext`w2 $CellContext`x5 \
+$CellContext`z1; 
+      OptimizationToolkit`$488 = $CellContext`z5 OptimizationToolkit`$428; 
+      OptimizationToolkit`$489 = $CellContext`w1 $CellContext`x2 \
+$CellContext`z5; 
+      OptimizationToolkit`$490 = $CellContext`z5 OptimizationToolkit`$430; 
+      OptimizationToolkit`$491 = $CellContext`w2 $CellContext`x3 \
+$CellContext`z5; 
+      OptimizationToolkit`$492 = $CellContext`x2 OptimizationToolkit`$415; 
+      OptimizationToolkit`$493 = -$CellContext`x5 $CellContext`z1 - 
+        OptimizationToolkit`$429 + OptimizationToolkit`$437 + 
+        OptimizationToolkit`$470 + OptimizationToolkit`$492; 
+      OptimizationToolkit`$494 = $CellContext`z4 OptimizationToolkit`$432; 
+      OptimizationToolkit`$495 = $CellContext`w1 $CellContext`x5 \
+$CellContext`z4; 
+      OptimizationToolkit`$496 = $CellContext`z5 OptimizationToolkit`$464; 
+      OptimizationToolkit`$497 = $CellContext`w3 $CellContext`x4 \
+$CellContext`z5; OptimizationToolkit`$498 = $CellContext`x5 $CellContext`z3; 
+      OptimizationToolkit`$499 = $CellContext`x3 $CellContext`z4; 
+      OptimizationToolkit`$500 = $CellContext`x1 $CellContext`z3; 
+      OptimizationToolkit`$501 = $CellContext`x1 $CellContext`z4; 
+      OptimizationToolkit`$502 = -$CellContext`z1 + $CellContext`z5; 
+      OptimizationToolkit`$503 = $CellContext`w2 OptimizationToolkit`$421; 
+      OptimizationToolkit`$504 = $CellContext`w4 OptimizationToolkit`$423; 
+      OptimizationToolkit`$505 = $CellContext`w2 OptimizationToolkit`$427; 
+      OptimizationToolkit`$506 = $CellContext`w1 OptimizationToolkit`$458; 
+      OptimizationToolkit`$507 = $CellContext`w3 OptimizationToolkit`$466; 
+      OptimizationToolkit`$508 = -$CellContext`w2 $CellContext`y4 \
+$CellContext`z3 - $CellContext`w1 OptimizationToolkit`$417 - $CellContext`w1 
+        OptimizationToolkit`$419 - $CellContext`w2 
+        OptimizationToolkit`$420 - $CellContext`w1 
+        OptimizationToolkit`$427 - $CellContext`w2 OptimizationToolkit`$438 + 
+        OptimizationToolkit`$439 + OptimizationToolkit`$440 + 
+        OptimizationToolkit`$441 + OptimizationToolkit`$503 + 
+        OptimizationToolkit`$504 + OptimizationToolkit`$505 + 
+        OptimizationToolkit`$506 + OptimizationToolkit`$507; 
+      OptimizationToolkit`$509 = $CellContext`w1 $CellContext`x2 \
+$CellContext`y4; 
+      OptimizationToolkit`$510 = $CellContext`x2 OptimizationToolkit`$421; 
+      OptimizationToolkit`$511 = $CellContext`w1 $CellContext`x2 \
+$CellContext`z4; 
+      OptimizationToolkit`$512 = $CellContext`w4 OptimizationToolkit`$447; 
+      OptimizationToolkit`$513 = $CellContext`x2 OptimizationToolkit`$427; 
+      OptimizationToolkit`$514 = $CellContext`w2 OptimizationToolkit`$469; 
+      OptimizationToolkit`$515 = $CellContext`y1 - $CellContext`y4; 
+      OptimizationToolkit`$516 = $CellContext`z4 OptimizationToolkit`$428; 
+      OptimizationToolkit`$517 = $CellContext`w2 OptimizationToolkit`$499; 
+      OptimizationToolkit`$518 = $CellContext`w2 OptimizationToolkit`$460; 
+      OptimizationToolkit`$519 = $CellContext`w2 OptimizationToolkit`$464; 
+      OptimizationToolkit`$520 = $CellContext`x1 $CellContext`y4; 
+      OptimizationToolkit`$521 = $CellContext`x2 OptimizationToolkit`$515; 
+      OptimizationToolkit`$522 = -OptimizationToolkit`$428 + 
+        OptimizationToolkit`$445 - OptimizationToolkit`$460 + 
+        OptimizationToolkit`$520 + OptimizationToolkit`$521; 
+      OptimizationToolkit`$523 = $CellContext`w3 OptimizationToolkit`$522; 
+      OptimizationToolkit`$524 = -$CellContext`w2 $CellContext`x4 \
+$CellContext`y3 - $CellContext`w1 OptimizationToolkit`$430 + 
+        OptimizationToolkit`$442 + OptimizationToolkit`$443 + 
+        OptimizationToolkit`$444 - $CellContext`w1 
+        OptimizationToolkit`$445 - $CellContext`w2 
+        OptimizationToolkit`$446 - $CellContext`w1 OptimizationToolkit`$464 + 
+        OptimizationToolkit`$509 + OptimizationToolkit`$512 + 
+        OptimizationToolkit`$518 + OptimizationToolkit`$519 - $CellContext`w2 
+        OptimizationToolkit`$520 + OptimizationToolkit`$523; 
+      OptimizationToolkit`$525 = $CellContext`w2 $CellContext`x4 \
+$CellContext`z3; 
+      OptimizationToolkit`$526 = $CellContext`w1 OptimizationToolkit`$467; 
+      OptimizationToolkit`$527 = $CellContext`w2 OptimizationToolkit`$501; 
+      OptimizationToolkit`$528 = $CellContext`x1 OptimizationToolkit`$419; 
+      OptimizationToolkit`$529 = $CellContext`y4 OptimizationToolkit`$434; 
+      OptimizationToolkit`$530 = $CellContext`x2 OptimizationToolkit`$438; 
+      OptimizationToolkit`$531 = $CellContext`w5 OptimizationToolkit`$423; 
+      OptimizationToolkit`$532 = $CellContext`w3 OptimizationToolkit`$425; 
+      OptimizationToolkit`$533 = $CellContext`w1 OptimizationToolkit`$426; 
+      OptimizationToolkit`$534 = -$CellContext`w1 $CellContext`y3 \
+$CellContext`z5 - $CellContext`w1 OptimizationToolkit`$417 - $CellContext`w2 
+        OptimizationToolkit`$418 - $CellContext`w2 
+        OptimizationToolkit`$420 - $CellContext`w1 
+        OptimizationToolkit`$422 - $CellContext`w2 OptimizationToolkit`$426 + 
+        OptimizationToolkit`$439 + OptimizationToolkit`$441 + 
+        OptimizationToolkit`$448 + OptimizationToolkit`$449 + 
+        OptimizationToolkit`$450 + OptimizationToolkit`$531 + 
+        OptimizationToolkit`$532 + OptimizationToolkit`$533; 
+      OptimizationToolkit`$535 = $CellContext`w5 OptimizationToolkit`$447; 
+      OptimizationToolkit`$536 = $CellContext`x1 OptimizationToolkit`$426; 
+      OptimizationToolkit`$537 = $CellContext`w1 OptimizationToolkit`$498; 
+      OptimizationToolkit`$538 = $CellContext`w3 OptimizationToolkit`$456; 
+      OptimizationToolkit`$539 = $CellContext`w1 OptimizationToolkit`$463; 
+      OptimizationToolkit`$540 = -$CellContext`w1 $CellContext`x3 \
+$CellContext`y5 - $CellContext`w1 OptimizationToolkit`$430 - $CellContext`w2 
+        OptimizationToolkit`$432 + OptimizationToolkit`$442 + 
+        OptimizationToolkit`$443 - $CellContext`w2 OptimizationToolkit`$446 + 
+        OptimizationToolkit`$451 + OptimizationToolkit`$452 + 
+        OptimizationToolkit`$453 - $CellContext`w1 
+        OptimizationToolkit`$454 - $CellContext`w2 OptimizationToolkit`$463 + 
+        OptimizationToolkit`$535 + OptimizationToolkit`$538 + 
+        OptimizationToolkit`$539; 
+      OptimizationToolkit`$541 = $CellContext`w1 $CellContext`x3 \
+$CellContext`z5; 
+      OptimizationToolkit`$542 = $CellContext`y3 OptimizationToolkit`$437; 
+      OptimizationToolkit`$543 = $CellContext`w2 $CellContext`y4 \
+$CellContext`z5; 
+      OptimizationToolkit`$544 = $CellContext`w1 OptimizationToolkit`$419; 
+      OptimizationToolkit`$545 = $CellContext`w4 OptimizationToolkit`$425; 
+      OptimizationToolkit`$546 = $CellContext`w2 OptimizationToolkit`$438; 
+      OptimizationToolkit`$547 = $CellContext`w5 OptimizationToolkit`$471; 
+      OptimizationToolkit`$548 = -$CellContext`w2 $CellContext`y5 \
 $CellContext`z4 - $CellContext`w1 $CellContext`y4 $CellContext`z5 - \
-$CellContext`w2 FactorExpression`$418 - $CellContext`w1 FactorExpression`$422 + 
-        FactorExpression`$448 + FactorExpression`$449 + FactorExpression`$457 - 
-        FactorExpression`$503 - FactorExpression`$506 + FactorExpression`$543 + 
-        FactorExpression`$544 + FactorExpression`$545 + FactorExpression`$546 + 
-        FactorExpression`$547; 
-      FactorExpression`$549 = $CellContext`w2 $CellContext`x4 $CellContext`y5; 
-      FactorExpression`$550 = $CellContext`w2 $CellContext`x4 $CellContext`z5; 
-      FactorExpression`$551 = $CellContext`x2 $CellContext`y4 $CellContext`z5; 
-      FactorExpression`$552 = $CellContext`w1 FactorExpression`$445; 
-      FactorExpression`$553 = $CellContext`x2 $CellContext`z4; 
-      FactorExpression`$554 = $CellContext`w4 FactorExpression`$456; 
-      FactorExpression`$555 = $CellContext`x2 $CellContext`y4; 
-      FactorExpression`$556 = $CellContext`w2 FactorExpression`$520; 
-      FactorExpression`$557 = -$CellContext`x2 $CellContext`y1 + 
-        FactorExpression`$428 - FactorExpression`$445 + FactorExpression`$460 - 
-        FactorExpression`$520 + FactorExpression`$555; 
-      FactorExpression`$558 = $CellContext`w5 FactorExpression`$557; 
-      FactorExpression`$559 = -$CellContext`w2 $CellContext`x5 \
+$CellContext`w2 OptimizationToolkit`$418 - $CellContext`w1 
+        OptimizationToolkit`$422 + OptimizationToolkit`$448 + 
+        OptimizationToolkit`$449 + OptimizationToolkit`$457 - 
+        OptimizationToolkit`$503 - OptimizationToolkit`$506 + 
+        OptimizationToolkit`$543 + OptimizationToolkit`$544 + 
+        OptimizationToolkit`$545 + OptimizationToolkit`$546 + 
+        OptimizationToolkit`$547; 
+      OptimizationToolkit`$549 = $CellContext`w2 $CellContext`x4 \
+$CellContext`y5; 
+      OptimizationToolkit`$550 = $CellContext`w2 $CellContext`x4 \
+$CellContext`z5; 
+      OptimizationToolkit`$551 = $CellContext`x2 $CellContext`y4 \
+$CellContext`z5; 
+      OptimizationToolkit`$552 = $CellContext`w1 OptimizationToolkit`$445; 
+      OptimizationToolkit`$553 = $CellContext`x2 $CellContext`z4; 
+      OptimizationToolkit`$554 = $CellContext`w4 OptimizationToolkit`$456; 
+      OptimizationToolkit`$555 = $CellContext`x2 $CellContext`y4; 
+      OptimizationToolkit`$556 = $CellContext`w2 OptimizationToolkit`$520; 
+      OptimizationToolkit`$557 = -$CellContext`x2 $CellContext`y1 + 
+        OptimizationToolkit`$428 - OptimizationToolkit`$445 + 
+        OptimizationToolkit`$460 - OptimizationToolkit`$520 + 
+        OptimizationToolkit`$555; 
+      OptimizationToolkit`$558 = $CellContext`w5 OptimizationToolkit`$557; 
+      OptimizationToolkit`$559 = -$CellContext`w2 $CellContext`x5 \
 $CellContext`y4 - $CellContext`w1 $CellContext`x4 $CellContext`y5 - \
-$CellContext`w2 FactorExpression`$432 + FactorExpression`$451 + 
-        FactorExpression`$452 - $CellContext`w1 FactorExpression`$454 + 
-        FactorExpression`$459 - FactorExpression`$509 - FactorExpression`$518 + 
-        FactorExpression`$549 + FactorExpression`$552 + FactorExpression`$554 + 
-        FactorExpression`$556 + FactorExpression`$558; 
-      FactorExpression`$560 = $CellContext`w2 $CellContext`x5 $CellContext`z4; 
-      FactorExpression`$561 = $CellContext`y5 FactorExpression`$553; 
-      FactorExpression`$562 = $CellContext`w3 $CellContext`y5 $CellContext`z1; 
-      FactorExpression`$563 = $CellContext`w1 $CellContext`y3 $CellContext`z5; 
-      FactorExpression`$564 = $CellContext`w3 FactorExpression`$438; 
-      FactorExpression`$565 = $CellContext`w5 FactorExpression`$473; 
-      FactorExpression`$566 = $CellContext`w4 FactorExpression`$474; 
-      FactorExpression`$567 = -$CellContext`w3 $CellContext`y5 \
+$CellContext`w2 OptimizationToolkit`$432 + OptimizationToolkit`$451 + 
+        OptimizationToolkit`$452 - $CellContext`w1 OptimizationToolkit`$454 + 
+        OptimizationToolkit`$459 - OptimizationToolkit`$509 - 
+        OptimizationToolkit`$518 + OptimizationToolkit`$549 + 
+        OptimizationToolkit`$552 + OptimizationToolkit`$554 + 
+        OptimizationToolkit`$556 + OptimizationToolkit`$558; 
+      OptimizationToolkit`$560 = $CellContext`w2 $CellContext`x5 \
+$CellContext`z4; 
+      OptimizationToolkit`$561 = $CellContext`y5 OptimizationToolkit`$553; 
+      OptimizationToolkit`$562 = $CellContext`w3 $CellContext`y5 \
+$CellContext`z1; 
+      OptimizationToolkit`$563 = $CellContext`w1 $CellContext`y3 \
+$CellContext`z5; 
+      OptimizationToolkit`$564 = $CellContext`w3 OptimizationToolkit`$438; 
+      OptimizationToolkit`$565 = $CellContext`w5 OptimizationToolkit`$473; 
+      OptimizationToolkit`$566 = $CellContext`w4 OptimizationToolkit`$474; 
+      OptimizationToolkit`$567 = -$CellContext`w3 $CellContext`y5 \
 $CellContext`z4 - $CellContext`w1 $CellContext`y4 $CellContext`z5 - \
-$CellContext`w3 FactorExpression`$418 - $CellContext`w3 
-        FactorExpression`$421 - $CellContext`w1 FactorExpression`$427 + 
-        FactorExpression`$440 + FactorExpression`$457 + FactorExpression`$461 - 
-        FactorExpression`$533 + FactorExpression`$562 + FactorExpression`$563 + 
-        FactorExpression`$564 + FactorExpression`$565 + FactorExpression`$566; 
-      FactorExpression`$568 = $CellContext`w3 $CellContext`x5 $CellContext`y1; 
-      FactorExpression`$569 = $CellContext`w1 $CellContext`x3 $CellContext`y5; 
-      FactorExpression`$570 = $CellContext`x3 FactorExpression`$431; 
-      FactorExpression`$571 = $CellContext`x1 $CellContext`y3; 
-      FactorExpression`$572 = $CellContext`w3 FactorExpression`$520; 
-      FactorExpression`$573 = -$CellContext`x5 $CellContext`y1 + 
-        FactorExpression`$432 + FactorExpression`$463 + FactorExpression`$570 - 
-        FactorExpression`$571; 
-      FactorExpression`$574 = -$CellContext`x4 $CellContext`y3 - 
-        FactorExpression`$446 + FactorExpression`$460 + FactorExpression`$464 - 
-        FactorExpression`$520 + FactorExpression`$571; 
-      FactorExpression`$575 = $CellContext`w4 FactorExpression`$573; 
-      FactorExpression`$576 = $CellContext`w5 FactorExpression`$574; 
-      FactorExpression`$577 = -$CellContext`w3 $CellContext`x5 \
+$CellContext`w3 OptimizationToolkit`$418 - $CellContext`w3 
+        OptimizationToolkit`$421 - $CellContext`w1 OptimizationToolkit`$427 + 
+        OptimizationToolkit`$440 + OptimizationToolkit`$457 + 
+        OptimizationToolkit`$461 - OptimizationToolkit`$533 + 
+        OptimizationToolkit`$562 + OptimizationToolkit`$563 + 
+        OptimizationToolkit`$564 + OptimizationToolkit`$565 + 
+        OptimizationToolkit`$566; 
+      OptimizationToolkit`$568 = $CellContext`w3 $CellContext`x5 \
+$CellContext`y1; 
+      OptimizationToolkit`$569 = $CellContext`w1 $CellContext`x3 \
+$CellContext`y5; 
+      OptimizationToolkit`$570 = $CellContext`x3 OptimizationToolkit`$431; 
+      OptimizationToolkit`$571 = $CellContext`x1 $CellContext`y3; 
+      OptimizationToolkit`$572 = $CellContext`w3 OptimizationToolkit`$520; 
+      OptimizationToolkit`$573 = -$CellContext`x5 $CellContext`y1 + 
+        OptimizationToolkit`$432 + OptimizationToolkit`$463 + 
+        OptimizationToolkit`$570 - OptimizationToolkit`$571; 
+      OptimizationToolkit`$574 = -$CellContext`x4 $CellContext`y3 - 
+        OptimizationToolkit`$446 + OptimizationToolkit`$460 + 
+        OptimizationToolkit`$464 - OptimizationToolkit`$520 + 
+        OptimizationToolkit`$571; 
+      OptimizationToolkit`$575 = $CellContext`w4 OptimizationToolkit`$573; 
+      OptimizationToolkit`$576 = $CellContext`w5 OptimizationToolkit`$574; 
+      OptimizationToolkit`$577 = -$CellContext`w3 $CellContext`x5 \
 $CellContext`y4 - $CellContext`w1 $CellContext`x4 $CellContext`y5 - \
-$CellContext`w3 FactorExpression`$432 + FactorExpression`$444 + 
-        FactorExpression`$459 - $CellContext`w3 FactorExpression`$460 + 
-        FactorExpression`$462 - $CellContext`w1 FactorExpression`$464 - 
-        FactorExpression`$539 + FactorExpression`$568 + FactorExpression`$569 + 
-        FactorExpression`$572 + FactorExpression`$575 + FactorExpression`$576; 
-      FactorExpression`$578 = $CellContext`w2 $CellContext`y4 $CellContext`z3; 
-      FactorExpression`$579 = $CellContext`w2 $CellContext`y5 $CellContext`z4; 
-      FactorExpression`$580 = $CellContext`w3 FactorExpression`$422; 
-      FactorExpression`$581 = $CellContext`w3 FactorExpression`$458; 
-      FactorExpression`$582 = $CellContext`w5 FactorExpression`$476; 
-      FactorExpression`$583 = $CellContext`w4 FactorExpression`$478; 
-      FactorExpression`$584 = -$CellContext`w3 $CellContext`y5 \
-$CellContext`z4 - $CellContext`w3 FactorExpression`$419 - $CellContext`w2 
-        FactorExpression`$426 + FactorExpression`$450 + 
-        FactorExpression`$461 - $CellContext`w3 FactorExpression`$475 - 
-        FactorExpression`$505 - FactorExpression`$543 + FactorExpression`$578 + 
-        FactorExpression`$579 + FactorExpression`$580 + FactorExpression`$581 + 
-        FactorExpression`$582 + FactorExpression`$583; 
-      FactorExpression`$585 = $CellContext`w2 $CellContext`x4 $CellContext`y3; 
-      FactorExpression`$586 = $CellContext`w2 $CellContext`x5 $CellContext`y4; 
-      FactorExpression`$587 = $CellContext`w3 FactorExpression`$454; 
-      FactorExpression`$588 = $CellContext`y2 - $CellContext`y5; 
-      FactorExpression`$589 = -$CellContext`x3 $CellContext`y2 - \
-$CellContext`x4 $CellContext`y3 + FactorExpression`$430 + 
-        FactorExpression`$445 + FactorExpression`$464 - FactorExpression`$555; 
-      FactorExpression`$590 = $CellContext`w3 FactorExpression`$555; 
-      FactorExpression`$591 = $CellContext`x2 $CellContext`y5; 
-      FactorExpression`$592 = $CellContext`w5 FactorExpression`$589; 
-      FactorExpression`$593 = $CellContext`x3 FactorExpression`$588; 
-      FactorExpression`$594 = -FactorExpression`$430 - FactorExpression`$454 + 
-        FactorExpression`$463 + FactorExpression`$591 + FactorExpression`$593; 
-      FactorExpression`$595 = $CellContext`w4 FactorExpression`$594; 
-      FactorExpression`$596 = -$CellContext`w3 $CellContext`x5 \
-$CellContext`y4 - $CellContext`w3 FactorExpression`$445 + 
-        FactorExpression`$453 + FactorExpression`$462 - $CellContext`w2 
-        FactorExpression`$463 - FactorExpression`$519 - FactorExpression`$549 + 
-        FactorExpression`$585 + FactorExpression`$586 + FactorExpression`$587 + 
-        FactorExpression`$590 - $CellContext`w3 FactorExpression`$591 + 
-        FactorExpression`$592 + FactorExpression`$595; 
-      FactorExpression`$597 = FactorExpression`$508^2; 
-      FactorExpression`$598 = FactorExpression`$524^2; 
-      FactorExpression`$599 = $CellContext`w4 FactorExpression`$485; 
-      FactorExpression`$600 = $CellContext`x4 FactorExpression`$423; 
-      FactorExpression`$601 = $CellContext`x2 FactorExpression`$433; 
-      FactorExpression`$602 = $CellContext`x3 FactorExpression`$466; 
-      FactorExpression`$603 = -FactorExpression`$429 + FactorExpression`$467 - 
-        FactorExpression`$469 + FactorExpression`$501 + FactorExpression`$601; 
-      FactorExpression`$604 = -$CellContext`x1 
-         FactorExpression`$417 - $CellContext`x2 
-        FactorExpression`$420 - $CellContext`x1 FactorExpression`$427 + 
-        FactorExpression`$479 + FactorExpression`$481 + FactorExpression`$483 + 
-        FactorExpression`$510 + FactorExpression`$513 + FactorExpression`$516 - 
-        FactorExpression`$528 - FactorExpression`$529 - FactorExpression`$530 + 
-        FactorExpression`$600 + FactorExpression`$602; 
-      FactorExpression`$605 = $CellContext`w3 FactorExpression`$603; 
-      FactorExpression`$606 = FactorExpression`$604^2; 
-      FactorExpression`$607 = -$CellContext`w1 
-         FactorExpression`$434 - $CellContext`w2 FactorExpression`$468 + 
-        FactorExpression`$480 + FactorExpression`$482 + 
-        FactorExpression`$484 - $CellContext`w1 FactorExpression`$499 + 
-        FactorExpression`$511 + FactorExpression`$514 + FactorExpression`$517 - 
-        FactorExpression`$525 - FactorExpression`$526 - FactorExpression`$527 + 
-        FactorExpression`$599 + FactorExpression`$605; 
-      FactorExpression`$608 = FactorExpression`$607^2; 
-      FactorExpression`$609 = 
-       FactorExpression`$597 + FactorExpression`$598 + FactorExpression`$606 + 
-        FactorExpression`$608; 
-      FactorExpression`$610 = FactorExpression`$609^Rational[-1, 2]; 
-      FactorExpression`$611 = FactorExpression`$534^2; 
-      FactorExpression`$612 = FactorExpression`$540^2; 
-      FactorExpression`$613 = $CellContext`w5 FactorExpression`$485; 
-      FactorExpression`$614 = $CellContext`x5 FactorExpression`$423; 
-      FactorExpression`$615 = $CellContext`w3 FactorExpression`$493; 
-      FactorExpression`$616 = $CellContext`x3 FactorExpression`$425; 
-      FactorExpression`$617 = -$CellContext`w1 
-         FactorExpression`$434 - $CellContext`w2 
-        FactorExpression`$437 - $CellContext`w2 
-        FactorExpression`$468 - $CellContext`w1 FactorExpression`$470 + 
-        FactorExpression`$480 + FactorExpression`$482 + FactorExpression`$487 + 
-        FactorExpression`$489 + FactorExpression`$491 - $CellContext`w2 
-        FactorExpression`$498 + FactorExpression`$537 - FactorExpression`$541 + 
-        FactorExpression`$613 + FactorExpression`$615; 
-      FactorExpression`$618 = -$CellContext`x1 
-         FactorExpression`$417 - $CellContext`x2 
-        FactorExpression`$418 - $CellContext`x2 
-        FactorExpression`$420 - $CellContext`x1 
-        FactorExpression`$422 - $CellContext`x2 FactorExpression`$426 + 
-        FactorExpression`$481 + FactorExpression`$483 + FactorExpression`$486 + 
-        FactorExpression`$488 + FactorExpression`$490 + FactorExpression`$536 - 
-        FactorExpression`$542 + FactorExpression`$614 + FactorExpression`$616; 
-      FactorExpression`$619 = FactorExpression`$617^2; 
-      FactorExpression`$620 = FactorExpression`$618^2; 
-      FactorExpression`$621 = 
-       FactorExpression`$611 + FactorExpression`$612 + FactorExpression`$619 + 
-        FactorExpression`$620; 
-      FactorExpression`$622 = FactorExpression`$621^Rational[-1, 2]; 
-      FactorExpression`$623 = FactorExpression`$548^2; 
-      FactorExpression`$624 = FactorExpression`$559^2; 
-      FactorExpression`$625 = $CellContext`w4 FactorExpression`$493; 
-      FactorExpression`$626 = $CellContext`x4 FactorExpression`$425; 
-      FactorExpression`$627 = -$CellContext`x2 $CellContext`z1 + 
-        FactorExpression`$429 - FactorExpression`$467 + FactorExpression`$469 - 
-        FactorExpression`$501 + FactorExpression`$553; 
-      FactorExpression`$628 = $CellContext`x5 FactorExpression`$471; 
-      FactorExpression`$629 = $CellContext`w5 FactorExpression`$627; 
-      FactorExpression`$630 = -$CellContext`x2 
-         FactorExpression`$418 - $CellContext`x1 
-        FactorExpression`$422 - $CellContext`y4 FactorExpression`$437 + 
-        FactorExpression`$486 + FactorExpression`$488 + FactorExpression`$494 - 
-        FactorExpression`$510 - FactorExpression`$516 + FactorExpression`$528 + 
-        FactorExpression`$530 + FactorExpression`$551 - FactorExpression`$561 + 
-        FactorExpression`$626 + FactorExpression`$628; 
-      FactorExpression`$631 = -$CellContext`w1 $CellContext`x4 \
-$CellContext`z5 - $CellContext`w2 FactorExpression`$437 - $CellContext`w1 
-        FactorExpression`$470 + FactorExpression`$487 + FactorExpression`$489 + 
-        FactorExpression`$495 - FactorExpression`$511 - FactorExpression`$514 + 
-        FactorExpression`$526 + FactorExpression`$527 + FactorExpression`$550 - 
-        FactorExpression`$560 + FactorExpression`$625 + FactorExpression`$629; 
-      FactorExpression`$632 = FactorExpression`$630^2; 
-      FactorExpression`$633 = FactorExpression`$631^2; 
-      FactorExpression`$634 = 
-       FactorExpression`$623 + FactorExpression`$624 + FactorExpression`$632 + 
-        FactorExpression`$633; 
-      FactorExpression`$635 = FactorExpression`$634^Rational[-1, 2]; 
-      FactorExpression`$636 = $CellContext`w3 $CellContext`x5 $CellContext`z1; 
-      FactorExpression`$637 = $CellContext`x3 FactorExpression`$438; 
-      FactorExpression`$638 = FactorExpression`$567^2; 
-      FactorExpression`$639 = FactorExpression`$577^2; 
-      FactorExpression`$640 = $CellContext`x3 FactorExpression`$415; 
-      FactorExpression`$641 = $CellContext`y5 FactorExpression`$468; 
-      FactorExpression`$642 = -$CellContext`x4 $CellContext`z3 - 
-        FactorExpression`$468 + FactorExpression`$469 + FactorExpression`$499 + 
-        FactorExpression`$500 - FactorExpression`$501; 
-      FactorExpression`$643 = $CellContext`x5 FactorExpression`$473; 
-      FactorExpression`$644 = $CellContext`w3 FactorExpression`$501; 
-      FactorExpression`$645 = $CellContext`x4 FactorExpression`$474; 
-      FactorExpression`$646 = -$CellContext`x5 $CellContext`z1 + 
-        FactorExpression`$437 + FactorExpression`$498 - FactorExpression`$500 + 
-        FactorExpression`$640; 
-      FactorExpression`$647 = -$CellContext`x3 
-         FactorExpression`$418 - $CellContext`x3 
-        FactorExpression`$421 - $CellContext`x1 
-        FactorExpression`$427 - $CellContext`y4 FactorExpression`$437 + 
-        FactorExpression`$479 + FactorExpression`$494 + 
-        FactorExpression`$496 - $CellContext`y5 FactorExpression`$499 - 
-        FactorExpression`$536 + FactorExpression`$542 + FactorExpression`$637 + 
-        FactorExpression`$641 + FactorExpression`$643 + FactorExpression`$645; 
-      FactorExpression`$648 = $CellContext`w5 FactorExpression`$642; 
-      FactorExpression`$649 = FactorExpression`$647^2; 
-      FactorExpression`$650 = $CellContext`w4 FactorExpression`$646; 
-      FactorExpression`$651 = -$CellContext`w3 $CellContext`x5 \
+$CellContext`w3 OptimizationToolkit`$432 + OptimizationToolkit`$444 + 
+        OptimizationToolkit`$459 - $CellContext`w3 OptimizationToolkit`$460 + 
+        OptimizationToolkit`$462 - $CellContext`w1 OptimizationToolkit`$464 - 
+        OptimizationToolkit`$539 + OptimizationToolkit`$568 + 
+        OptimizationToolkit`$569 + OptimizationToolkit`$572 + 
+        OptimizationToolkit`$575 + OptimizationToolkit`$576; 
+      OptimizationToolkit`$578 = $CellContext`w2 $CellContext`y4 \
+$CellContext`z3; 
+      OptimizationToolkit`$579 = $CellContext`w2 $CellContext`y5 \
+$CellContext`z4; 
+      OptimizationToolkit`$580 = $CellContext`w3 OptimizationToolkit`$422; 
+      OptimizationToolkit`$581 = $CellContext`w3 OptimizationToolkit`$458; 
+      OptimizationToolkit`$582 = $CellContext`w5 OptimizationToolkit`$476; 
+      OptimizationToolkit`$583 = $CellContext`w4 OptimizationToolkit`$478; 
+      OptimizationToolkit`$584 = -$CellContext`w3 $CellContext`y5 \
+$CellContext`z4 - $CellContext`w3 OptimizationToolkit`$419 - $CellContext`w2 
+        OptimizationToolkit`$426 + OptimizationToolkit`$450 + 
+        OptimizationToolkit`$461 - $CellContext`w3 OptimizationToolkit`$475 - 
+        OptimizationToolkit`$505 - OptimizationToolkit`$543 + 
+        OptimizationToolkit`$578 + OptimizationToolkit`$579 + 
+        OptimizationToolkit`$580 + OptimizationToolkit`$581 + 
+        OptimizationToolkit`$582 + OptimizationToolkit`$583; 
+      OptimizationToolkit`$585 = $CellContext`w2 $CellContext`x4 \
+$CellContext`y3; 
+      OptimizationToolkit`$586 = $CellContext`w2 $CellContext`x5 \
+$CellContext`y4; 
+      OptimizationToolkit`$587 = $CellContext`w3 OptimizationToolkit`$454; 
+      OptimizationToolkit`$588 = $CellContext`y2 - $CellContext`y5; 
+      OptimizationToolkit`$589 = -$CellContext`x3 $CellContext`y2 - \
+$CellContext`x4 $CellContext`y3 + OptimizationToolkit`$430 + 
+        OptimizationToolkit`$445 + OptimizationToolkit`$464 - 
+        OptimizationToolkit`$555; 
+      OptimizationToolkit`$590 = $CellContext`w3 OptimizationToolkit`$555; 
+      OptimizationToolkit`$591 = $CellContext`x2 $CellContext`y5; 
+      OptimizationToolkit`$592 = $CellContext`w5 OptimizationToolkit`$589; 
+      OptimizationToolkit`$593 = $CellContext`x3 OptimizationToolkit`$588; 
+      OptimizationToolkit`$594 = -OptimizationToolkit`$430 - 
+        OptimizationToolkit`$454 + OptimizationToolkit`$463 + 
+        OptimizationToolkit`$591 + OptimizationToolkit`$593; 
+      OptimizationToolkit`$595 = $CellContext`w4 OptimizationToolkit`$594; 
+      OptimizationToolkit`$596 = -$CellContext`w3 $CellContext`x5 \
+$CellContext`y4 - $CellContext`w3 OptimizationToolkit`$445 + 
+        OptimizationToolkit`$453 + OptimizationToolkit`$462 - $CellContext`w2 
+        OptimizationToolkit`$463 - OptimizationToolkit`$519 - 
+        OptimizationToolkit`$549 + OptimizationToolkit`$585 + 
+        OptimizationToolkit`$586 + OptimizationToolkit`$587 + 
+        OptimizationToolkit`$590 - $CellContext`w3 OptimizationToolkit`$591 + 
+        OptimizationToolkit`$592 + OptimizationToolkit`$595; 
+      OptimizationToolkit`$597 = OptimizationToolkit`$508^2; 
+      OptimizationToolkit`$598 = OptimizationToolkit`$524^2; 
+      OptimizationToolkit`$599 = $CellContext`w4 OptimizationToolkit`$485; 
+      OptimizationToolkit`$600 = $CellContext`x4 OptimizationToolkit`$423; 
+      OptimizationToolkit`$601 = $CellContext`x2 OptimizationToolkit`$433; 
+      OptimizationToolkit`$602 = $CellContext`x3 OptimizationToolkit`$466; 
+      OptimizationToolkit`$603 = -OptimizationToolkit`$429 + 
+        OptimizationToolkit`$467 - OptimizationToolkit`$469 + 
+        OptimizationToolkit`$501 + OptimizationToolkit`$601; 
+      OptimizationToolkit`$604 = -$CellContext`x1 
+         OptimizationToolkit`$417 - $CellContext`x2 
+        OptimizationToolkit`$420 - $CellContext`x1 OptimizationToolkit`$427 + 
+        OptimizationToolkit`$479 + OptimizationToolkit`$481 + 
+        OptimizationToolkit`$483 + OptimizationToolkit`$510 + 
+        OptimizationToolkit`$513 + OptimizationToolkit`$516 - 
+        OptimizationToolkit`$528 - OptimizationToolkit`$529 - 
+        OptimizationToolkit`$530 + OptimizationToolkit`$600 + 
+        OptimizationToolkit`$602; 
+      OptimizationToolkit`$605 = $CellContext`w3 OptimizationToolkit`$603; 
+      OptimizationToolkit`$606 = OptimizationToolkit`$604^2; 
+      OptimizationToolkit`$607 = -$CellContext`w1 
+         OptimizationToolkit`$434 - $CellContext`w2 OptimizationToolkit`$468 + 
+        OptimizationToolkit`$480 + OptimizationToolkit`$482 + 
+        OptimizationToolkit`$484 - $CellContext`w1 OptimizationToolkit`$499 + 
+        OptimizationToolkit`$511 + OptimizationToolkit`$514 + 
+        OptimizationToolkit`$517 - OptimizationToolkit`$525 - 
+        OptimizationToolkit`$526 - OptimizationToolkit`$527 + 
+        OptimizationToolkit`$599 + OptimizationToolkit`$605; 
+      OptimizationToolkit`$608 = OptimizationToolkit`$607^2; 
+      OptimizationToolkit`$609 = 
+       OptimizationToolkit`$597 + OptimizationToolkit`$598 + 
+        OptimizationToolkit`$606 + OptimizationToolkit`$608; 
+      OptimizationToolkit`$610 = OptimizationToolkit`$609^Rational[-1, 2]; 
+      OptimizationToolkit`$611 = OptimizationToolkit`$534^2; 
+      OptimizationToolkit`$612 = OptimizationToolkit`$540^2; 
+      OptimizationToolkit`$613 = $CellContext`w5 OptimizationToolkit`$485; 
+      OptimizationToolkit`$614 = $CellContext`x5 OptimizationToolkit`$423; 
+      OptimizationToolkit`$615 = $CellContext`w3 OptimizationToolkit`$493; 
+      OptimizationToolkit`$616 = $CellContext`x3 OptimizationToolkit`$425; 
+      OptimizationToolkit`$617 = -$CellContext`w1 
+         OptimizationToolkit`$434 - $CellContext`w2 
+        OptimizationToolkit`$437 - $CellContext`w2 
+        OptimizationToolkit`$468 - $CellContext`w1 OptimizationToolkit`$470 + 
+        OptimizationToolkit`$480 + OptimizationToolkit`$482 + 
+        OptimizationToolkit`$487 + OptimizationToolkit`$489 + 
+        OptimizationToolkit`$491 - $CellContext`w2 OptimizationToolkit`$498 + 
+        OptimizationToolkit`$537 - OptimizationToolkit`$541 + 
+        OptimizationToolkit`$613 + OptimizationToolkit`$615; 
+      OptimizationToolkit`$618 = -$CellContext`x1 
+         OptimizationToolkit`$417 - $CellContext`x2 
+        OptimizationToolkit`$418 - $CellContext`x2 
+        OptimizationToolkit`$420 - $CellContext`x1 
+        OptimizationToolkit`$422 - $CellContext`x2 OptimizationToolkit`$426 + 
+        OptimizationToolkit`$481 + OptimizationToolkit`$483 + 
+        OptimizationToolkit`$486 + OptimizationToolkit`$488 + 
+        OptimizationToolkit`$490 + OptimizationToolkit`$536 - 
+        OptimizationToolkit`$542 + OptimizationToolkit`$614 + 
+        OptimizationToolkit`$616; 
+      OptimizationToolkit`$619 = OptimizationToolkit`$617^2; 
+      OptimizationToolkit`$620 = OptimizationToolkit`$618^2; 
+      OptimizationToolkit`$621 = 
+       OptimizationToolkit`$611 + OptimizationToolkit`$612 + 
+        OptimizationToolkit`$619 + OptimizationToolkit`$620; 
+      OptimizationToolkit`$622 = OptimizationToolkit`$621^Rational[-1, 2]; 
+      OptimizationToolkit`$623 = OptimizationToolkit`$548^2; 
+      OptimizationToolkit`$624 = OptimizationToolkit`$559^2; 
+      OptimizationToolkit`$625 = $CellContext`w4 OptimizationToolkit`$493; 
+      OptimizationToolkit`$626 = $CellContext`x4 OptimizationToolkit`$425; 
+      OptimizationToolkit`$627 = -$CellContext`x2 $CellContext`z1 + 
+        OptimizationToolkit`$429 - OptimizationToolkit`$467 + 
+        OptimizationToolkit`$469 - OptimizationToolkit`$501 + 
+        OptimizationToolkit`$553; 
+      OptimizationToolkit`$628 = $CellContext`x5 OptimizationToolkit`$471; 
+      OptimizationToolkit`$629 = $CellContext`w5 OptimizationToolkit`$627; 
+      OptimizationToolkit`$630 = -$CellContext`x2 
+         OptimizationToolkit`$418 - $CellContext`x1 
+        OptimizationToolkit`$422 - $CellContext`y4 OptimizationToolkit`$437 + 
+        OptimizationToolkit`$486 + OptimizationToolkit`$488 + 
+        OptimizationToolkit`$494 - OptimizationToolkit`$510 - 
+        OptimizationToolkit`$516 + OptimizationToolkit`$528 + 
+        OptimizationToolkit`$530 + OptimizationToolkit`$551 - 
+        OptimizationToolkit`$561 + OptimizationToolkit`$626 + 
+        OptimizationToolkit`$628; 
+      OptimizationToolkit`$631 = -$CellContext`w1 $CellContext`x4 \
+$CellContext`z5 - $CellContext`w2 OptimizationToolkit`$437 - $CellContext`w1 
+        OptimizationToolkit`$470 + OptimizationToolkit`$487 + 
+        OptimizationToolkit`$489 + OptimizationToolkit`$495 - 
+        OptimizationToolkit`$511 - OptimizationToolkit`$514 + 
+        OptimizationToolkit`$526 + OptimizationToolkit`$527 + 
+        OptimizationToolkit`$550 - OptimizationToolkit`$560 + 
+        OptimizationToolkit`$625 + OptimizationToolkit`$629; 
+      OptimizationToolkit`$632 = OptimizationToolkit`$630^2; 
+      OptimizationToolkit`$633 = OptimizationToolkit`$631^2; 
+      OptimizationToolkit`$634 = 
+       OptimizationToolkit`$623 + OptimizationToolkit`$624 + 
+        OptimizationToolkit`$632 + OptimizationToolkit`$633; 
+      OptimizationToolkit`$635 = OptimizationToolkit`$634^Rational[-1, 2]; 
+      OptimizationToolkit`$636 = $CellContext`w3 $CellContext`x5 \
+$CellContext`z1; 
+      OptimizationToolkit`$637 = $CellContext`x3 OptimizationToolkit`$438; 
+      OptimizationToolkit`$638 = OptimizationToolkit`$567^2; 
+      OptimizationToolkit`$639 = OptimizationToolkit`$577^2; 
+      OptimizationToolkit`$640 = $CellContext`x3 OptimizationToolkit`$415; 
+      OptimizationToolkit`$641 = $CellContext`y5 OptimizationToolkit`$468; 
+      OptimizationToolkit`$642 = -$CellContext`x4 $CellContext`z3 - 
+        OptimizationToolkit`$468 + OptimizationToolkit`$469 + 
+        OptimizationToolkit`$499 + OptimizationToolkit`$500 - 
+        OptimizationToolkit`$501; 
+      OptimizationToolkit`$643 = $CellContext`x5 OptimizationToolkit`$473; 
+      OptimizationToolkit`$644 = $CellContext`w3 OptimizationToolkit`$501; 
+      OptimizationToolkit`$645 = $CellContext`x4 OptimizationToolkit`$474; 
+      OptimizationToolkit`$646 = -$CellContext`x5 $CellContext`z1 + 
+        OptimizationToolkit`$437 + OptimizationToolkit`$498 - 
+        OptimizationToolkit`$500 + OptimizationToolkit`$640; 
+      OptimizationToolkit`$647 = -$CellContext`x3 
+         OptimizationToolkit`$418 - $CellContext`x3 
+        OptimizationToolkit`$421 - $CellContext`x1 
+        OptimizationToolkit`$427 - $CellContext`y4 OptimizationToolkit`$437 + 
+        OptimizationToolkit`$479 + OptimizationToolkit`$494 + 
+        OptimizationToolkit`$496 - $CellContext`y5 OptimizationToolkit`$499 - 
+        OptimizationToolkit`$536 + OptimizationToolkit`$542 + 
+        OptimizationToolkit`$637 + OptimizationToolkit`$641 + 
+        OptimizationToolkit`$643 + OptimizationToolkit`$645; 
+      OptimizationToolkit`$648 = $CellContext`w5 OptimizationToolkit`$642; 
+      OptimizationToolkit`$649 = OptimizationToolkit`$647^2; 
+      OptimizationToolkit`$650 = $CellContext`w4 OptimizationToolkit`$646; 
+      OptimizationToolkit`$651 = -$CellContext`w3 $CellContext`x5 \
 $CellContext`z4 - $CellContext`w1 $CellContext`x4 $CellContext`z5 - \
-$CellContext`w3 FactorExpression`$437 - $CellContext`w3 FactorExpression`$469 + 
-        FactorExpression`$484 + FactorExpression`$495 + 
-        FactorExpression`$497 - $CellContext`w1 FactorExpression`$499 - 
-        FactorExpression`$537 + FactorExpression`$541 + FactorExpression`$636 + 
-        FactorExpression`$644 + FactorExpression`$648 + FactorExpression`$650; 
-      FactorExpression`$652 = FactorExpression`$651^2; 
-      FactorExpression`$653 = 
-       FactorExpression`$638 + FactorExpression`$639 + FactorExpression`$649 + 
-        FactorExpression`$652; 
-      FactorExpression`$654 = FactorExpression`$653^Rational[-1, 2]; 
-      FactorExpression`$655 = $CellContext`w3 FactorExpression`$470; 
-      FactorExpression`$656 = $CellContext`x3 FactorExpression`$422; 
-      FactorExpression`$657 = FactorExpression`$584^2; 
-      FactorExpression`$658 = FactorExpression`$596^2; 
-      FactorExpression`$659 = $CellContext`x2 $CellContext`z5; 
-      FactorExpression`$660 = $CellContext`x3 FactorExpression`$458; 
-      FactorExpression`$661 = -$CellContext`x3 $CellContext`z2 - \
-$CellContext`x4 $CellContext`z3 + FactorExpression`$434 + 
-        FactorExpression`$467 + FactorExpression`$499 - FactorExpression`$553; 
-      FactorExpression`$662 = $CellContext`x5 FactorExpression`$476; 
-      FactorExpression`$663 = $CellContext`w3 FactorExpression`$553; 
-      FactorExpression`$664 = $CellContext`x4 FactorExpression`$478; 
-      FactorExpression`$665 = $CellContext`x3 FactorExpression`$435; 
-      FactorExpression`$666 = -$CellContext`x3 
-         FactorExpression`$419 - $CellContext`x2 
-        FactorExpression`$426 - $CellContext`x3 FactorExpression`$475 + 
-        FactorExpression`$490 + FactorExpression`$496 - $CellContext`y5 
-        FactorExpression`$499 - FactorExpression`$513 + FactorExpression`$529 - 
-        FactorExpression`$551 + FactorExpression`$561 + FactorExpression`$656 + 
-        FactorExpression`$660 + FactorExpression`$662 + FactorExpression`$664; 
-      FactorExpression`$667 = $CellContext`w5 FactorExpression`$661; 
-      FactorExpression`$668 = FactorExpression`$666^2; 
-      FactorExpression`$669 = -FactorExpression`$434 - FactorExpression`$470 + 
-        FactorExpression`$498 + FactorExpression`$659 + FactorExpression`$665; 
-      FactorExpression`$670 = $CellContext`w4 FactorExpression`$669; 
-      FactorExpression`$671 = -$CellContext`w3 $CellContext`x5 \
-$CellContext`z4 - $CellContext`w3 FactorExpression`$467 + 
-        FactorExpression`$491 + FactorExpression`$497 - $CellContext`w2 
-        FactorExpression`$498 - FactorExpression`$517 + FactorExpression`$525 - 
-        FactorExpression`$550 + FactorExpression`$560 + 
-        FactorExpression`$655 - $CellContext`w3 FactorExpression`$659 + 
-        FactorExpression`$663 + FactorExpression`$667 + FactorExpression`$670; 
-      FactorExpression`$672 = FactorExpression`$671^2; 
-      FactorExpression`$673 = 
-       FactorExpression`$657 + FactorExpression`$658 + FactorExpression`$668 + 
-        FactorExpression`$672; 
-      FactorExpression`$674 = FactorExpression`$673^Rational[-1, 2]; 
-      FactorExpression`$675 = $CellContext`x2 $CellContext`z1; 
-      FactorExpression`$676 = $CellContext`x3 $CellContext`z2; 
-      FactorExpression`$677 = $CellContext`y2 $CellContext`z1; 
-      FactorExpression`$678 = $CellContext`y3 $CellContext`z2; 
-      FactorExpression`$679 = $CellContext`x5 $CellContext`z1; 
-      FactorExpression`$680 = $CellContext`y5 $CellContext`z1; 
-      FactorExpression`$681 = $CellContext`w1 FactorExpression`$434; 
-      FactorExpression`$682 = $CellContext`w2 FactorExpression`$468; 
-      FactorExpression`$683 = $CellContext`w1 FactorExpression`$499; 
-      FactorExpression`$684 = -$CellContext`z1 + $CellContext`z4; 
-      FactorExpression`$685 = -FactorExpression`$429 - FactorExpression`$434 - 
-        FactorExpression`$468 + FactorExpression`$500 + FactorExpression`$675 + 
-        FactorExpression`$676; 
-      FactorExpression`$686 = $CellContext`x1 FactorExpression`$417; 
-      FactorExpression`$687 = $CellContext`x2 FactorExpression`$420; 
-      FactorExpression`$688 = $CellContext`x1 FactorExpression`$427; 
-      FactorExpression`$689 = -FactorExpression`$416 - FactorExpression`$417 - 
-        FactorExpression`$420 + FactorExpression`$436 + FactorExpression`$677 + 
-        FactorExpression`$678; 
-      FactorExpression`$690 = $CellContext`w2 FactorExpression`$437; 
-      FactorExpression`$691 = $CellContext`w1 FactorExpression`$470; 
-      FactorExpression`$692 = $CellContext`w2 FactorExpression`$498; 
-      FactorExpression`$693 = $CellContext`x2 FactorExpression`$502; 
-      FactorExpression`$694 = 
-       FactorExpression`$429 - FactorExpression`$437 - FactorExpression`$470 + 
-        FactorExpression`$679 + FactorExpression`$693; 
-      FactorExpression`$695 = $CellContext`x2 FactorExpression`$418; 
-      FactorExpression`$696 = $CellContext`x1 FactorExpression`$422; 
-      FactorExpression`$697 = $CellContext`x2 FactorExpression`$426; 
-      FactorExpression`$698 = $CellContext`y2 FactorExpression`$502; 
-      FactorExpression`$699 = 
-       FactorExpression`$416 - FactorExpression`$418 - FactorExpression`$422 + 
-        FactorExpression`$680 + FactorExpression`$698; 
-      FactorExpression`$700 = $CellContext`w1 $CellContext`x4 $CellContext`z5; 
-      FactorExpression`$701 = $CellContext`y4 FactorExpression`$437; 
-      FactorExpression`$702 = $CellContext`w3 $CellContext`x5 $CellContext`z4; 
-      FactorExpression`$703 = $CellContext`x4 $CellContext`z3; 
-      FactorExpression`$704 = $CellContext`y4 $CellContext`z3; 
-      FactorExpression`$705 = $CellContext`y5 FactorExpression`$499; 
-      FactorExpression`$706 = -$CellContext`z2 + $CellContext`z5; (
-       Compile`$1199 = -FactorExpression`$480; 
-       Compile`$1200 = -FactorExpression`$482; 
-       Compile`$1215 = -FactorExpression`$481; 
-       Compile`$1216 = -FactorExpression`$483; 
-       Compile`$1229 = -FactorExpression`$487; 
-       Compile`$1230 = -FactorExpression`$489; 
-       Compile`$1238 = -FactorExpression`$486; 
-       Compile`$1239 = -FactorExpression`$488; 
-       Compile`$1201 = -FactorExpression`$484; 
-       Compile`$1247 = -FactorExpression`$495; 
-       Compile`$1252 = -FactorExpression`$469; 
-       Compile`$1214 = -FactorExpression`$479; 
-       Compile`$1260 = -FactorExpression`$494; 
-       Compile`$1265 = -FactorExpression`$421; 
-       Compile`$1231 = -FactorExpression`$491; 
-       Compile`$1275 = -FactorExpression`$497; 
-       Compile`$1205 = -FactorExpression`$467; 
-       Compile`$1284 = -FactorExpression`$499; 
-       Compile`$1280 = -FactorExpression`$498; 
-       Compile`$1240 = -FactorExpression`$490; 
-       Compile`$1293 = -FactorExpression`$496; 
-       Compile`$1220 = -FactorExpression`$419; 
-       Compile`$1302 = -FactorExpression`$427; 
-       Compile`$1298 = -FactorExpression`$426; {{
-         FactorExpression`$508 FactorExpression`$610, 
-          FactorExpression`$610 (Compile`$1199 + Compile`$1200 + 
-           Compile`$1201 - FactorExpression`$511 - FactorExpression`$514 - 
-           FactorExpression`$517 + FactorExpression`$525 + 
-           FactorExpression`$526 + FactorExpression`$527 + 
-           FactorExpression`$681 + FactorExpression`$682 + 
-           FactorExpression`$683 + $CellContext`w3 (FactorExpression`$429 + 
-             Compile`$1205 + FactorExpression`$469 - 
-             FactorExpression`$501 + $CellContext`x2 
-              FactorExpression`$684) + $CellContext`w4 FactorExpression`$685),
-           FactorExpression`$524 FactorExpression`$610, 
-          FactorExpression`$610 (Compile`$1214 + Compile`$1215 + 
-           Compile`$1216 - FactorExpression`$510 - FactorExpression`$513 - 
-           FactorExpression`$516 + FactorExpression`$528 + 
-           FactorExpression`$529 + 
-           FactorExpression`$530 + $CellContext`x3 (FactorExpression`$416 + 
-             Compile`$1220 + FactorExpression`$421 - 
-             FactorExpression`$438 + $CellContext`y2 FactorExpression`$684) + 
-           FactorExpression`$686 + FactorExpression`$687 + 
-           FactorExpression`$688 + $CellContext`x4 FactorExpression`$689)}, {
-         FactorExpression`$534 FactorExpression`$622, 
-          FactorExpression`$622 (Compile`$1199 + Compile`$1200 + 
+$CellContext`w3 OptimizationToolkit`$437 - $CellContext`w3 
+        OptimizationToolkit`$469 + OptimizationToolkit`$484 + 
+        OptimizationToolkit`$495 + OptimizationToolkit`$497 - $CellContext`w1 
+        OptimizationToolkit`$499 - OptimizationToolkit`$537 + 
+        OptimizationToolkit`$541 + OptimizationToolkit`$636 + 
+        OptimizationToolkit`$644 + OptimizationToolkit`$648 + 
+        OptimizationToolkit`$650; 
+      OptimizationToolkit`$652 = OptimizationToolkit`$651^2; 
+      OptimizationToolkit`$653 = 
+       OptimizationToolkit`$638 + OptimizationToolkit`$639 + 
+        OptimizationToolkit`$649 + OptimizationToolkit`$652; 
+      OptimizationToolkit`$654 = OptimizationToolkit`$653^Rational[-1, 2]; 
+      OptimizationToolkit`$655 = $CellContext`w3 OptimizationToolkit`$470; 
+      OptimizationToolkit`$656 = $CellContext`x3 OptimizationToolkit`$422; 
+      OptimizationToolkit`$657 = OptimizationToolkit`$584^2; 
+      OptimizationToolkit`$658 = OptimizationToolkit`$596^2; 
+      OptimizationToolkit`$659 = $CellContext`x2 $CellContext`z5; 
+      OptimizationToolkit`$660 = $CellContext`x3 OptimizationToolkit`$458; 
+      OptimizationToolkit`$661 = -$CellContext`x3 $CellContext`z2 - \
+$CellContext`x4 $CellContext`z3 + OptimizationToolkit`$434 + 
+        OptimizationToolkit`$467 + OptimizationToolkit`$499 - 
+        OptimizationToolkit`$553; 
+      OptimizationToolkit`$662 = $CellContext`x5 OptimizationToolkit`$476; 
+      OptimizationToolkit`$663 = $CellContext`w3 OptimizationToolkit`$553; 
+      OptimizationToolkit`$664 = $CellContext`x4 OptimizationToolkit`$478; 
+      OptimizationToolkit`$665 = $CellContext`x3 OptimizationToolkit`$435; 
+      OptimizationToolkit`$666 = -$CellContext`x3 
+         OptimizationToolkit`$419 - $CellContext`x2 
+        OptimizationToolkit`$426 - $CellContext`x3 OptimizationToolkit`$475 + 
+        OptimizationToolkit`$490 + OptimizationToolkit`$496 - $CellContext`y5 
+        OptimizationToolkit`$499 - OptimizationToolkit`$513 + 
+        OptimizationToolkit`$529 - OptimizationToolkit`$551 + 
+        OptimizationToolkit`$561 + OptimizationToolkit`$656 + 
+        OptimizationToolkit`$660 + OptimizationToolkit`$662 + 
+        OptimizationToolkit`$664; 
+      OptimizationToolkit`$667 = $CellContext`w5 OptimizationToolkit`$661; 
+      OptimizationToolkit`$668 = OptimizationToolkit`$666^2; 
+      OptimizationToolkit`$669 = -OptimizationToolkit`$434 - 
+        OptimizationToolkit`$470 + OptimizationToolkit`$498 + 
+        OptimizationToolkit`$659 + OptimizationToolkit`$665; 
+      OptimizationToolkit`$670 = $CellContext`w4 OptimizationToolkit`$669; 
+      OptimizationToolkit`$671 = -$CellContext`w3 $CellContext`x5 \
+$CellContext`z4 - $CellContext`w3 OptimizationToolkit`$467 + 
+        OptimizationToolkit`$491 + OptimizationToolkit`$497 - $CellContext`w2 
+        OptimizationToolkit`$498 - OptimizationToolkit`$517 + 
+        OptimizationToolkit`$525 - OptimizationToolkit`$550 + 
+        OptimizationToolkit`$560 + OptimizationToolkit`$655 - $CellContext`w3 
+        OptimizationToolkit`$659 + OptimizationToolkit`$663 + 
+        OptimizationToolkit`$667 + OptimizationToolkit`$670; 
+      OptimizationToolkit`$672 = OptimizationToolkit`$671^2; 
+      OptimizationToolkit`$673 = 
+       OptimizationToolkit`$657 + OptimizationToolkit`$658 + 
+        OptimizationToolkit`$668 + OptimizationToolkit`$672; 
+      OptimizationToolkit`$674 = OptimizationToolkit`$673^Rational[-1, 2]; 
+      OptimizationToolkit`$675 = $CellContext`x2 $CellContext`z1; 
+      OptimizationToolkit`$676 = $CellContext`x3 $CellContext`z2; 
+      OptimizationToolkit`$677 = $CellContext`y2 $CellContext`z1; 
+      OptimizationToolkit`$678 = $CellContext`y3 $CellContext`z2; 
+      OptimizationToolkit`$679 = $CellContext`x5 $CellContext`z1; 
+      OptimizationToolkit`$680 = $CellContext`y5 $CellContext`z1; 
+      OptimizationToolkit`$681 = $CellContext`w1 OptimizationToolkit`$434; 
+      OptimizationToolkit`$682 = $CellContext`w2 OptimizationToolkit`$468; 
+      OptimizationToolkit`$683 = $CellContext`w1 OptimizationToolkit`$499; 
+      OptimizationToolkit`$684 = -$CellContext`z1 + $CellContext`z4; 
+      OptimizationToolkit`$685 = -OptimizationToolkit`$429 - 
+        OptimizationToolkit`$434 - OptimizationToolkit`$468 + 
+        OptimizationToolkit`$500 + OptimizationToolkit`$675 + 
+        OptimizationToolkit`$676; 
+      OptimizationToolkit`$686 = $CellContext`x1 OptimizationToolkit`$417; 
+      OptimizationToolkit`$687 = $CellContext`x2 OptimizationToolkit`$420; 
+      OptimizationToolkit`$688 = $CellContext`x1 OptimizationToolkit`$427; 
+      OptimizationToolkit`$689 = -OptimizationToolkit`$416 - 
+        OptimizationToolkit`$417 - OptimizationToolkit`$420 + 
+        OptimizationToolkit`$436 + OptimizationToolkit`$677 + 
+        OptimizationToolkit`$678; 
+      OptimizationToolkit`$690 = $CellContext`w2 OptimizationToolkit`$437; 
+      OptimizationToolkit`$691 = $CellContext`w1 OptimizationToolkit`$470; 
+      OptimizationToolkit`$692 = $CellContext`w2 OptimizationToolkit`$498; 
+      OptimizationToolkit`$693 = $CellContext`x2 OptimizationToolkit`$502; 
+      OptimizationToolkit`$694 = 
+       OptimizationToolkit`$429 - OptimizationToolkit`$437 - 
+        OptimizationToolkit`$470 + OptimizationToolkit`$679 + 
+        OptimizationToolkit`$693; 
+      OptimizationToolkit`$695 = $CellContext`x2 OptimizationToolkit`$418; 
+      OptimizationToolkit`$696 = $CellContext`x1 OptimizationToolkit`$422; 
+      OptimizationToolkit`$697 = $CellContext`x2 OptimizationToolkit`$426; 
+      OptimizationToolkit`$698 = $CellContext`y2 OptimizationToolkit`$502; 
+      OptimizationToolkit`$699 = 
+       OptimizationToolkit`$416 - OptimizationToolkit`$418 - 
+        OptimizationToolkit`$422 + OptimizationToolkit`$680 + 
+        OptimizationToolkit`$698; 
+      OptimizationToolkit`$700 = $CellContext`w1 $CellContext`x4 \
+$CellContext`z5; 
+      OptimizationToolkit`$701 = $CellContext`y4 OptimizationToolkit`$437; 
+      OptimizationToolkit`$702 = $CellContext`w3 $CellContext`x5 \
+$CellContext`z4; OptimizationToolkit`$703 = $CellContext`x4 $CellContext`z3; 
+      OptimizationToolkit`$704 = $CellContext`y4 $CellContext`z3; 
+      OptimizationToolkit`$705 = $CellContext`y5 OptimizationToolkit`$499; 
+      OptimizationToolkit`$706 = -$CellContext`z2 + $CellContext`z5; (
+       Compile`$1199 = -OptimizationToolkit`$480; 
+       Compile`$1200 = -OptimizationToolkit`$482; 
+       Compile`$1215 = -OptimizationToolkit`$481; 
+       Compile`$1216 = -OptimizationToolkit`$483; 
+       Compile`$1229 = -OptimizationToolkit`$487; 
+       Compile`$1230 = -OptimizationToolkit`$489; 
+       Compile`$1238 = -OptimizationToolkit`$486; 
+       Compile`$1239 = -OptimizationToolkit`$488; 
+       Compile`$1201 = -OptimizationToolkit`$484; 
+       Compile`$1247 = -OptimizationToolkit`$495; 
+       Compile`$1252 = -OptimizationToolkit`$469; 
+       Compile`$1214 = -OptimizationToolkit`$479; 
+       Compile`$1260 = -OptimizationToolkit`$494; 
+       Compile`$1265 = -OptimizationToolkit`$421; 
+       Compile`$1231 = -OptimizationToolkit`$491; 
+       Compile`$1275 = -OptimizationToolkit`$497; 
+       Compile`$1205 = -OptimizationToolkit`$467; 
+       Compile`$1284 = -OptimizationToolkit`$499; 
+       Compile`$1280 = -OptimizationToolkit`$498; 
+       Compile`$1240 = -OptimizationToolkit`$490; 
+       Compile`$1293 = -OptimizationToolkit`$496; 
+       Compile`$1220 = -OptimizationToolkit`$419; 
+       Compile`$1302 = -OptimizationToolkit`$427; 
+       Compile`$1298 = -OptimizationToolkit`$426; {{
+         OptimizationToolkit`$508 OptimizationToolkit`$610, 
+          OptimizationToolkit`$610 (Compile`$1199 + Compile`$1200 + 
+           Compile`$1201 - OptimizationToolkit`$511 - 
+           OptimizationToolkit`$514 - OptimizationToolkit`$517 + 
+           OptimizationToolkit`$525 + OptimizationToolkit`$526 + 
+           OptimizationToolkit`$527 + OptimizationToolkit`$681 + 
+           OptimizationToolkit`$682 + 
+           OptimizationToolkit`$683 + $CellContext`w3 (
+             OptimizationToolkit`$429 + Compile`$1205 + 
+             OptimizationToolkit`$469 - 
+             OptimizationToolkit`$501 + $CellContext`x2 
+              OptimizationToolkit`$684) + $CellContext`w4 
+            OptimizationToolkit`$685), OptimizationToolkit`$524 
+          OptimizationToolkit`$610, 
+          OptimizationToolkit`$610 (Compile`$1214 + Compile`$1215 + 
+           Compile`$1216 - OptimizationToolkit`$510 - 
+           OptimizationToolkit`$513 - OptimizationToolkit`$516 + 
+           OptimizationToolkit`$528 + OptimizationToolkit`$529 + 
+           OptimizationToolkit`$530 + $CellContext`x3 (
+             OptimizationToolkit`$416 + Compile`$1220 + 
+             OptimizationToolkit`$421 - 
+             OptimizationToolkit`$438 + $CellContext`y2 
+              OptimizationToolkit`$684) + OptimizationToolkit`$686 + 
+           OptimizationToolkit`$687 + 
+           OptimizationToolkit`$688 + $CellContext`x4 
+            OptimizationToolkit`$689)}, {
+         OptimizationToolkit`$534 OptimizationToolkit`$622, 
+          OptimizationToolkit`$622 (Compile`$1199 + Compile`$1200 + 
            Compile`$1229 + Compile`$1230 + Compile`$1231 - 
-           FactorExpression`$537 + FactorExpression`$541 + 
-           FactorExpression`$681 + 
-           FactorExpression`$682 + $CellContext`w5 FactorExpression`$685 + 
-           FactorExpression`$690 + FactorExpression`$691 + 
-           FactorExpression`$692 + $CellContext`w3 FactorExpression`$694), 
-          FactorExpression`$540 FactorExpression`$622, 
-          FactorExpression`$622 (Compile`$1215 + Compile`$1216 + 
+           OptimizationToolkit`$537 + OptimizationToolkit`$541 + 
+           OptimizationToolkit`$681 + 
+           OptimizationToolkit`$682 + $CellContext`w5 
+            OptimizationToolkit`$685 + OptimizationToolkit`$690 + 
+           OptimizationToolkit`$691 + 
+           OptimizationToolkit`$692 + $CellContext`w3 
+            OptimizationToolkit`$694), OptimizationToolkit`$540 
+          OptimizationToolkit`$622, 
+          OptimizationToolkit`$622 (Compile`$1215 + Compile`$1216 + 
            Compile`$1238 + Compile`$1239 + Compile`$1240 - 
-           FactorExpression`$536 + FactorExpression`$542 + 
-           FactorExpression`$686 + 
-           FactorExpression`$687 + $CellContext`x5 FactorExpression`$689 + 
-           FactorExpression`$695 + FactorExpression`$696 + 
-           FactorExpression`$697 + $CellContext`x3 FactorExpression`$699)}, {
-         FactorExpression`$548 FactorExpression`$635, 
-          FactorExpression`$635 (Compile`$1229 + Compile`$1230 + 
-           Compile`$1247 + FactorExpression`$511 + FactorExpression`$514 - 
-           FactorExpression`$526 - FactorExpression`$527 - 
-           FactorExpression`$550 + 
-           FactorExpression`$560 + $CellContext`w5 (-FactorExpression`$429 + 
-             FactorExpression`$467 + Compile`$1252 + FactorExpression`$501 - 
-             FactorExpression`$553 + FactorExpression`$675) + 
-           FactorExpression`$690 + 
-           FactorExpression`$691 + $CellContext`w4 FactorExpression`$694 + 
-           FactorExpression`$700), FactorExpression`$559 
-          FactorExpression`$635, 
-          FactorExpression`$635 (Compile`$1238 + Compile`$1239 + 
-           Compile`$1260 + FactorExpression`$510 + FactorExpression`$516 - 
-           FactorExpression`$528 - FactorExpression`$530 - 
-           FactorExpression`$551 + 
-           FactorExpression`$561 + $CellContext`x5 (-FactorExpression`$416 + 
-             FactorExpression`$419 + Compile`$1265 + FactorExpression`$438 - 
-             FactorExpression`$458 + FactorExpression`$677) + 
-           FactorExpression`$695 + 
-           FactorExpression`$696 + $CellContext`x4 FactorExpression`$699 + 
-           FactorExpression`$701)}, {
-         FactorExpression`$567 FactorExpression`$654, 
-          FactorExpression`$654 ($CellContext`w3 
-            FactorExpression`$437 + $CellContext`w3 FactorExpression`$469 + 
-           Compile`$1201 + Compile`$1247 + Compile`$1275 + 
-           FactorExpression`$537 - FactorExpression`$541 - 
-           FactorExpression`$636 - 
-           FactorExpression`$644 + $CellContext`w4 (-FactorExpression`$437 + 
-             Compile`$1280 + 
-             FactorExpression`$500 + $CellContext`x3 FactorExpression`$502 + 
-             FactorExpression`$679) + FactorExpression`$683 + 
-           FactorExpression`$700 + 
-           FactorExpression`$702 + $CellContext`w5 (FactorExpression`$468 + 
-             Compile`$1252 + Compile`$1284 - FactorExpression`$500 + 
-             FactorExpression`$501 + FactorExpression`$703)), 
-          FactorExpression`$577 FactorExpression`$654, 
-          FactorExpression`$654 ($CellContext`x3 
-            FactorExpression`$418 + $CellContext`x3 FactorExpression`$421 + 
-           Compile`$1214 + Compile`$1260 + Compile`$1293 + 
-           FactorExpression`$536 - FactorExpression`$542 - 
-           FactorExpression`$637 - 
-           FactorExpression`$641 + $CellContext`x4 (-FactorExpression`$418 + 
-             Compile`$1298 + 
-             FactorExpression`$436 + $CellContext`y3 FactorExpression`$502 + 
-             FactorExpression`$680) + FactorExpression`$688 + 
-           FactorExpression`$701 + $CellContext`x5 (FactorExpression`$420 + 
-             Compile`$1265 + Compile`$1302 - FactorExpression`$436 + 
-             FactorExpression`$438 + FactorExpression`$704) + 
-           FactorExpression`$705)}, {
-         FactorExpression`$584 FactorExpression`$674, 
-          FactorExpression`$674 ($CellContext`w3 FactorExpression`$467 + 
-           Compile`$1231 + Compile`$1275 + FactorExpression`$517 - 
-           FactorExpression`$525 + FactorExpression`$550 - 
-           FactorExpression`$560 - 
-           FactorExpression`$655 + $CellContext`w3 FactorExpression`$659 - 
-           FactorExpression`$663 + FactorExpression`$692 + 
-           FactorExpression`$702 + $CellContext`w5 (-FactorExpression`$434 + 
-             Compile`$1205 + Compile`$1284 + FactorExpression`$553 + 
-             FactorExpression`$676 + 
-             FactorExpression`$703) + $CellContext`w4 (FactorExpression`$434 + 
-             FactorExpression`$470 + Compile`$1280 - 
-             FactorExpression`$659 + $CellContext`x3 FactorExpression`$706)), 
-          FactorExpression`$596 FactorExpression`$674, 
-          FactorExpression`$674 ($CellContext`x3 
-            FactorExpression`$419 + $CellContext`x3 FactorExpression`$475 + 
-           Compile`$1240 + Compile`$1293 + FactorExpression`$513 - 
-           FactorExpression`$529 + FactorExpression`$551 - 
-           FactorExpression`$561 - FactorExpression`$656 - 
-           FactorExpression`$660 + 
-           FactorExpression`$697 + $CellContext`x5 (-FactorExpression`$417 + 
-             Compile`$1220 + Compile`$1302 + FactorExpression`$458 + 
-             FactorExpression`$678 + FactorExpression`$704) + 
-           FactorExpression`$705 + $CellContext`x4 (FactorExpression`$417 + 
-             FactorExpression`$422 + Compile`$1298 - 
-             FactorExpression`$475 + $CellContext`y3 
-              FactorExpression`$706))}})]]], Evaluate],
+           OptimizationToolkit`$536 + OptimizationToolkit`$542 + 
+           OptimizationToolkit`$686 + 
+           OptimizationToolkit`$687 + $CellContext`x5 
+            OptimizationToolkit`$689 + OptimizationToolkit`$695 + 
+           OptimizationToolkit`$696 + 
+           OptimizationToolkit`$697 + $CellContext`x3 
+            OptimizationToolkit`$699)}, {
+         OptimizationToolkit`$548 OptimizationToolkit`$635, 
+          OptimizationToolkit`$635 (Compile`$1229 + Compile`$1230 + 
+           Compile`$1247 + OptimizationToolkit`$511 + 
+           OptimizationToolkit`$514 - OptimizationToolkit`$526 - 
+           OptimizationToolkit`$527 - OptimizationToolkit`$550 + 
+           OptimizationToolkit`$560 + $CellContext`w5 (-
+              OptimizationToolkit`$429 + OptimizationToolkit`$467 + 
+             Compile`$1252 + OptimizationToolkit`$501 - 
+             OptimizationToolkit`$553 + OptimizationToolkit`$675) + 
+           OptimizationToolkit`$690 + 
+           OptimizationToolkit`$691 + $CellContext`w4 
+            OptimizationToolkit`$694 + OptimizationToolkit`$700), 
+          OptimizationToolkit`$559 OptimizationToolkit`$635, 
+          OptimizationToolkit`$635 (Compile`$1238 + Compile`$1239 + 
+           Compile`$1260 + OptimizationToolkit`$510 + 
+           OptimizationToolkit`$516 - OptimizationToolkit`$528 - 
+           OptimizationToolkit`$530 - OptimizationToolkit`$551 + 
+           OptimizationToolkit`$561 + $CellContext`x5 (-
+              OptimizationToolkit`$416 + OptimizationToolkit`$419 + 
+             Compile`$1265 + OptimizationToolkit`$438 - 
+             OptimizationToolkit`$458 + OptimizationToolkit`$677) + 
+           OptimizationToolkit`$695 + 
+           OptimizationToolkit`$696 + $CellContext`x4 
+            OptimizationToolkit`$699 + OptimizationToolkit`$701)}, {
+         OptimizationToolkit`$567 OptimizationToolkit`$654, 
+          OptimizationToolkit`$654 ($CellContext`w3 
+            OptimizationToolkit`$437 + $CellContext`w3 
+            OptimizationToolkit`$469 + Compile`$1201 + Compile`$1247 + 
+           Compile`$1275 + OptimizationToolkit`$537 - 
+           OptimizationToolkit`$541 - OptimizationToolkit`$636 - 
+           OptimizationToolkit`$644 + $CellContext`w4 (-
+              OptimizationToolkit`$437 + Compile`$1280 + 
+             OptimizationToolkit`$500 + $CellContext`x3 
+              OptimizationToolkit`$502 + OptimizationToolkit`$679) + 
+           OptimizationToolkit`$683 + OptimizationToolkit`$700 + 
+           OptimizationToolkit`$702 + $CellContext`w5 (
+             OptimizationToolkit`$468 + Compile`$1252 + Compile`$1284 - 
+             OptimizationToolkit`$500 + OptimizationToolkit`$501 + 
+             OptimizationToolkit`$703)), OptimizationToolkit`$577 
+          OptimizationToolkit`$654, 
+          OptimizationToolkit`$654 ($CellContext`x3 
+            OptimizationToolkit`$418 + $CellContext`x3 
+            OptimizationToolkit`$421 + Compile`$1214 + Compile`$1260 + 
+           Compile`$1293 + OptimizationToolkit`$536 - 
+           OptimizationToolkit`$542 - OptimizationToolkit`$637 - 
+           OptimizationToolkit`$641 + $CellContext`x4 (-
+              OptimizationToolkit`$418 + Compile`$1298 + 
+             OptimizationToolkit`$436 + $CellContext`y3 
+              OptimizationToolkit`$502 + OptimizationToolkit`$680) + 
+           OptimizationToolkit`$688 + 
+           OptimizationToolkit`$701 + $CellContext`x5 (
+             OptimizationToolkit`$420 + Compile`$1265 + Compile`$1302 - 
+             OptimizationToolkit`$436 + OptimizationToolkit`$438 + 
+             OptimizationToolkit`$704) + OptimizationToolkit`$705)}, {
+         OptimizationToolkit`$584 OptimizationToolkit`$674, 
+          OptimizationToolkit`$674 ($CellContext`w3 OptimizationToolkit`$467 + 
+           Compile`$1231 + Compile`$1275 + OptimizationToolkit`$517 - 
+           OptimizationToolkit`$525 + OptimizationToolkit`$550 - 
+           OptimizationToolkit`$560 - 
+           OptimizationToolkit`$655 + $CellContext`w3 
+            OptimizationToolkit`$659 - OptimizationToolkit`$663 + 
+           OptimizationToolkit`$692 + 
+           OptimizationToolkit`$702 + $CellContext`w5 (-
+              OptimizationToolkit`$434 + Compile`$1205 + Compile`$1284 + 
+             OptimizationToolkit`$553 + OptimizationToolkit`$676 + 
+             OptimizationToolkit`$703) + $CellContext`w4 (
+             OptimizationToolkit`$434 + OptimizationToolkit`$470 + 
+             Compile`$1280 - 
+             OptimizationToolkit`$659 + $CellContext`x3 
+              OptimizationToolkit`$706)), OptimizationToolkit`$596 
+          OptimizationToolkit`$674, 
+          OptimizationToolkit`$674 ($CellContext`x3 
+            OptimizationToolkit`$419 + $CellContext`x3 
+            OptimizationToolkit`$475 + Compile`$1240 + Compile`$1293 + 
+           OptimizationToolkit`$513 - OptimizationToolkit`$529 + 
+           OptimizationToolkit`$551 - OptimizationToolkit`$561 - 
+           OptimizationToolkit`$656 - OptimizationToolkit`$660 + 
+           OptimizationToolkit`$697 + $CellContext`x5 (-
+              OptimizationToolkit`$417 + Compile`$1220 + Compile`$1302 + 
+             OptimizationToolkit`$458 + OptimizationToolkit`$678 + 
+             OptimizationToolkit`$704) + 
+           OptimizationToolkit`$705 + $CellContext`x4 (
+             OptimizationToolkit`$417 + OptimizationToolkit`$422 + 
+             Compile`$1298 - 
+             OptimizationToolkit`$475 + $CellContext`y3 
+              OptimizationToolkit`$706))}})]]], Evaluate],
   Editable->False,
   SelectWithContents->True,
   Selectable->False]], "Output",
@@ -4624,7 +4942,8 @@ $CellContext`z4 - $CellContext`w3 FactorExpression`$467 +
   3.6462505120724154`*^9, 3.6462511270263352`*^9, 3.64625540196836*^9, 
    3.646255473106516*^9, 3.6463569275237727`*^9, 3.64635698275585*^9, 
    3.6463570904597473`*^9, 3.646358214623441*^9, {3.646358291768478*^9, 
-   3.6463583007692366`*^9}, 3.6463583431822376`*^9}]
+   3.6463583007692366`*^9}, 3.6463583431822376`*^9, 3.646364529774313*^9, 
+   3.6463651915979795`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -4700,11 +5019,12 @@ Cell[BoxData[{
   3.6462505855614643`*^9, 3.6462505877996187`*^9}, {3.6462555972344117`*^9, 
   3.646255610785508*^9}}],
 
-Cell[BoxData["0.00197295703415995829152485008251005638`15.954589770191003"], \
+Cell[BoxData["0.00195682056594546861447159180613653007`15.954589770191003"], \
 "Output",
  CellChangeTimes->{
   3.6463570936531525`*^9, 3.6463582177845526`*^9, {3.6463582945612726`*^9, 
-   3.646358307977121*^9}, 3.6463583463622627`*^9}]
+   3.646358307977121*^9}, 3.6463583463622627`*^9, 3.6463645367221403`*^9, 
+   3.646365194808607*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4729,10 +5049,11 @@ Cell[BoxData[{
   3.646250600369404*^9, 3.646250603639761*^9}, {3.6462556161616573`*^9, 
   3.646255617496852*^9}}],
 
-Cell[BoxData["0.00066840897376621902746529624295135363`15.954589770191003"], \
+Cell[BoxData["0.00065151400086059182720915616826573569`15.954589770191003"], \
 "Output",
  CellChangeTimes->{3.646357096701043*^9, 3.6463582208286686`*^9, 
-  3.64635831111012*^9, 3.6463583493920565`*^9}]
+  3.64635831111012*^9, 3.6463583493920565`*^9, 3.646364539777522*^9, 
+  3.646365197857873*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4753,9 +5074,10 @@ Cell[BoxData[{
   3.6462506093851414`*^9, 3.6462506115842915`*^9}, {3.6462556218247347`*^9, 
   3.646255625594164*^9}}],
 
-Cell[BoxData["0.0000188938302552415818519153389853926228170166723430156708`15.\
+Cell[BoxData["0.0000184210509401211113412848152659506695272284559905529022`15.\
 954589770191003"], "Output",
- CellChangeTimes->{3.646358314181433*^9, 3.6463583524211226`*^9}]
+ CellChangeTimes->{3.646358314181433*^9, 3.6463583524211226`*^9, 
+  3.646364542814526*^9, 3.646365200916892*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -4774,10 +5096,11 @@ Cell[BoxData[
  RowBox[{"t1", "/", "t2"}]], "Input",
  CellChangeTimes->{{3.6462456621275225`*^9, 3.6462456628696327`*^9}}],
 
-Cell[BoxData["2.95172134366049755923421179579705147171`15.653559774527022"], \
+Cell[BoxData["3.00349733599075899224494281886744388221`15.653559774527022"], \
 "Output",
  CellChangeTimes->{3.646357099797717*^9, 3.6463582220899377`*^9, 
-  3.6463583142134004`*^9, 3.646358352452305*^9}]
+  3.6463583142134004`*^9, 3.646358352452305*^9, 3.646364547591683*^9, 
+  3.646365200965963*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4786,10 +5109,11 @@ Cell[BoxData[
  RowBox[{"t1", "/", "t3"}]], "Input",
  CellChangeTimes->{{3.6462505396840334`*^9, 3.646250541591736*^9}}],
 
-Cell[BoxData["104.4233491836635273849536628066914928951`15.653559774527022"], \
-"Output",
+Cell[BoxData["106.22741190533851648610237786861455215739`15.653559774527022"],\
+ "Output",
  CellChangeTimes->{3.6463570998100986`*^9, 3.6463582220899377`*^9, 
-  3.646358314244649*^9, 3.646358352452305*^9}]
+  3.646358314244649*^9, 3.646358352452305*^9, 3.646364548649208*^9, 
+  3.646365200981588*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -4813,7 +5137,8 @@ Cell[BoxData[
 
 Cell[BoxData["0"], "Output",
  CellChangeTimes->{3.6463570998203435`*^9, 3.6463582221055713`*^9, 
-  3.646358314275968*^9, 3.6463583524679275`*^9}]
+  3.646358314275968*^9, 3.6463583524679275`*^9, 3.6463645504306135`*^9, 
+  3.646365200997213*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4827,7 +5152,8 @@ Cell[BoxData[
  CellChangeTimes->{3.6462554925211678`*^9, 3.6463570094375296`*^9}],
 
 Cell[BoxData["0"], "Output",
- CellChangeTimes->{3.646358315151557*^9, 3.6463583524679275`*^9}]
+ CellChangeTimes->{3.646358315151557*^9, 3.6463583524679275`*^9, 
+  3.6463645510399914`*^9, 3.6463652010127687`*^9}]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -4848,163 +5174,188 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 364, 8, 31, "Input"],
 Cell[CellGroupData[{
-Cell[947, 32, 110, 1, 63, "Section"],
-Cell[CellGroupData[{
-Cell[1082, 37, 252, 6, 31, "Input"],
-Cell[1337, 45, 545, 17, 51, "Output"]
+Cell[580, 22, 581, 13, 52, "Input"],
+Cell[1164, 37, 256, 5, 31, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1919, 67, 231, 5, 35, "Subsubsection"],
+Cell[1457, 47, 110, 1, 63, "Section"],
 Cell[CellGroupData[{
-Cell[2175, 76, 142, 2, 31, "Input"],
-Cell[2320, 80, 759, 24, 51, "Output"]
+Cell[1592, 52, 252, 6, 31, "Input"],
+Cell[1847, 60, 594, 18, 51, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3116, 109, 242, 5, 31, "Input"],
-Cell[3361, 116, 480, 12, 31, "Output"]
+Cell[2478, 83, 231, 5, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[2734, 92, 142, 2, 31, "Input"],
+Cell[2879, 96, 806, 25, 51, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3878, 133, 580, 8, 31, "Input"],
-Cell[4461, 143, 631, 18, 31, "Output"]
+Cell[3722, 126, 242, 5, 31, "Input"],
+Cell[3967, 133, 529, 13, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4533, 151, 580, 8, 31, "Input"],
+Cell[5116, 161, 679, 19, 31, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5141, 167, 179, 3, 34, "Subsubsection"],
+Cell[5844, 186, 179, 3, 34, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[5345, 174, 446, 12, 52, "Input"],
-Cell[5794, 188, 150, 2, 31, "Output"]
+Cell[6048, 193, 446, 12, 52, "Input"],
+Cell[6497, 207, 199, 3, 31, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5981, 195, 258, 6, 52, "Input"],
-Cell[6242, 203, 147, 2, 31, "Output"]
-}, Open  ]]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[6450, 212, 159, 2, 63, "Section"],
-Cell[CellGroupData[{
-Cell[6634, 218, 256, 3, 34, "Subsubsection"],
-Cell[6893, 223, 1334, 40, 72, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[8264, 268, 211, 3, 34, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[8500, 275, 63, 1, 31, "Input"],
-Cell[8566, 278, 2255, 60, 97, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[10870, 344, 205, 3, 34, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[11100, 351, 388, 12, 31, "Input"],
-Cell[11491, 365, 3316, 57, 299, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[14856, 428, 413, 8, 35, "Subsubsection"],
-Cell[15272, 438, 254, 5, 30, "Text"],
-Cell[CellGroupData[{
-Cell[15551, 447, 215, 4, 31, "Input"],
-Cell[15769, 453, 2895, 81, 287, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[18713, 540, 511, 9, 35, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[19249, 553, 131, 2, 31, "Input"],
-Cell[19383, 557, 2257, 60, 97, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[21689, 623, 479, 9, 35, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[22193, 636, 238, 5, 31, "Input"],
-Cell[22434, 643, 2893, 81, 287, "Output"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[25376, 730, 429, 5, 34, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[25830, 739, 133, 2, 31, "Input"],
-Cell[25966, 743, 3744, 96, 316, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[29747, 844, 388, 12, 31, "Input"],
-Cell[30138, 858, 3318, 57, 299, "Output"]
+Cell[6733, 215, 258, 6, 52, "Input"],
+Cell[6994, 223, 196, 3, 31, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[33517, 922, 115, 1, 63, "Section"],
+Cell[7251, 233, 159, 2, 63, "Section"],
 Cell[CellGroupData[{
-Cell[33657, 927, 148, 2, 34, "Subsubsection"],
-Cell[33808, 931, 1486, 41, 156, "Input"],
-Cell[35297, 974, 378, 10, 31, "Input"],
-Cell[35678, 986, 628, 14, 52, "Input"]
+Cell[7435, 239, 256, 3, 34, "Subsubsection"],
+Cell[7694, 244, 1334, 40, 72, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[36343, 1005, 136, 1, 34, "Subsubsection"],
+Cell[9065, 289, 211, 3, 34, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[36504, 1010, 1008, 26, 92, "Input"],
-Cell[37515, 1038, 145, 2, 31, "Output"]
+Cell[9301, 296, 63, 1, 31, "Input"],
+Cell[9367, 299, 2304, 61, 97, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[37709, 1046, 199, 3, 34, "Subsubsection"],
-Cell[37911, 1051, 798, 19, 52, "Input"]
-}, Open  ]],
+Cell[11720, 366, 205, 3, 34, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[38746, 1075, 199, 3, 34, "Subsubsection"],
-Cell[38948, 1080, 415, 10, 31, "Input"],
-Cell[39366, 1092, 214, 4, 31, "Input"],
-Cell[39583, 1098, 42439, 1051, 6921, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[82059, 2154, 307, 5, 57, "Subsubsection"],
-Cell[CellGroupData[{
-Cell[82391, 2163, 531, 13, 52, "Input"],
-Cell[82925, 2178, 142051, 2448, 75, "Output"]
-}, Open  ]],
-Cell[224991, 4629, 1166, 26, 52, "Input"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[226194, 4660, 117, 1, 34, "Subsubsection"],
-Cell[226314, 4663, 687, 15, 31, "Input"],
-Cell[CellGroupData[{
-Cell[227026, 4682, 829, 18, 52, "Input"],
-Cell[227858, 4702, 235, 4, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[228130, 4711, 824, 18, 52, "Input"],
-Cell[228957, 4731, 202, 3, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[229196, 4739, 529, 14, 52, "Input"],
-Cell[229728, 4755, 174, 2, 31, "Output"]
+Cell[11950, 373, 388, 12, 31, "Input"],
+Cell[12341, 387, 3365, 58, 299, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[229951, 4763, 308, 5, 80, "Subsubsection"],
+Cell[15755, 451, 413, 8, 35, "Subsubsection"],
+Cell[16171, 461, 254, 5, 30, "Text"],
 Cell[CellGroupData[{
-Cell[230284, 4772, 121, 2, 31, "Input"],
-Cell[230408, 4776, 203, 3, 31, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[230648, 4784, 119, 2, 31, "Input"],
-Cell[230770, 4788, 204, 3, 31, "Output"]
+Cell[16450, 470, 215, 4, 31, "Input"],
+Cell[16668, 476, 2944, 82, 287, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[231023, 4797, 148, 2, 34, "Subsubsection"],
+Cell[19661, 564, 511, 9, 35, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[231196, 4803, 353, 8, 31, "Input"],
-Cell[231552, 4813, 145, 2, 31, "Output"]
+Cell[20197, 577, 131, 2, 31, "Input"],
+Cell[20331, 581, 2306, 61, 97, "Output"]
+}, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[231734, 4820, 251, 6, 31, "Input"],
-Cell[231988, 4828, 94, 1, 31, "Output"]
+Cell[22686, 648, 479, 9, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[23190, 661, 238, 5, 31, "Input"],
+Cell[23431, 668, 2942, 82, 287, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26422, 756, 429, 5, 34, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[26876, 765, 133, 2, 31, "Input"],
+Cell[27012, 769, 3793, 97, 316, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30842, 871, 388, 12, 31, "Input"],
+Cell[31233, 885, 3367, 58, 299, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34649, 949, 466, 6, 34, "Subsubsection"],
+Cell[35118, 957, 443, 14, 72, "Input"],
+Cell[CellGroupData[{
+Cell[35586, 975, 172, 3, 31, "Input"],
+Cell[35761, 980, 189, 4, 31, "Output"]
+}, Open  ]],
+Cell[35965, 987, 269, 6, 31, "Input"],
+Cell[CellGroupData[{
+Cell[36259, 997, 104, 2, 31, "Input"],
+Cell[36366, 1001, 164, 3, 31, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36579, 1010, 527, 7, 34, "Subsubsection"],
+Cell[37109, 1019, 403, 12, 52, "Input"],
+Cell[37515, 1033, 184, 4, 31, "Input"],
+Cell[CellGroupData[{
+Cell[37724, 1041, 139, 2, 31, "Input"],
+Cell[37866, 1045, 1176, 33, 73, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39103, 1085, 115, 1, 63, "Section"],
+Cell[CellGroupData[{
+Cell[39243, 1090, 148, 2, 34, "Subsubsection"],
+Cell[39394, 1094, 1486, 41, 156, "Input"],
+Cell[40883, 1137, 378, 10, 31, "Input"],
+Cell[41264, 1149, 628, 14, 52, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41929, 1168, 136, 1, 34, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[42090, 1173, 1008, 26, 92, "Input"],
+Cell[43101, 1201, 192, 3, 31, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43342, 1210, 199, 3, 34, "Subsubsection"],
+Cell[43544, 1215, 798, 19, 52, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44379, 1239, 199, 3, 34, "Subsubsection"],
+Cell[44581, 1244, 415, 10, 31, "Input"],
+Cell[44999, 1256, 214, 4, 31, "Input"],
+Cell[45216, 1262, 42439, 1051, 6921, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[87692, 2318, 307, 5, 57, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[88024, 2327, 531, 13, 52, "Input"],
+Cell[88558, 2342, 147232, 2603, 75, "Output"]
+}, Open  ]],
+Cell[235805, 4948, 1166, 26, 52, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[237008, 4979, 117, 1, 34, "Subsubsection"],
+Cell[237128, 4982, 687, 15, 31, "Input"],
+Cell[CellGroupData[{
+Cell[237840, 5001, 829, 18, 52, "Input"],
+Cell[238672, 5021, 285, 5, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[238994, 5031, 824, 18, 52, "Input"],
+Cell[239821, 5051, 249, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[240107, 5060, 529, 14, 52, "Input"],
+Cell[240639, 5076, 221, 3, 31, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[240909, 5085, 308, 5, 80, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[241242, 5094, 121, 2, 31, "Input"],
+Cell[241366, 5098, 250, 4, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[241653, 5107, 119, 2, 31, "Input"],
+Cell[241775, 5111, 252, 4, 31, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[242076, 5121, 148, 2, 34, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[242249, 5127, 353, 8, 31, "Input"],
+Cell[242605, 5137, 194, 3, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[242836, 5145, 251, 6, 31, "Input"],
+Cell[243090, 5153, 145, 2, 31, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

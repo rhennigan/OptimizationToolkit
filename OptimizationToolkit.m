@@ -1,8 +1,8 @@
 (* Mathematica Package                                                            *)
 (* Created by IntelliJ IDEA                                                       *)
 
-(* :Title: FactorExpression                                                       *)
-(* :Context: FactorExpression`                                                    *)
+(* :Title: OptimizationToolkit                                                    *)
+(* :Context: OptimizationToolkit`                                                 *)
 (* :Author: Richard Hennigan                                                      *)
 (* :Date: 7/20/2015                                                               *)
 
@@ -12,7 +12,7 @@
 (* :Keywords:                                                                     *)
 (* :Discussion:                                                                   *)
 
-BeginPackage["FactorExpression`"];
+BeginPackage["OptimizationToolkit`"];
 
 $DefaultExcludedForms =
     {
@@ -25,6 +25,7 @@ $DefaultExcludedForms =
 
 FactorExpression::usage = "Use this to make magic happen (maybe).";
 OptimizeDownValues::usage = "";
+Memoize::usage = "";
 
 
 Begin["`Private`"]; (* Begin Private Context *)
@@ -40,7 +41,7 @@ Module[
   {
     varCounter = 0
   },
-  newVar := Symbol["FactorExpression`$" <> ToString[varCounter++]]
+  newVar := Symbol["OptimizationToolkit`$" <> ToString[varCounter++]]
 ];
 
 
@@ -77,6 +78,19 @@ findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms
         varCount - 1
       ]
     ];
+
+memoize[dv : RuleDelayed[_, _Set]] := dv;
+
+memoize[dv : RuleDelayed[_, _]] :=
+    With[{insert = dv[[1]] /. Verbatim[Pattern][sym_, _] :> sym},
+      dv /. {RuleDelayed[hp_, def_] :>
+          RuleDelayed[hp, Set[insert, def]]}] /. {HoldPattern[
+      Set[Verbatim[HoldPattern][h_], def_]] :> Set[h, def]};
+
+memoize[f_Symbol] := (DownValues[Evaluate[f]] =
+    memoize /@ DownValues[f]);
+
+memoize[other_] := other;
 
 (**********************************************************************************************************************)
 (* Exported functions *)
@@ -138,8 +152,7 @@ Options[FactorExpression] =
     {
       "Output" -> Automatic,
       "MinDepth" -> 1,
-      "ExcludedForms" -> $DefaultExcludedForms,
-      "Rewrite" -> Automatic
+      "ExcludedForms" -> $DefaultExcludedForms
     };
 
 SyntaxInformation[FactorExpression] =
@@ -149,20 +162,34 @@ SyntaxInformation[FactorExpression] =
 
 (**********************************************************************************************************************)
 
-OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] := Module[
-  {dv = DownValues[f], newDV},
-  newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, opts]] /. HoldForm[b_Block] :> b;
-  If[OptionValue["Rewrite"],
-    DownValues[Evaluate[f]] = newDV,
-    newDV
-  ]];
+OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] :=
+    Module[
+      {
+        dv = DownValues[f],
+        filt, fopts, newDV
+      },
+      filt = Alternatives @@ Options[FactorExpression][[All, 1]];
+      fopts = Sequence @@ Cases[List@opts, Rule[o : filt, s_] :> Rule[o, s]];
+      newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. HoldForm[b_Block] :> b;
 
-Options[OptimizeDownValues] = {
-  "Rewrite" -> False
-};
+      If[OptionValue["Rewrite"], DownValues[Evaluate[f]] = newDV];
+      If[OptionValue["Memoize"], memoize[f], newDV]
+
+    ];
+
+Options[OptimizeDownValues] =
+    {
+      "Rewrite" -> False,
+      "Memoize" -> False
+    } ~ Join ~ Options[FactorExpression];
+
+(**********************************************************************************************************************)
+
+Memoize[f_Symbol] :=
+  memoize[f];
 
 (**********************************************************************************************************************)
 
 End[]; (* End Private Context *)
 
-EndPackage[]
+EndPackage[];

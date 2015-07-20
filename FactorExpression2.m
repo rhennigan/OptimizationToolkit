@@ -4,9 +4,9 @@
 (* :Title: FactorExpression                                                       *)
 (* :Context: FactorExpression`                                                    *)
 (* :Author: Richard Hennigan                                                      *)
-(* :Date: 7/18/2015                                                               *)
+(* :Date: 7/20/2015                                                               *)
 
-(* :Package Version: 0.1                                                          *)
+(* :Package Version: 0.2                                                          *)
 (* :Mathematica Version: 10.1.0  for Microsoft Windows (64-bit) (March 24, 2015)  *)
 (* :Copyright: (c) 2015 Richard Hennigan                                          *)
 (* :Keywords:                                                                     *)
@@ -24,24 +24,36 @@ $DefaultExcludedForms =
 (* Exported symbols added here with SymbolName::usage *)
 
 FactorExpression::usage = "Use this to make magic happen (maybe).";
-
+OptimizeDownValues::usage = "";
 
 
 Begin["`Private`"]; (* Begin Private Context *)
 
-
+(**********************************************************************************************************************)
+(* Auxillary definitions *)
+(**********************************************************************************************************************)
 
 FactorExpression::depth = "The depth specification `1` is not a positive integer.";
 
 
+Module[
+  {
+    varCounter = 0
+  },
+  newVar := Symbol["FactorExpression`$" <> ToString[varCounter++]]
+];
+
 
 findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms_List] :=
     Module[
-      {expressionCounts, mostRedundantExpressions},
+      {
+        expressionCounts,
+        mostRedundantExpressions
+      },
 
       expressionCounts =
           Tally[Cases[exp,
-            Except[Alternatives @@ Prepend[excludedForms, V[_Integer]], _[___]],
+            Except[Alternatives @@ excludedForms, _[___]],
             Infinity]];
 
       mostRedundantExpressions =
@@ -51,10 +63,14 @@ findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms
 
       If[mostRedundantExpressions =!= {},
 
-        Module[{newVar, newVal},
-          {newVar, newVal} = {V[varCount], mostRedundantExpressions[[1, 1]]};
-          Sow[HeldSet[newVar, newVal]];
-          findRedundantExpressions[exp /. newVal -> newVar, varCount + 1, minDepth, excludedForms]
+        Module[
+          {
+            v = newVar,
+            newVal = mostRedundantExpressions[[1, 1]]
+          },
+
+          Sow[HeldSet[v, newVal]];
+          findRedundantExpressions[exp /. newVal -> v, varCount + 1, minDepth, excludedForms]
         ],
 
         Sow[exp];
@@ -62,58 +78,90 @@ findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms
       ]
     ];
 
+(**********************************************************************************************************************)
+(* Exported functions *)
+(**********************************************************************************************************************)
 
+FactorExpression[exp_, opts : OptionsPattern[]] :=
+    Module[
+      {
+        output, minDepth, excludedForms,
+        varCount, assignments, localVariables,
+        cexp, mexp, fexp, out
+      },
 
-FactorExpression[exp_, opts : OptionsPattern[]] := Block[
-  {$RecursionLimit = Infinity, $IterationLimit = Infinity},
-  Module[
+      output = OptionValue["Output"];
+      minDepth = OptionValue["MinDepth"];
+      excludedForms = OptionValue["ExcludedForms"];
+
+      If[Not[IntegerQ[minDepth] && minDepth >= 1], Message[FactorExpression::depth, minDepth]];
+
+      {varCount, assignments} = Reap[findRedundantExpressions[exp, 1, minDepth, excludedForms]];
+      localVariables = Cases[assignments, HeldSet[v_, _] :> v, 2];
+      cexp = First[HeldCompoundExpression @@@ assignments];
+
+      mexp =
+          With[
+            {
+              localVariablesT = localVariables,
+              cexpT = cexp
+            },
+            Hold @ Block[localVariablesT, cexpT]
+          ];
+
+      fexp =
+          Evaluate[mexp] /. {
+            HeldSet -> Set,
+            HeldCompoundExpression -> CompoundExpression,
+            Hold -> HoldForm
+          };
+
+      out =
+          Switch[output,
+            CompiledFunction,
+            Module[
+              {
+                parameters = Union[Cases[exp, _Symbol, Infinity]]
+              },
+              HeldCompile[ {#, _Real}& /@ parameters, fexp] /. {
+                HoldForm[Block[vars_, modexp_]] :> Block[vars, modexp],
+                HeldCompile -> Compile
+              }
+            ],
+            _, fexp
+          ];
+
+      out
+    ];
+
+Options[FactorExpression] =
     {
-      output, minDepth, excludedForms,
-      varCount, assignments, localVariables,
-      cexp, mexp, fexp
-    },
+      "Output" -> Automatic,
+      "MinDepth" -> 1,
+      "ExcludedForms" -> $DefaultExcludedForms,
+      "Rewrite" -> Automatic
+    };
 
-    output = OptionValue["Output"];
-    minDepth = OptionValue["MinDepth"];
-    excludedForms = OptionValue["ExcludedForms"];
+SyntaxInformation[FactorExpression] =
+    {
+      "ArgumentsPattern" -> {_, OptionsPattern[]}
+    };
 
-    If[Not[IntegerQ[minDepth] && minDepth >= 1], Message[FactorExpression::depth, minDepth]];
+(**********************************************************************************************************************)
 
-    {varCount, assignments} = Reap[findRedundantExpressions[exp, 1, minDepth, excludedForms]];
-    localVariables = Symbol["V" <> ToString[#]]& /@ Range[varCount];
-    cexp = First[HeldCompoundExpression @@@ assignments /. V[x_Integer] :> Symbol["V" <> ToString[x]]];
-    mexp = With[{localVariablesT = localVariables, cexpT = cexp}, Hold@Block[localVariablesT, cexpT]];
-    fexp = Evaluate[mexp] /. {HeldSet -> Set, HeldCompoundExpression -> CompoundExpression, Hold -> HoldForm};
+OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] := Module[
+  {dv = DownValues[f], newDV},
+  newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, opts]] /. HoldForm[b_Block] :> b;
+  If[OptionValue["Rewrite"],
+    DownValues[Evaluate[f]] = newDV,
+    newDV
+  ]];
 
-    Switch[output,
-      CompiledFunction, Module[
-      {parameters = Union[Cases[exp, _Symbol, Infinity]]},
-      HeldCompile[ {#, _Real}& /@ parameters, fexp (*),
-        Parallelization -> True,
-        RuntimeAttributes -> {Listable} *)
-      ] /. {
-        HoldForm[Block[vars_, modexp_]] :> Block[vars, modexp],
-        HeldCompile -> Compile
-      }
-    ],
-      _, fexp
-    ]
-  ]
-];
-
-
-
-Options[FactorExpression] = {
-  "Output" -> Automatic,
-  "MinDepth" -> 1,
-  "ExcludedForms" -> $DefaultExcludedForms
+Options[OptimizeDownValues] = {
+  "Rewrite" -> False
 };
 
-
-
-SyntaxInformation[FactorExpression] = {"ArgumentsPattern" -> {_, OptionsPattern[]}};
-
-
+(**********************************************************************************************************************)
 
 End[]; (* End Private Context *)
 

@@ -79,18 +79,28 @@ findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms
       ]
     ];
 
-memoize[dv : RuleDelayed[_, _Set]] := dv;
+memoize[dv : RuleDelayed[_, _Set]] :=
+    dv;
 
 memoize[dv : RuleDelayed[_, _]] :=
-    With[{insert = dv[[1]] /. Verbatim[Pattern][sym_, _] :> sym},
-      dv /. {RuleDelayed[hp_, def_] :>
-          RuleDelayed[hp, Set[insert, def]]}] /. {HoldPattern[
-      Set[Verbatim[HoldPattern][h_], def_]] :> Set[h, def]};
+    With[
+      {
+        insert = dv[[1]] /. Verbatim[Pattern][sym_, _] :> sym
+      },
+      dv /. {
+        RuleDelayed[hp_, def_] :> RuleDelayed[hp, Set[insert, def]]
+      }
+    ] /. {
+      HoldPattern[Set[Verbatim[HoldPattern][h_], def_]] :> Set[h, def]
+    };
 
-memoize[f_Symbol] := (DownValues[Evaluate[f]] =
-    memoize /@ DownValues[f]);
+memoize[f_Symbol] :=
+    (
+      DownValues[Evaluate[f]] = memoize /@ DownValues[f]
+    );
 
-memoize[other_] := other;
+memoize[other_] :=
+    other;
 
 (**********************************************************************************************************************)
 (* Exported functions *)
@@ -186,7 +196,7 @@ Options[OptimizeDownValues] =
 (**********************************************************************************************************************)
 
 Memoize[f_Symbol] :=
-  memoize[f];
+    memoize[f];
 
 (**********************************************************************************************************************)
 

@@ -14,6 +14,11 @@
 
 BeginPackage["OptimizationToolkit`"];
 
+Unprotect["`*"];
+ClearAll["`*"];
+
+Needs["OptimizationToolkit`Types`"];
+
 $DefaultExcludedForms =
     {
       _Random, _RandomChoice, _RandomColor, _RandomComplex, _RandomFunction, _RandomGraph, _RandomImage, _RandomInteger,
@@ -23,20 +28,15 @@ $DefaultExcludedForms =
 
 (* Exported symbols added here with SymbolName::usage *)
 
-GetTypeSignature   ::usage = "";
 FactorExpression   ::usage = "Use this to make magic happen (maybe).";
 OptimizeDownValues ::usage = "";
 Memoize            ::usage = "";
-
 
 Begin["`Private`"]; (* Begin Private Context *)
 
 (**********************************************************************************************************************)
 (* Auxillary definitions *)
 (**********************************************************************************************************************)
-
-FactorExpression::depth = "The depth specification `1` is not a positive integer.";
-
 
 CompilableFunctionQ[_] := False;
 Scan[(CompilableFunctionQ[#] = True) &, Compile`CompilerFunctions[]];
@@ -49,6 +49,7 @@ Module[
   newVar := Symbol["OptimizationToolkit`$" <> ToString[varCounter++]]
 ];
 
+(**********************************************************************************************************************)
 
 findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms_List] :=
     Module[
@@ -84,6 +85,8 @@ findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms
       ]
     ];
 
+(**********************************************************************************************************************)
+
 memoize[dv : RuleDelayed[_, _Set]] :=
     dv;
 
@@ -110,6 +113,8 @@ memoize[other_] :=
 (**********************************************************************************************************************)
 (* Exported functions *)
 (**********************************************************************************************************************)
+
+FactorExpression::depth = "The depth specification `1` is not a positive integer.";
 
 FactorExpression[exp_, opts : OptionsPattern[]] :=
     Module[
@@ -200,21 +205,6 @@ Options[OptimizeDownValues] =
 
 Memoize[f_Symbol] :=
     memoize[f];
-
-(**********************************************************************************************************************)
-
-GetTypeSignature[downValue : (HoldPattern[_] :> _)] :=
-    Module[
-      {
-        extractedArgs = Cases[downValue, Verbatim[HoldPattern][_[args___]] :> args]
-      },
-      extractedArgs /.
-          Verbatim[Blank][] -> _UnknownType //.
-          {
-            Verbatim[Pattern][_, l_] :> l,
-            Verbatim[Blank][t___] :> t
-          }
-    ];
 
 (**********************************************************************************************************************)
 

@@ -180,35 +180,7 @@ SyntaxInformation[FactorExpression] =
 
 (**********************************************************************************************************************)
 
-OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] :=
-    Module[
-      {
-        dv = DownValues[f],
-        filt, fopts, newDV
-      },
-
-      filt = Alternatives @@ Options[FactorExpression][[All, 1]];
-      fopts = Sequence @@ Cases[{opts}, (o : filt -> s_) :> o -> s];
-      newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. HoldForm[b_Block] :> b;
-
-      If[OptionValue["Rewrite"], DownValues[Evaluate[f]] = newDV];
-      If[OptionValue["Memoize"], memoize[f], newDV]
-    ];
-
-Options[OptimizeDownValues] =
-    {
-      "Rewrite" -> False,
-      "Memoize" -> False
-    } ~ Join ~ Options[FactorExpression];
-
-(**********************************************************************************************************************)
-
-Memoize[f_Symbol] :=
-    memoize[f];
-
-(**********************************************************************************************************************)
-
-canCompileQ[downValue:(HoldPattern[_] :> _)] :=
+canCompileQ[downValue : (HoldPattern[_] :> _)] :=
     AllTrue[
       List @@ GetTypeSignature[downValue],
       MatchQ[#1, _TensorType | Real | Integer] &
@@ -225,7 +197,8 @@ compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
       },
       type = GetTypeSignature[downValue]; argSymbols = Table[newVar, {Length[type]}];
 
-      compileArgumentPattern = Apply[Prepend,
+      compileArgumentPattern = Apply[
+        Prepend,
         Transpose[{
           List @@ type /. {
             Integer :> {_Integer},
@@ -267,6 +240,52 @@ compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
         HeldCompile -> Compile
       }
     ];
+
+compiledDownValue[downValue : (HoldPattern[_] :> _)] :=
+    Module[
+      {args, cf, patt, cArgs, cfPlaced},
+      cf = compileFromDownValues[downValue]; patt = First[downValue];
+      cArgs = patt /.
+          Verbatim[HoldPattern][_[args___]] :> {args} /.
+          Verbatim[Pattern][s_, _] :> Hold[s];
+
+      cfPlaced =
+          With[
+            {c = cf},
+            HoldComplete[c[args]] /.
+                args -> cArgs /.
+                Hold[e_] :> e
+          ];
+      patt :> Evaluate[cfPlaced] /. HoldComplete[e_] :> e
+    ];
+
+(**********************************************************************************************************************)
+
+OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] :=
+    Module[
+      {
+        dv = DownValues[f],
+        filt, fopts, newDV
+      },
+
+      filt = Alternatives @@ Options[FactorExpression][[All, 1]];
+      fopts = Sequence @@ Cases[{opts}, (o : filt -> s_) :> o -> s];
+      newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. HoldForm[b_Block] :> b;
+
+      If[OptionValue["Rewrite"], DownValues[Evaluate[f]] = newDV];
+      If[OptionValue["Memoize"], memoize[f], newDV]
+    ];
+
+Options[OptimizeDownValues] =
+    {
+      "Rewrite" -> False,
+      "Memoize" -> False
+    } ~ Join ~ Options[FactorExpression];
+
+(**********************************************************************************************************************)
+
+Memoize[f_Symbol] :=
+    memoize[f];
 
 (**********************************************************************************************************************)
 

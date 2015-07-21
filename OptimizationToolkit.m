@@ -23,9 +23,10 @@ $DefaultExcludedForms =
 
 (* Exported symbols added here with SymbolName::usage *)
 
-FactorExpression::usage = "Use this to make magic happen (maybe).";
-OptimizeDownValues::usage = "";
-Memoize::usage = "";
+GetTypeSignature   ::usage = "";
+FactorExpression   ::usage = "Use this to make magic happen (maybe).";
+OptimizeDownValues ::usage = "";
+Memoize            ::usage = "";
 
 
 Begin["`Private`"]; (* Begin Private Context *)
@@ -35,6 +36,10 @@ Begin["`Private`"]; (* Begin Private Context *)
 (**********************************************************************************************************************)
 
 FactorExpression::depth = "The depth specification `1` is not a positive integer.";
+
+
+CompilableFunctionQ[_] := False;
+Scan[(CompilableFunctionQ[#] = True) &, Compile`CompilerFunctions[]];
 
 
 Module[
@@ -195,6 +200,21 @@ Options[OptimizeDownValues] =
 
 Memoize[f_Symbol] :=
     memoize[f];
+
+(**********************************************************************************************************************)
+
+GetTypeSignature[downValue : (HoldPattern[_] :> _)] :=
+    Module[
+      {
+        extractedArgs = Cases[downValue, Verbatim[HoldPattern][_[args___]] :> args]
+      },
+      extractedArgs /.
+          Verbatim[Blank][] -> _UnknownType //.
+          {
+            Verbatim[Pattern][_, l_] :> l,
+            Verbatim[Blank][t___] :> t
+          }
+    ];
 
 (**********************************************************************************************************************)
 

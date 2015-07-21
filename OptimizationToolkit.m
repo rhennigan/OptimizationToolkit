@@ -4,7 +4,7 @@
 (* :Title: OptimizationToolkit                                                    *)
 (* :Context: OptimizationToolkit`                                                 *)
 (* :Author: Richard Hennigan                                                      *)
-(* :Date: 7/20/2015                                                               *)
+(* :Date: 7/21/2015                                                               *)
 
 (* :Package Version: 0.2                                                          *)
 (* :Mathematica Version: 10.1.0  for Microsoft Windows (64-bit) (March 24, 2015)  *)
@@ -147,7 +147,7 @@ FactorExpression[exp_, opts : OptionsPattern[]] :=
         HeldSet -> Set,
         HeldCompoundExpression -> CompoundExpression,
         Hold -> HoldForm
-      };
+      } /. HoldPattern[Block[{}, CompoundExpression[e_]]] :> e;
 
       out = Switch[output,
         CompiledFunction,
@@ -205,6 +205,62 @@ Options[OptimizeDownValues] =
 
 Memoize[f_Symbol] :=
     memoize[f];
+
+(**********************************************************************************************************************)
+
+compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
+    Module[
+      {
+        type, argSymbols, compileArgumentPattern,
+        localExpressionSymbols, localVars, localAssignments,
+        heldExpression, expressionSymbols, replacementSymbolsIn,
+        replacementSymbolsOut, toFactor, factoredBlock,
+        heldBlock, heldCompile, compiledFunction
+      },
+      type = GetTypeSignature[downValue]; argSymbols = Table[newVar, {Length[type]}];
+
+      compileArgumentPattern = Apply[Prepend,
+        Transpose[{
+          List @@ type /. {
+            Integer :> {_Integer},
+            Real :> {_Real},
+            TensorType[t_, i_] :> {_t, i}
+          }, argSymbols
+        }], {1}];
+
+      localExpressionSymbols = downValue /.
+          (Verbatim[HoldPattern][_[args___]] :> _) :> {args} /.
+          Verbatim[Pattern][sym_, _] :> Hold[sym];
+
+      localVars = Flatten[localExpressionSymbols];
+      localAssignments = Apply[HeldSet, Transpose[{localExpressionSymbols, argSymbols}], {1}];
+      heldExpression = downValue /. (Verbatim[HoldPattern][_[___]] :> exp_) :> Hold[exp];
+      expressionSymbols = Union[Cases[heldExpression, s_Symbol :> Hold[s], Infinity]];
+      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = newVar}, Hold[s] :> v];
+      replacementSymbolsOut = replacementSymbolsIn /. HoldPattern[h_Hold :> v_] :> v :> h;
+
+      toFactor = ReleaseHold[heldExpression /.
+          s_Symbol :> Hold[s] /.
+          replacementSymbolsIn /.
+          Hold[s_Symbol] :> s
+      ];
+
+      factoredBlock = FactorExpression[toFactor] /. HoldForm -> Hold;
+
+      heldBlock = HeldBlock[
+        localVars,
+        HeldCompoundExpression @@ Append[localAssignments, factoredBlock]
+      ] /. replacementSymbolsIn;
+
+      heldCompile = HeldCompile[compileArgumentPattern, heldBlock];
+      compiledFunction = heldCompile /. {
+        HeldSet -> Set,
+        HeldCompoundExpression -> CompoundExpression,
+        Hold[Block[v_, e_]] :> Block[v, e],
+        HeldBlock -> Block,
+        HeldCompile -> Compile
+      }
+    ];
 
 (**********************************************************************************************************************)
 

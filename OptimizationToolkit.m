@@ -208,6 +208,12 @@ Memoize[f_Symbol] :=
 
 (**********************************************************************************************************************)
 
+canCompileQ[downValue:(HoldPattern[_] :> _)] :=
+    AllTrue[
+      List @@ GetTypeSignature[downValue],
+      MatchQ[#1, _TensorType | Real | Integer] &
+    ];
+
 compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
     Module[
       {

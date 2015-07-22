@@ -4,7 +4,7 @@
 (* :Title: OptimizationToolkit Types                                              *)
 (* :Context: OptimizationToolkit`Types                                            *)
 (* :Author: Richard Hennigan                                                      *)
-(* :Date: 7/21/2015                                                               *)
+(* :Date: 7/22/2015                                                               *)
 
 (* :Package Version: 0.2                                                          *)
 (* :Mathematica Version: 10.1.0  for Microsoft Windows (64-bit) (March 24, 2015)  *)

@@ -4,7 +4,7 @@
 (* :Title: OptimizationToolkit                                                    *)
 (* :Context: OptimizationToolkit`                                                 *)
 (* :Author: Richard Hennigan                                                      *)
-(* :Date: 7/21/2015                                                               *)
+(* :Date: 7/22/2015                                                               *)
 
 (* :Package Version: 0.2                                                          *)
 (* :Mathematica Version: 10.1.0  for Microsoft Windows (64-bit) (March 24, 2015)  *)
@@ -38,8 +38,25 @@ Begin["`Private`"]; (* Begin Private Context *)
 (* Auxillary definitions *)
 (**********************************************************************************************************************)
 
+extractHeldExpressionFromDownValue[downValue : (Verbatim[HoldPattern][_[___]] :> exp_)] := Hold[exp];
+
+extractFunctionsFromExpression[exp_] := Union[Cases[exp, (f_)[___] :> f, Infinity]];
+
+heldExpressionSymbols[heldExpression : Hold[_]] := Union[Cases[heldExpression, s_Symbol :> Hold[s], Infinity]];
+heldExpressionSymbols[downValue : (Verbatim[HoldPattern][_[___]] :> exp_)] :=
+    heldExpressionSymbols[extractHeldExpressionFromDownValue[downValue]];
+
+getTemporaryEvaluationRules[expressionSymbols : {Hold[_]...}] :=
+    Module[
+      {replacementSymbolsIn, replacementSymbolsOut},
+      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = newVar}, Hold[s] :> v];
+      replacementSymbolsOut = replacementSymbolsIn /. HoldPattern[h_Hold :> v_] :> v :> h;
+      {replacementSymbolsIn, replacementSymbolsOut}
+    ];
+
+$CompilerFunctionList = Compile`CompilerFunctions[] ~ Join ~ {Det, Rational};
 CompilableFunctionQ[_] := False;
-Scan[(CompilableFunctionQ[#] = True) &, Compile`CompilerFunctions[]];
+Scan[(CompilableFunctionQ[#] = True) &, $CompilerFunctionList];
 
 
 Module[
@@ -145,8 +162,7 @@ FactorExpression[exp_, opts : OptionsPattern[]] :=
 
       fexp = Evaluate[mexp] /. {
         HeldSet -> Set,
-        HeldCompoundExpression -> CompoundExpression,
-        Hold -> HoldForm
+        HeldCompoundExpression -> CompoundExpression
       } /. HoldPattern[Block[{}, CompoundExpression[e_]]] :> e;
 
       out = Switch[output,
@@ -156,7 +172,7 @@ FactorExpression[exp_, opts : OptionsPattern[]] :=
             parameters = Union[Cases[exp, _Symbol, Infinity]]
           },
           HeldCompile[({#1, _Real} & ) /@ parameters, fexp] /. {
-            HoldForm[Block[vars_, modexp_]] :> Block[vars, modexp],
+            Hold[Block[vars_, modexp_]] :> Block[vars, modexp],
             HeldCompile -> Compile
           }
         ],
@@ -195,16 +211,16 @@ compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
         replacementSymbolsOut, toFactor, factoredBlock,
         heldBlock, heldCompile, compiledFunction
       },
-      type = GetTypeSignature[downValue]; argSymbols = Table[newVar, {Length[type]}];
+      type = GetTypeSignature[downValue];
+      argSymbols = Table[newVar, {Length[type]}];
 
       compileArgumentPattern = Apply[
         Prepend,
         Transpose[{
-          List @@ type /. {
-            Integer :> {_Integer},
-            Real :> {_Real},
-            TensorType[t_, i_] :> {_t, i}
-          }, argSymbols
+          Cases[List @@ type, s_ :> {s}] /.
+              {TensorType[t_, i_]} :> {_t, i} /.
+              {s_} :> {_s},
+          argSymbols
         }], {1}];
 
       localExpressionSymbols = downValue /.
@@ -215,7 +231,7 @@ compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
       localAssignments = Apply[HeldSet, Transpose[{localExpressionSymbols, argSymbols}], {1}];
       heldExpression = downValue /. (Verbatim[HoldPattern][_[___]] :> exp_) :> Hold[exp];
       expressionSymbols = Union[Cases[heldExpression, s_Symbol :> Hold[s], Infinity]];
-      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = newVar}, Hold[s] :> v];
+      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = Evaluate[newVar]}, Hold[s] :> v];
       replacementSymbolsOut = replacementSymbolsIn /. HoldPattern[h_Hold :> v_] :> v :> h;
 
       toFactor = ReleaseHold[heldExpression /.
@@ -244,7 +260,8 @@ compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
 compiledDownValue[downValue : (HoldPattern[_] :> _)] :=
     Module[
       {args, cf, patt, cArgs, cfPlaced},
-      cf = compileFromDownValues[downValue]; patt = First[downValue];
+      cf = compileFromDownValues[downValue];
+      patt = First[downValue];
       cArgs = patt /.
           Verbatim[HoldPattern][_[args___]] :> {args} /.
           Verbatim[Pattern][s_, _] :> Hold[s];
@@ -256,7 +273,7 @@ compiledDownValue[downValue : (HoldPattern[_] :> _)] :=
                 args -> cArgs /.
                 Hold[e_] :> e
           ];
-      patt :> Evaluate[cfPlaced] /. HoldComplete[e_] :> e
+      patt :> Evaluate[cfPlaced] /. HoldComplete[e_] :> e /. c_CompiledFunction[{a___}] :> c[a]
     ];
 
 (**********************************************************************************************************************)
@@ -270,7 +287,11 @@ OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] :=
 
       filt = Alternatives @@ Options[FactorExpression][[All, 1]];
       fopts = Sequence @@ Cases[{opts}, (o : filt -> s_) :> o -> s];
-      newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. HoldForm[b_Block] :> b;
+      (*newDV = Table[Quiet[Check[*)
+        (*compiledDownValue[downValue],*)
+        (*downValue /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. Hold[b_] :> b*)
+        (*]], {downValue, dv}];*)
+      newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. Hold[b_] :> b;
 
       If[OptionValue["Rewrite"], DownValues[Evaluate[f]] = newDV];
       If[OptionValue["Memoize"], memoize[f], newDV]

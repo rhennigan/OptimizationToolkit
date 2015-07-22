@@ -279,7 +279,8 @@ OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] :=
 Options[OptimizeDownValues] =
     {
       "Rewrite" -> False,
-      "Memoize" -> False
+      "Memoize" -> False,
+      "Compile" -> False
     } ~ Join ~ Options[FactorExpression];
 
 (**********************************************************************************************************************)

@@ -38,11 +38,20 @@ Begin["`Private`"]; (* Begin Private Context *)
 (* Auxillary definitions *)
 (**********************************************************************************************************************)
 
+Module[{varCounter = 0}, newVar := Symbol["OptimizationToolkit`$" <> ToString[varCounter++]]];
+
+extractPatternFromDownValue[downValue : (Verbatim[HoldPattern][_[___]] :> exp_)] := downValue[[1]];
+
 extractHeldExpressionFromDownValue[downValue : (Verbatim[HoldPattern][_[___]] :> exp_)] := Hold[exp];
+
+heldExpressionToString[expression_Hold] := StringTake[ToString[InputForm[expression]], {6, -2}];
+
+heldExpressionHead[expression : Hold[_]] := expression /. Hold[s_Symbol[___]] :> s;
 
 extractFunctionsFromExpression[exp_] := Union[Cases[exp, (f_)[___] :> f, Infinity]];
 
 heldExpressionSymbols[heldExpression : Hold[_]] := Union[Cases[heldExpression, s_Symbol :> Hold[s], Infinity]];
+
 heldExpressionSymbols[downValue : (Verbatim[HoldPattern][_[___]] :> exp_)] :=
     heldExpressionSymbols[extractHeldExpressionFromDownValue[downValue]];
 
@@ -54,17 +63,17 @@ getTemporaryEvaluationRules[expressionSymbols : {Hold[_]...}] :=
       {replacementSymbolsIn, replacementSymbolsOut}
     ];
 
+expandOnce[replacedVarsExpression_Hold] :=
+    Module[
+      {nonSystemFunctions, symbolicRules},
+      nonSystemFunctions = Select[extractFunctionsFromExpression[replacedVarsExpression], Context[#] =!= "System`"&];
+      symbolicRules = Flatten[DownValues /@ nonSystemFunctions /. Verbatim[Blank][_] :> Blank[]];
+      replacedVarsExpression /. symbolicRules
+    ];
+
 $CompilerFunctionList = Compile`CompilerFunctions[] ~ Join ~ {Det, Rational};
 CompilableFunctionQ[_] := False;
 Scan[(CompilableFunctionQ[#] = True) &, $CompilerFunctionList];
-
-
-Module[
-  {
-    varCounter = 0
-  },
-  newVar := Symbol["OptimizationToolkit`$" <> ToString[varCounter++]]
-];
 
 (**********************************************************************************************************************)
 

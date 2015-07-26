@@ -31,6 +31,10 @@ $DefaultExcludedForms =
 FactorExpression   ::usage = "Use this to make magic happen (maybe).";
 OptimizeDownValues ::usage = "";
 Memoize            ::usage = "";
+CompoundSimplify   ::usage = "";
+CompoundActivate   ::usage = "";
+ToHoldForm         ::usage = "";
+
 
 Begin["`Private`"]; (* Begin Private Context *)
 
@@ -38,7 +42,7 @@ Begin["`Private`"]; (* Begin Private Context *)
 (* Auxillary definitions *)
 (**********************************************************************************************************************)
 
-Module[{varCounter = 0}, newVar := Symbol["OptimizationToolkit`$" <> ToString[varCounter++]]];
+(*Module[{varCounter = 0}, newVar := Symbol["OptimizationToolkit`$" <> ToString[varCounter++]]];*)
 
 extractPatternFromDownValue[downValue : (Verbatim[HoldPattern][_[___]] :> exp_)] := downValue[[1]];
 
@@ -58,7 +62,7 @@ heldExpressionSymbols[downValue : (Verbatim[HoldPattern][_[___]] :> exp_)] :=
 getTemporaryEvaluationRules[expressionSymbols : {Hold[_]...}] :=
     Module[
       {replacementSymbolsIn, replacementSymbolsOut},
-      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = newVar}, Hold[s] :> v];
+      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = Unique[]}, Hold[s] :> v];
       replacementSymbolsOut = replacementSymbolsIn /. HoldPattern[h_Hold :> v_] :> v :> h;
       {replacementSymbolsIn, replacementSymbolsOut}
     ];
@@ -74,6 +78,69 @@ expandOnce[replacedVarsExpression_Hold] :=
 $CompilerFunctionList = Compile`CompilerFunctions[] ~ Join ~ {Det, Rational};
 CompilableFunctionQ[_] := False;
 Scan[(CompilableFunctionQ[#] = True) &, $CompilerFunctionList];
+
+(**********************************************************************************************************************)
+
+iCompoundSimplify[expression_] :=
+    Module[
+      {expressionCounts, mostRedundant},
+      expressionCounts = Select[
+        Tally[Cases[expression, _[___], Infinity]],
+        #1[[2]] > 1 &
+      ];
+      mostRedundant = MaximalBy[expressionCounts, Last];
+      If[mostRedundant =!= {},
+        Module[
+          {mr = mostRedundant[[1, 1]], nv = Unique[]},
+          Sow[nv, "variables"];
+          Sow[Inactive[Set][nv, mr], "assignments"];
+          expression /. mr -> nv
+        ],
+        expression
+      ]
+    ];
+
+SetAttributes[CompoundSimplify, {HoldAll}];
+CompoundSimplify[expression_] :=
+    Module[
+      {exp, out, variables, assignments},
+      exp = With[{e = expression}, Inactivate[e]];
+      {out, {variables, assignments}} = Reap[FixedPoint[iCompoundSimplify, exp]];
+      Scan[SetAttributes[#1, {Temporary}] & , variables];
+      Inactive[Block][
+        variables,
+        Inactive[CompoundExpression] @@ Append[assignments, out]
+      ]
+    ];
+
+CompoundActivate[sexp_] :=
+    Module[
+      {
+        replacement,
+        insertApply = With[{args = {##2}, f = #1}, f @@ args] &
+      },
+      replacement = Cases[
+        sexp,
+        Inactive[f_][a___] :>
+            HoldPattern[Inactive[f][a]] -> Inactive[insertApply][f, a],
+        Infinity
+      ];
+      Activate[sexp //. replacement]
+    ];
+
+ToHoldForm[sexp_] :=
+    With[
+      {e = sexp},
+      HoldForm[e]] /.
+        (#1 -> #1[[1]] & ) /@
+            Union[
+              Cases[
+                sexp,
+                Inactive[_],
+                Infinity,
+                Heads -> True
+              ]
+            ];
 
 (**********************************************************************************************************************)
 
@@ -98,7 +165,7 @@ findRedundantExpressions[exp_, varCount_Integer, minDepth_Integer, excludedForms
 
         Module[
           {
-            v = newVar,
+            v = Unique[],
             newVal = mostRedundantExpressions[[1, 1]]
           },
 
@@ -221,7 +288,7 @@ compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
         heldBlock, heldCompile, compiledFunction
       },
       type = GetTypeSignature[downValue];
-      argSymbols = Table[newVar, {Length[type]}];
+      argSymbols = Table[Unique[], {Length[type]}];
 
       compileArgumentPattern = Apply[
         Prepend,
@@ -240,7 +307,7 @@ compileFromDownValues[downValue : (HoldPattern[_] :> _)] :=
       localAssignments = Apply[HeldSet, Transpose[{localExpressionSymbols, argSymbols}], {1}];
       heldExpression = downValue /. (Verbatim[HoldPattern][_[___]] :> exp_) :> Hold[exp];
       expressionSymbols = Union[Cases[heldExpression, s_Symbol :> Hold[s], Infinity]];
-      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = Evaluate[newVar]}, Hold[s] :> v];
+      replacementSymbolsIn = expressionSymbols /. Hold[s_] :> With[{v = Evaluate[Unique[]]}, Hold[s] :> v];
       replacementSymbolsOut = replacementSymbolsIn /. HoldPattern[h_Hold :> v_] :> v :> h;
 
       toFactor = ReleaseHold[heldExpression /.

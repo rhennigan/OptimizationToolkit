@@ -1,13 +1,15 @@
+(* ::Package:: *)
+
 (* Mathematica Package                                                            *)
 (* Created by IntelliJ IDEA                                                       *)
 
 (* :Title: OptimizationToolkit                                                    *)
 (* :Context: OptimizationToolkit`                                                 *)
 (* :Author: Richard Hennigan                                                      *)
-(* :Date: 7/22/2015                                                               *)
+(* :Date: 7/27/2015                                                               *)
 
 (* :Package Version: 0.2                                                          *)
-(* :Mathematica Version: 10.1.0  for Microsoft Windows (64-bit) (March 24, 2015)  *)
+(* :Mathematica Version: 10.2.0 for Microsoft Windows (64-bit) (July 7, 2015)     *)
 (* :Copyright: (c) 2015 Richard Hennigan                                          *)
 (* :Keywords:                                                                     *)
 (* :Discussion:                                                                   *)
@@ -34,6 +36,7 @@ Memoize            ::usage = "";
 CompoundSimplify   ::usage = "";
 CompoundActivate   ::usage = "";
 ToHoldForm         ::usage = "";
+SExp               ::usage = "A container for S-Expressions";
 
 
 Begin["`Private`"]; (* Begin Private Context *)
@@ -85,8 +88,8 @@ iCompoundSimplify[expression_] :=
     Module[
       {expressionCounts, mostRedundant},
       expressionCounts = Select[
-        Tally[Cases[expression, _[___], Infinity]],
-        #1[[2]] > 1 &
+        Tally[Cases[expression, Except[Inactive[_]], Infinity, Heads -> True]],
+        #[[2]] > 1 && Depth[#[[1]]] > 1 &
       ];
       mostRedundant = MaximalBy[expressionCounts, Last];
       If[mostRedundant =!= {},
@@ -100,47 +103,53 @@ iCompoundSimplify[expression_] :=
       ]
     ];
 
+SExp = With[{args = {##2}, f = #1}, f @@ args] &;
+
+toSExpressions[inactivatedExp_] :=
+    Module[
+      {replacement},
+      replacement = Cases[
+        inactivatedExp,
+        Inactive[f_][a___] :> (HoldPattern[Inactive[f][a]] -> Inactive[SExp][f, a]),
+        Infinity, Heads -> True
+      ];
+      inactivatedExp //. replacement
+    ];
+
+toMExpressions[inactivatedExp_] :=
+    Module[
+      {replacement},
+      replacement = Cases[
+        inactivatedExp,
+        Inactive[SExp][f_, a___] :> (HoldPattern[Inactive[SExp][f, a]] :> Inactive[f][a]),
+        Infinity, Heads -> True
+      ];
+      inactivatedExp //. replacement
+    ];
+
 SetAttributes[CompoundSimplify, {HoldAll}];
 CompoundSimplify[expression_] :=
     Module[
-      {exp, out, variables, assignments},
+      {exp, out, variables, assignments, inactivatedExp},
       exp = With[{e = expression}, Inactivate[e]];
-      {out, {variables, assignments}} = Reap[FixedPoint[iCompoundSimplify, exp]];
+      (*exp = Inactivate @ expression;*)
+      {out, {variables, assignments}} = Reap @ FixedPoint[iCompoundSimplify, exp];
       Scan[SetAttributes[#1, {Temporary}] & , variables];
-      Inactive[Block][
-        variables,
-        Inactive[CompoundExpression] @@ Append[assignments, out]
-      ]
+      inactivatedExp =
+          Inactive[Block][
+            variables,
+            Inactive[CompoundExpression] @@ Append[assignments, With[{o = out}, Inactivate @ o]]
+          ];
+      (*toSExpressions @ *)inactivatedExp
     ];
 
-CompoundActivate[sexp_] :=
+CompoundActivate[inactivatedExp_] := Activate[toSExpressions @ inactivatedExp];
+
+ToHoldForm[exp_] :=
     Module[
-      {
-        replacement,
-        insertApply = With[{args = {##2}, f = #1}, f @@ args] &
-      },
-      replacement = Cases[
-        sexp,
-        Inactive[f_][a___] :>
-            HoldPattern[Inactive[f][a]] -> Inactive[insertApply][f, a],
-        Infinity
-      ];
-      Activate[sexp //. replacement]
+      {held = With[{e = exp}, HoldForm @ e]},
+      held /. Inactive[s_] :> Hold @ s /. Hold[s_] :> s
     ];
-
-ToHoldForm[sexp_] :=
-    With[
-      {e = sexp},
-      HoldForm[e]] /.
-        (#1 -> #1[[1]] & ) /@
-            Union[
-              Cases[
-                sexp,
-                Inactive[_],
-                Infinity,
-                Heads -> True
-              ]
-            ];
 
 (**********************************************************************************************************************)
 
@@ -364,9 +373,9 @@ OptimizeDownValues[f_Symbol, opts : OptionsPattern[]] :=
       filt = Alternatives @@ Options[FactorExpression][[All, 1]];
       fopts = Sequence @@ Cases[{opts}, (o : filt -> s_) :> o -> s];
       (*newDV = Table[Quiet[Check[*)
-        (*compiledDownValue[downValue],*)
-        (*downValue /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. Hold[b_] :> b*)
-        (*]], {downValue, dv}];*)
+      (*compiledDownValue[downValue],*)
+      (*downValue /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. Hold[b_] :> b*)
+      (*]], {downValue, dv}];*)
       newDV = dv /. (h_HoldPattern :> exp_) :> h :> Evaluate[FactorExpression[exp, fopts]] /. Hold[b_] :> b;
 
       If[OptionValue["Rewrite"], DownValues[Evaluate[f]] = newDV];

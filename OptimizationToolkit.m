@@ -20,6 +20,7 @@ Unprotect["`*"];
 ClearAll["`*"];
 
 Needs["OptimizationToolkit`Types`"];
+Needs["OptimizationToolkit`Profiling`"];
 
 $DefaultExcludedForms =
     {

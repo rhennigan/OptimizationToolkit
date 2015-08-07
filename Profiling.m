@@ -92,7 +92,7 @@ insertSubexpressionTiming[expression_Hold] := Module[
     ],
     Module[
       {patt, pos, replacements, exp},
-      patt = Alternatives @@ (Blank[#] & /@ functions)~Join~atomics;
+      patt = Alternatives @@ (Blank[#] & /@ functions) ~ Join ~ atomics;
       pos = Position[expression, patt, 2];
       replacements =
           Extract[expression, pos, Hold] /.
@@ -155,6 +155,29 @@ ProfilingTimelinePlot[report_ProfilingReportData, count_Integer : 100, opts : Op
       TimelinePlot[plotInvervals, opts]
     ];
 
+
+ClearAll[$rec, $timing, Profile];
+SetAttributes[$rec, {HoldAll}];
+$rec[Hold[$timing_], exp_] := Module[
+  {held, cleaned, s, t, res},
+  held = With[{e = Inactivate[exp]}, HoldComplete[e]];
+  cleaned = held //. Inactive[$rec][e : __] :> e //. Inactive[f_] :> f //. Sequence[Hold[$timing], a___] :> a;
+  s = StringTake[ToString[InputForm[cleaned]], {14, -2}];
+  {t, res} = AbsoluteTiming[Activate[exp]];
+  $timing[s] = If[Head[$timing[s]] === Missing, {t}, Append[$timing[s], t]];
+  res
+];
+
+SetAttributes[Profile, {HoldAll}];
+Profile2[exp_] := Module[
+  {$timing, hexp, replaced, ready, result},
+  $timing = <||>;
+  hexp = Inactivate[Table[Pause[0.01]; i, {i, 100}]];
+  replaced = FixedPoint[# //. Flatten[Cases[#, Inactive[f_] :> With[{d = DownValues[f]}, Inactivate[d]], Infinity, Heads -> True]] &, hexp];
+  ready = Map[# /. e : Inactive[f_][a___] :> With[{t = Hold[$timing]}, (Inactive[$rec][t, e])] &, replaced, {0, Infinity}];
+  result = Activate[ready];
+  {$timing, result}
+];
 
 End[]; (* End Private Context *)
 

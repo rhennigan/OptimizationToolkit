@@ -172,7 +172,7 @@ SetAttributes[Profile, {HoldAll}];
 Profile2[exp_] := Module[
   {$timing, hexp, replaced, ready, result},
   $timing = <||>;
-  hexp = Inactivate[Table[Pause[0.01]; i, {i, 100}]];
+  hexp = Inactivate[exp];
   replaced = FixedPoint[# //. Flatten[Cases[#, Inactive[f_] :> With[{d = DownValues[f]}, Inactivate[d]], Infinity, Heads -> True]] &, hexp];
   ready = Map[# /. e : Inactive[f_][a___] :> With[{t = Hold[$timing]}, (Inactive[$rec][t, e])] &, replaced, {0, Infinity}];
   result = Activate[ready];

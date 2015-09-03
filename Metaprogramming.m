@@ -91,6 +91,8 @@ Inline[fList : {___}, exp_, wrapper_ : Identity, opts : OptionsPattern[]] :=
     Nest[Identity @@ # &, fold, Length[fList]]
   ];
 
+(******************************************************************************)
+
 SetAttributes[HoldFlatten, {HoldAll}];
 HoldFlatten[exp_] :=
   Module[ {h = HoldComplete[exp]},

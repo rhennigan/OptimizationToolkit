@@ -10,6 +10,7 @@ Localize    ::usage = "";
 Construct   ::usage = "";
 Inline      ::usage = "";
 HoldFlatten ::usage = "";
+Definitions ::usage = "";
 
 Begin["`Private`"]; (* Begin Private Context *)
 
@@ -75,27 +76,65 @@ expandAll[e_] :=
 (******************************************************************************)
 
 Inline // ClearAll;
-Inline ~ SetAttributes ~ {HoldAllComplete};
-Inline // Options = {Definitions -> {UpValues, OwnValues, DownValues}};
+Inline // Attributes = { HoldAllComplete };
+Inline // Options = {
+  Definitions -> { UpValues, OwnValues, DownValues },
+  MaxIterations -> $IterationLimit
+};
 
-Inline[f_, exp_, wrapper_ : Identity, opts : OptionsPattern[]] :=
-  Module[{defTypes, rules},
-    defTypes = OptionValue[Definitions];
-    rules = Flatten[#[f] & /@ defTypes];
-    wrapper[exp] //. rules
+Inline[
+  function_,
+  expression_,
+  wrapper_ : Identity,
+  options : OptionsPattern[]
+] :=
+  Module[
+    { held, definitionTypes, getDefinitionList, replacementRules, replaced },
+    held = HoldComplete @ expression;
+    definitionTypes = OptionValue @ Definitions;
+    getDefinitionList = # @ function &;
+    replacementRules = getDefinitionList /@ definitionTypes // Flatten;
+    replaced = ReplaceRepeated[ held, replacementRules,
+      MaxIterations -> OptionValue @ MaxIterations
+    ];
+    wrapper @@ replaced
   ];
 
-Inline[fList : {___}, exp_, wrapper_ : Identity, opts : OptionsPattern[]] :=
-  Module[{fold},
-    fold = Fold[Inline[#2, #1, wrapper, opts] &, wrapper[exp], fList];
-    Nest[Identity @@ # &, fold, Length[fList]]
+iInline // ClearAll;
+iInline // Attributes = { HoldAllComplete };
+iInline // Options = Options @ Inline;
+
+iInline[ expression_, function_, options : OptionsPattern[] ] :=
+  Inline[ function, expression, HoldComplete, options ];
+
+listToHold // ClearAll;
+listToHold // Attributes = { HoldAllComplete };
+listToHold // Options = {};
+
+listToHold[ { a$___ } ] := Hold @ a$;
+listToHold[ list_List, All ] := Identity @@ (Hold @ list /. List -> Hold);
+
+Inline[
+  functionList : { ___ },
+  expression_,
+  wrapper_ : Identity,
+  options : OptionsPattern[]
+] :=
+  Module[
+    { held, folded, dropHead, stacked },
+    held = HoldComplete @ expression;
+    iInline ~ SetOptions ~ options;
+    folded = Fold[ iInline, held, listToHold @ functionList ];
+    dropHead = Identity @@ # &;
+    stacked = Nest[ dropHead, folded, Length @ functionList ];
+    wrapper @@ stacked
   ];
 
 (******************************************************************************)
 
 SetAttributes[HoldFlatten, {HoldAll}];
 HoldFlatten[exp_] :=
-  Module[ {h = HoldComplete[exp]},
+  Module[{h = HoldComplete[exp]},
     Delete[h, Position[h, Hold]] /. HoldComplete -> Hold
   ];
 

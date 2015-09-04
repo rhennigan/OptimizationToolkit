@@ -2,9 +2,6 @@
 
 BeginPackage["OptimizationToolkit`Metaprogramming`", {"OptimizationToolkit`"}];
 
-Unprotect["`*"];
-ClearAll["`*"];
-
 GetSymbols  ::usage = "";
 Localize    ::usage = "";
 Construct   ::usage = "";
@@ -94,9 +91,11 @@ Inline[
     definitionTypes = OptionValue @ Definitions;
     getDefinitionList = # @ function &;
     replacementRules = getDefinitionList /@ definitionTypes // Flatten;
+    Off @ ReplaceRepeated::rrlim;
     replaced = ReplaceRepeated[ held, replacementRules,
       MaxIterations -> OptionValue @ MaxIterations
     ];
+    On @ ReplaceRepeated::rrlim;
     wrapper @@ replaced
   ];
 
@@ -104,8 +103,10 @@ iInline // ClearAll;
 iInline // Attributes = { HoldAllComplete };
 iInline // Options = Options @ Inline;
 
-iInline[ expression_, function_, options : OptionsPattern[] ] :=
-  Inline[ function, expression, HoldComplete, options ];
+iInline[ expression_, function_ ] :=
+  With[ { opts = Options @ iInline },
+    Inline[ function, expression, HoldComplete, opts ]
+  ];
 
 listToHold // ClearAll;
 listToHold // Attributes = { HoldAllComplete };

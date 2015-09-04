@@ -2,9 +2,6 @@
 
 BeginPackage["OptimizationToolkit`"];
 
-Unprotect["`*"];
-ClearAll["`*"];
-
 Needs["OptimizationToolkit`Types`"];
 Needs["OptimizationToolkit`Profiling`"];
 Needs["OptimizationToolkit`Metaprogramming`"];

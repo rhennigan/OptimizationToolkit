@@ -72,6 +72,28 @@ expandAll[e_] :=
 
 (******************************************************************************)
 
+HeldWith // ClearAll;
+HeldWith // Attributes = { HoldAllComplete };
+HeldWith // Options = {};
+
+CompoundWith // ClearAll;
+CompoundWith // Attributes = { HoldAllComplete };
+CompoundWith // Options = {};
+
+CompoundWith[ bindings : _Set...; expression_, wrapper_ : Identity ] :=
+  Module[
+      { heldBindings, numBindings, folded, swapped, holdLocation, holdRemoved },
+      heldBindings = Reverse @ HoldComplete @ bindings;
+      numBindings = Length @ heldBindings;
+      folded = Fold[ HeldWith, HoldComplete @ expression, heldBindings ];
+      swapped = folded //. HeldWith[ e_, b_Set ] :> HeldWith[ { b }, e ];
+      holdLocation = { 2 ~ ConstantArray ~ numBindings ~ Append ~ 0 };
+      holdRemoved = swapped ~ Delete ~ holdLocation;
+      With[ { h = holdRemoved }, wrapper @ h ] /. HeldWith -> With
+  ];
+
+(******************************************************************************)
+
 $heldHeads = { Hold, HoldComplete, HoldForm };
 
 heldExpressionQ // ClearAll;

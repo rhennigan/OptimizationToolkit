@@ -82,7 +82,10 @@ CompoundWith // Options = {};
 
 CompoundWith[ bindings : _Set...; expression_, wrapper_ : Identity ] :=
   Module[
-      { heldBindings, numBindings, folded, swapped, holdLocation, holdRemoved },
+      {
+          heldBindings, numBindings, folded,
+          swapped, holdLocation, holdRemoved
+      },
       heldBindings = Reverse @ HoldComplete @ bindings;
       numBindings = Length @ heldBindings;
       folded = Fold[ HeldWith, HoldComplete @ expression, heldBindings ];
@@ -108,8 +111,7 @@ validFormQ // Options = {};
 
 validFormQ[ formatType_ ] :=
   validFormQ @ formatType =
-    Module[
-        { checked },
+    Module[ { checked },
         checked = Quiet @ Check[ Null ~ ToString ~ formatType, $Failed ];
         checked =!= $Failed
     ];
@@ -124,8 +126,7 @@ HeldToString[
     form_? validFormQ ~ Optional ~ OutputForm,
     options : OptionsPattern[]
 ] :=
-  Module[
-      { headString, trimSpec, expressionString },
+  Module[ { headString, trimSpec, expressionString },
       headString = ToString @ Head @ expression;
       trimSpec = { StringLength @ headString + 2, -2 };
       expressionString = ToString[ expression, form, options ];
@@ -137,46 +138,108 @@ HeldToString[
     form_? validFormQ ~ Optional ~ OutputForm,
     options : OptionsPattern[]
 ] :=
-  With[
-      { held = HoldComplete @ expression },
+  With[ { held = HoldComplete @ expression },
       HeldToString[ held, form, options ]
   ];
 
 HeldToString[ _, form_, OptionsPattern[] ] :=
-  Module[
-      { validForm },
+  Module[ { validForm },
       validForm = validFormQ @ form;
       If[ !validForm, HeldToString::fmtval ~ Message ~ form ];
       Null /; validForm
   ];
 
+
+
+(******************************************************************************)
+
+fullInactivate // ClearAll;
+fullInactivate // Attributes = {};
+fullInactivate // Options = {};
+
+fullInactivate[ h : HoldComplete[ _ ] ] :=
+  Block[ { Developer`$InactivateExclusions = { { List, "Symbol" } } },
+      With[ { i = Inactivate @ h }, HoldComplete @@ i ]
+  ];
+
+fullInactivate[ expression_ ] :=
+  Block[ { Developer`$InactivateExclusions = { { List, "Symbol" } } },
+      Inactivate[ expression ]
+  ];
+
+
+
+(******************************************************************************)
+
+$ = Sequence[];
+
+SequenceIdentity // ClearAll;
+SequenceIdentity // Attributes = {};
+SequenceIdentity // Options = {};
+SequenceIdentity[ args___ ] := args;
+
+toNull // ClearAll;
+toNull // Attributes = {};
+toNull // Options = {};
+toNull[ ___ ] := $;
+
+
+
 (******************************************************************************)
 
 Inline // ClearAll;
 Inline // Attributes = { HoldAllComplete };
-Inline // Options = {
-    Definitions -> { UpValues, OwnValues, DownValues },
-    MaxIterations -> $IterationLimit
-};
+Inline // Options    =
+  {
+      Definitions     -> { OwnValues, DownValues, UpValues },
+      MaxIterations   -> $IterationLimit,
+      "ForceSymbolic" -> False
+  };
 
 Inline[
     function_,
     expression_,
-    wrapper_ : Identity,
+    wrapper_ : Automatic,
     options : OptionsPattern[]
 ] :=
   Module[
-      { held, definitionTypes, getDefinitionList, replacementRules, replaced },
+
+      {
+          held, definitionTypes, getDefinitions, replacementRules,
+          makeSymbolic, symbolicRules, replaced, wrapperFunction
+      },
+
       held = HoldComplete @ expression;
       definitionTypes = OptionValue @ Definitions;
-      getDefinitionList = # @ function &;
-      replacementRules = getDefinitionList /@ definitionTypes // Flatten;
+
+      getDefinitions =
+        If[ Head @ function === Inactive
+            ,
+            With[ { f = Identity @@ function },
+                With[ { def = # @ f }, Inactivate @ def ] &
+            ]
+            ,
+            # @ function &
+        ];
+
+      replacementRules = getDefinitions /@ definitionTypes // Flatten;
+      makeSymbolic = # /. Verbatim[ Blank ][ ___ ] -> Blank[] &;
+
+      symbolicRules = If[ OptionValue @ "ForceSymbolic",
+          MapAt[ makeSymbolic, replacementRules, { All, 1 } ],
+          replacementRules
+      ];
+
       Off @ ReplaceRepeated::rrlim;
-      replaced = ReplaceRepeated[ held, replacementRules,
+
+      replaced = ReplaceRepeated[ held, symbolicRules,
           MaxIterations -> OptionValue @ MaxIterations
       ];
+
       On @ ReplaceRepeated::rrlim;
-      wrapper @@ replaced
+      wrapperFunction = wrapper /. Automatic -> Identity;
+
+      wrapperFunction @@ replaced
   ];
 
 
@@ -208,30 +271,140 @@ dropHead = Identity @@ # &;
 Inline[
     functionList : { ___ },
     expression_,
-    wrapper_ : Identity,
+    wrapper_ : Automatic,
     options : OptionsPattern[]
 ] :=
   Module[
-      { heldExpression, heldFunctions, functionCount, folded, stacked },
+
+      {
+          heldExpression, heldFunctions, functionCount,
+          folded, unstacked, wrapperFunction
+      },
+
       heldExpression = HoldComplete @ expression;
       heldFunctions = listToHold @ functionList;
       functionCount = Length @ heldFunctions;
       iInline ~ SetOptions ~ options;
       folded = Fold[ iInline, heldExpression, heldFunctions ];
       iInline // Options = Options @ Inline;
-      stacked = Nest[ dropHead, folded, functionCount ];
-      wrapper @@ stacked
+      unstacked = Nest[ dropHead, folded, functionCount ];
+      wrapperFunction = wrapper /. Automatic -> Identity;
+
+      wrapperFunction @@ unstacked
   ];
 
 Inline[ f_ ][ a$___ ] := Inline[ f, a$ ];
 
+Inline /: (patt_ := Inline[ f_, exp_, a___ ]) := Inline[ f, patt := exp, a ];
+
+
+
 (******************************************************************************)
 
-SetAttributes[HoldFlatten, {HoldAll}];
-HoldFlatten[exp_] :=
-  Module[{h = HoldComplete[exp]},
-      Delete[h, Position[h, Hold]] /. HoldComplete -> Hold
+$blanks = (Blank | BlankSequence | BlankNullSequence);
+
+getBlankArgPattern // ClearAll;
+getBlankArgPattern // Attributes = {};
+getBlankArgPattern // Options = {};
+
+getBlankArgPattern[ f_, HoldPattern[ pattern_HoldPattern :> ___ ] ] :=
+  Module[ { heldPattern },
+
+      heldPattern = pattern //. {
+          f -> List,
+          (b : $blanks)[ ___ ] :> b[],
+          Verbatim[ Pattern ][ _, b___ ] :> b
+      };
+
+      Identity @@ heldPattern
   ];
+
+rescopeDefinition // ClearAll;
+rescopeDefinition // Attributes = {};
+rescopeDefinition // Options = {};
+
+rescopeDefinition[ definition : HoldPattern[ pattern_HoldPattern :> ___ ] ] :=
+  Module[ { symbolPositions, symbolPatterns, symbolStrings, newSymbols, rules },
+      symbolPositions = # ~ Append ~ 1 & /@ Position[ pattern, _Pattern ];
+
+      symbolPatterns = DeleteDuplicates @
+        Extract[ pattern, symbolPositions, HoldPattern ];
+
+      symbolStrings = StringTake[ ToString @ #, { 13, -2 } ]& /@ symbolPatterns;
+      newSymbols = Unique[ # <> "$" ] & /@ symbolStrings;
+      newSymbols ~ SetAttributes ~ { Temporary };
+      rules = RuleDelayed @@@ Transpose[ { symbolPatterns, newSymbols } ];
+      definition /. rules
+  ];
+
+extractPatterns // ClearAll;
+extractPatterns // Attributes = {};
+extractPatterns // Options = {};
+
+extractPatterns[ definitions : { HoldPattern[ _HoldPattern :> ___ ]... } ] :=
+  First /@ definitions;
+
+
+Deconstruct // ClearAll;
+Deconstruct // Attributes = { HoldAllComplete };
+Deconstruct // Options = {};
+
+Deconstruct[ pattern_, args__ : None ] :=
+  Module[
+      {
+          f, namePositions, heldNames, length, stringNames, assocList,
+          heldAssoc, heldRules, constructedDefinition
+      },
+
+      f // Attributes =
+        If[ HoldComplete @ args === HoldComplete @ None,
+            { HoldAllComplete },
+            { Temporary, HoldAllComplete }
+        ];
+
+      namePositions = # ~ Append ~ 1 & /@
+        Position[ pattern, Verbatim[ Pattern ][ _, ___ ], Heads -> True ];
+
+      heldNames = Extract[ pattern, namePositions, Hold ];
+      length = Length @ heldNames;
+      stringNames = StringTake[ ToString @ #, { 6, -2 } ] & /@ heldNames;
+      assocList = Thread[ stringNames -> heldNames ];
+      heldAssoc = With[ { a = assocList }, HoldComplete @@ a ];
+
+      heldRules = ReplacePart[ heldAssoc,
+          ({ #, 2, 0 } & /@ Range[ length ]) -> List
+      ];
+
+      constructedDefinition =
+        ReplacePart[
+            With[ { args$ = pattern, exp = heldRules },
+                HoldComplete[ f[ args$ ] := exp ]
+            ],
+            { { 1, 2, 0 } -> Association }
+        ];
+
+      ReleaseHold @ constructedDefinition;
+      If[ args =!= None, f[ args ], f ]
+  ];
+
+
+
+(******************************************************************************)
+
+HoldFlatten // ClearAll;
+HoldFlatten // Attributes = { HoldAllComplete };
+HoldFlatten // Options = {};
+
+HoldFlatten[ expression_ ] :=
+  Module[ { heldExpression, holdPositions, removedHolds },
+      heldExpression = HoldComplete @ expression;
+      holdPositions = heldExpression ~ Position ~ Hold;
+      removedHolds = heldExpression ~ Delete ~ holdPositions;
+      removedHolds /. HoldComplete -> Hold
+  ];
+
+
+(******************************************************************************)
 
 End[]; (* End Private Context *)
 
